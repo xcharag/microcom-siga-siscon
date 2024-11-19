@@ -6,4 +6,7 @@ public class User : BaseEntity
     public string? Password { get; set; }
     
     public string? Role { get; set; }
+    
+    //One-to-Many Relationships
+    public List<Client.Client>? Clients { get; set; }
 }
