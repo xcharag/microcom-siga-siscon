@@ -6,6 +6,7 @@ public class Client : BaseEntity
 {
     public decimal? CreditLimit { get; set; }
     public string? RecipeName { get; set; }
+    public int? Nit { get; set; }
     
     //One-to-Many Relationship
     [JsonIgnore]
