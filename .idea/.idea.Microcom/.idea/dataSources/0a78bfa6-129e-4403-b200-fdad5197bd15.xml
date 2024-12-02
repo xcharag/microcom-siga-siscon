@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="microcom-web@OSCAR">
+<dataSource name="@OSCAR">
   <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.52">
     <root id="1">
       <Grants>2|||2|connect|G
@@ -16596,6 +16596,7 @@
       <Description>Yakut-100, case-sensitive, accent-sensitive, kanatype-insensitive, width-sensitive, supplementary characters, UTF8</Description>
     </collation>
     <database id="5510" parent="1" name="WideWorldImporters">
+      <Current>1</Current>
       <Fingerprint>5.45602/A4BC4230-0390-4025-8AA8-170CE13302D7@OSCAR\OSCAR</Fingerprint>
       <Grants>5|database||1|connect|G
 5|database||14|connect|G
@@ -16617,8 +16618,7 @@
       <CollationName>Modern_Spanish_CI_AS</CollationName>
     </database>
     <database id="5513" parent="1" name="microcom-web">
-      <Current>1</Current>
-      <Fingerprint>7.45610/B34B2B5B-FD4A-4E27-A1DC-67A59A5BA777@OSCAR\OSCAR</Fingerprint>
+      <Fingerprint>5.45602/A4BC4230-0390-4025-8AA8-170CE13302D7@OSCAR\OSCAR</Fingerprint>
       <Grants>7|database||1|connect|G
 7|database||0|view any column encryption key definition|G
 7|database||0|view any column master key definition|G</Grants>
@@ -16854,134 +16854,3277 @@
       <ObjectId>274</ObjectId>
       <Type>certificate-mapped-login</Type>
     </login>
-    <assembly id="5558" parent="5513" name="Microsoft.SqlServer.Types">
+    <assembly id="5558" parent="5510" name="Microsoft.SqlServer.Types">
       <ObjectId>1</ObjectId>
       <Visible>1</Visible>
     </assembly>
-    <filegroup id="5559" parent="5513" name="PRIMARY">
-      <DefaultGroup>1</DefaultGroup>
+    <filegroup id="5559" parent="5510" name="PRIMARY">
       <ObjectId>1</ObjectId>
     </filegroup>
-    <role id="5560" parent="5513" name="public">
+    <filegroup id="5560" parent="5510" name="USERDATA">
+      <DefaultGroup>1</DefaultGroup>
+      <ObjectId>2</ObjectId>
+    </filegroup>
+    <filegroup id="5561" parent="5510" name="WWI_InMemory_Data">
+      <DataSpaceKind>memory-optimized</DataSpaceKind>
+      <DefaultGroup>1</DefaultGroup>
+      <ObjectId>3</ObjectId>
+    </filegroup>
+    <partition-function id="5562" parent="5510" name="PF_TransactionDate">
+      <BoundaryValues>&apos;Jan  1 2014&apos;
+&apos;Jan  1 2015&apos;
+&apos;Jan  1 2016&apos;
+&apos;Jan  1 2017&apos;</BoundaryValues>
+      <ObjectId>65537</ObjectId>
+      <ParameterType>date|0s</ParameterType>
+      <Right>1</Right>
+    </partition-function>
+    <partition-function id="5563" parent="5510" name="PF_TransactionDateTime">
+      <BoundaryValues>&apos;Jan  1 2014 12:00AM&apos;
+&apos;Jan  1 2015 12:00AM&apos;
+&apos;Jan  1 2016 12:00AM&apos;
+&apos;Jan  1 2017 12:00AM&apos;</BoundaryValues>
+      <ObjectId>65536</ObjectId>
+      <ParameterType>datetime|0s</ParameterType>
+      <Right>1</Right>
+    </partition-function>
+    <partition-scheme id="5564" parent="5510" name="PS_TransactionDate">
+      <DataSpaceKind>partition-scheme</DataSpaceKind>
+      <ObjectId>65602</ObjectId>
+      <FileGroupIds>2
+2
+2
+2
+2
+2</FileGroupIds>
+      <PartitionFunctionId>65537</PartitionFunctionId>
+    </partition-scheme>
+    <partition-scheme id="5565" parent="5510" name="PS_TransactionDateTime">
+      <DataSpaceKind>partition-scheme</DataSpaceKind>
+      <ObjectId>65601</ObjectId>
+      <FileGroupIds>2
+2
+2
+2
+2
+2</FileGroupIds>
+      <PartitionFunctionId>65536</PartitionFunctionId>
+    </partition-scheme>
+    <role id="5566" parent="5510" name="public">
       <AuthType>none</AuthType>
       <ObjectId>0</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5561" parent="5513" name="dbo">
+    <role id="5567" parent="5510" name="dbo">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>1</ObjectId>
+    </role>
+    <role id="5568" parent="5510" name="guest">
+      <AuthType>none</AuthType>
+      <DefaultSchema>guest</DefaultSchema>
+      <ObjectId>2</ObjectId>
+    </role>
+    <role id="5569" parent="5510" name="INFORMATION_SCHEMA">
+      <AuthType>none</AuthType>
+      <ObjectId>3</ObjectId>
+    </role>
+    <role id="5570" parent="5510" name="sys">
+      <AuthType>none</AuthType>
+      <ObjectId>4</ObjectId>
+    </role>
+    <role id="5571" parent="5510" name="External Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>5</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5572" parent="5510" name="Far West Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>6</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5573" parent="5510" name="Great Lakes Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>7</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5574" parent="5510" name="Mideast Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>8</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5575" parent="5510" name="New England Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>9</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5576" parent="5510" name="Plains Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>10</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5577" parent="5510" name="Rocky Mountain Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>11</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5578" parent="5510" name="Southeast Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>12</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5579" parent="5510" name="Southwest Sales">
+      <AuthType>none</AuthType>
+      <ObjectId>13</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5580" parent="5510" name="test">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>14</ObjectId>
+    </role>
+    <role id="5581" parent="5510" name="OSCAR\Oscar">
+      <AuthType>windows</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>15</ObjectId>
+      <Type>windows-user</Type>
+    </role>
+    <role id="5582" parent="5510" name="test2">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>16</ObjectId>
+    </role>
+    <role id="5583" parent="5510" name="adminsito">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>17</ObjectId>
+    </role>
+    <role id="5584" parent="5510" name="db_owner">
+      <AuthType>none</AuthType>
+      <ObjectId>16384</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5585" parent="5510" name="db_accessadmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16385</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5586" parent="5510" name="db_securityadmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16386</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5587" parent="5510" name="db_ddladmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16387</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5588" parent="5510" name="db_backupoperator">
+      <AuthType>none</AuthType>
+      <ObjectId>16389</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5589" parent="5510" name="db_datareader">
+      <AuthType>none</AuthType>
+      <ObjectId>16390</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5590" parent="5510" name="db_datawriter">
+      <AuthType>none</AuthType>
+      <ObjectId>16391</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5591" parent="5510" name="db_denydatareader">
+      <AuthType>none</AuthType>
+      <ObjectId>16392</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5592" parent="5510" name="db_denydatawriter">
+      <AuthType>none</AuthType>
+      <ObjectId>16393</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <schema id="5593" parent="5510" name="Application">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="5594" parent="5510" name="DataLoadSimulation">
+      <ObjectId>6</ObjectId>
+    </schema>
+    <schema id="5595" parent="5510" name="INFORMATION_SCHEMA">
+      <ObjectId>3</ObjectId>
+    </schema>
+    <schema id="5596" parent="5510" name="Integration">
+      <ObjectId>7</ObjectId>
+    </schema>
+    <schema id="5597" parent="5510" name="PowerBI">
+      <ObjectId>8</ObjectId>
+    </schema>
+    <schema id="5598" parent="5510" name="Purchasing">
+      <ObjectId>9</ObjectId>
+    </schema>
+    <schema id="5599" parent="5510" name="Reports">
+      <ObjectId>10</ObjectId>
+    </schema>
+    <schema id="5600" parent="5510" name="Sales">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="5601" parent="5510" name="Sequences">
+      <ObjectId>12</ObjectId>
+    </schema>
+    <schema id="5602" parent="5510" name="Warehouse">
+      <ObjectId>13</ObjectId>
+    </schema>
+    <schema id="5603" parent="5510" name="Website">
+      <ObjectId>14</ObjectId>
+    </schema>
+    <schema id="5604" parent="5510" name="db_accessadmin">
+      <ObjectId>16385</ObjectId>
+    </schema>
+    <schema id="5605" parent="5510" name="db_backupoperator">
+      <ObjectId>16389</ObjectId>
+    </schema>
+    <schema id="5606" parent="5510" name="db_datareader">
+      <ObjectId>16390</ObjectId>
+    </schema>
+    <schema id="5607" parent="5510" name="db_datawriter">
+      <ObjectId>16391</ObjectId>
+    </schema>
+    <schema id="5608" parent="5510" name="db_ddladmin">
+      <ObjectId>16387</ObjectId>
+    </schema>
+    <schema id="5609" parent="5510" name="db_denydatareader">
+      <ObjectId>16392</ObjectId>
+    </schema>
+    <schema id="5610" parent="5510" name="db_denydatawriter">
+      <ObjectId>16393</ObjectId>
+    </schema>
+    <schema id="5611" parent="5510" name="db_owner">
+      <ObjectId>16384</ObjectId>
+    </schema>
+    <schema id="5612" parent="5510" name="db_securityadmin">
+      <ObjectId>16386</ObjectId>
+    </schema>
+    <schema id="5613" parent="5510" name="dbo">
+      <Current>1</Current>
+      <IntrospectionTimestamp>2024-12-02.13:32:40.540</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:40</LastIntrospectionLocalTimestamp>
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="5614" parent="5510" name="guest">
+      <ObjectId>2</ObjectId>
+    </schema>
+    <schema id="5615" parent="5510" name="sys">
+      <ObjectId>4</ObjectId>
+    </schema>
+    <assembly id="5616" parent="5513" name="Microsoft.SqlServer.Types">
+      <ObjectId>1</ObjectId>
+      <Visible>1</Visible>
+    </assembly>
+    <filegroup id="5617" parent="5513" name="PRIMARY">
+      <DefaultGroup>1</DefaultGroup>
+      <ObjectId>1</ObjectId>
+    </filegroup>
+    <role id="5618" parent="5513" name="public">
+      <AuthType>none</AuthType>
+      <ObjectId>0</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5619" parent="5513" name="dbo">
       <AuthType>windows</AuthType>
       <DefaultSchema>dbo</DefaultSchema>
       <ObjectId>1</ObjectId>
       <Type>windows-user</Type>
     </role>
-    <role id="5562" parent="5513" name="guest">
+    <role id="5620" parent="5513" name="guest">
       <AuthType>none</AuthType>
       <DefaultSchema>guest</DefaultSchema>
       <ObjectId>2</ObjectId>
     </role>
-    <role id="5563" parent="5513" name="INFORMATION_SCHEMA">
+    <role id="5621" parent="5513" name="INFORMATION_SCHEMA">
       <AuthType>none</AuthType>
       <ObjectId>3</ObjectId>
     </role>
-    <role id="5564" parent="5513" name="sys">
+    <role id="5622" parent="5513" name="sys">
       <AuthType>none</AuthType>
       <ObjectId>4</ObjectId>
     </role>
-    <role id="5565" parent="5513" name="db_owner">
+    <role id="5623" parent="5513" name="db_owner">
       <AuthType>none</AuthType>
       <ObjectId>16384</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5566" parent="5513" name="db_accessadmin">
+    <role id="5624" parent="5513" name="db_accessadmin">
       <AuthType>none</AuthType>
       <ObjectId>16385</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5567" parent="5513" name="db_securityadmin">
+    <role id="5625" parent="5513" name="db_securityadmin">
       <AuthType>none</AuthType>
       <ObjectId>16386</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5568" parent="5513" name="db_ddladmin">
+    <role id="5626" parent="5513" name="db_ddladmin">
       <AuthType>none</AuthType>
       <ObjectId>16387</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5569" parent="5513" name="db_backupoperator">
+    <role id="5627" parent="5513" name="db_backupoperator">
       <AuthType>none</AuthType>
       <ObjectId>16389</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5570" parent="5513" name="db_datareader">
+    <role id="5628" parent="5513" name="db_datareader">
       <AuthType>none</AuthType>
       <ObjectId>16390</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5571" parent="5513" name="db_datawriter">
+    <role id="5629" parent="5513" name="db_datawriter">
       <AuthType>none</AuthType>
       <ObjectId>16391</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5572" parent="5513" name="db_denydatareader">
+    <role id="5630" parent="5513" name="db_denydatareader">
       <AuthType>none</AuthType>
       <ObjectId>16392</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5573" parent="5513" name="db_denydatawriter">
+    <role id="5631" parent="5513" name="db_denydatawriter">
       <AuthType>none</AuthType>
       <ObjectId>16393</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <schema id="5574" parent="5513" name="INFORMATION_SCHEMA">
+    <schema id="5632" parent="5513" name="INFORMATION_SCHEMA">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.163</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>3</ObjectId>
     </schema>
-    <schema id="5575" parent="5513" name="db_accessadmin">
+    <schema id="5633" parent="5513" name="db_accessadmin">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.173</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16385</ObjectId>
     </schema>
-    <schema id="5576" parent="5513" name="db_backupoperator">
+    <schema id="5634" parent="5513" name="db_backupoperator">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.180</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16389</ObjectId>
     </schema>
-    <schema id="5577" parent="5513" name="db_datareader">
+    <schema id="5635" parent="5513" name="db_datareader">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.190</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16390</ObjectId>
     </schema>
-    <schema id="5578" parent="5513" name="db_datawriter">
+    <schema id="5636" parent="5513" name="db_datawriter">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.197</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16391</ObjectId>
     </schema>
-    <schema id="5579" parent="5513" name="db_ddladmin">
+    <schema id="5637" parent="5513" name="db_ddladmin">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.203</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16387</ObjectId>
     </schema>
-    <schema id="5580" parent="5513" name="db_denydatareader">
+    <schema id="5638" parent="5513" name="db_denydatareader">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.210</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16392</ObjectId>
     </schema>
-    <schema id="5581" parent="5513" name="db_denydatawriter">
+    <schema id="5639" parent="5513" name="db_denydatawriter">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.220</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16393</ObjectId>
     </schema>
-    <schema id="5582" parent="5513" name="db_owner">
+    <schema id="5640" parent="5513" name="db_owner">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.227</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16384</ObjectId>
     </schema>
-    <schema id="5583" parent="5513" name="db_securityadmin">
+    <schema id="5641" parent="5513" name="db_securityadmin">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.233</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>16386</ObjectId>
     </schema>
-    <schema id="5584" parent="5513" name="dbo">
+    <schema id="5642" parent="5513" name="dbo">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-11-20.18:17:54.843</IntrospectionTimestamp>
-      <LastIntrospectionLocalTimestamp>2024-11-21.02:17:54</LastIntrospectionLocalTimestamp>
+      <IntrospectionTimestamp>2024-12-02.13:33:22.257</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:33:22</LastIntrospectionLocalTimestamp>
       <ObjectId>1</ObjectId>
     </schema>
-    <schema id="5585" parent="5513" name="guest">
+    <schema id="5643" parent="5513" name="guest">
+      <IntrospectionTimestamp>2024-12-02.13:32:59.250</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>2</ObjectId>
     </schema>
-    <schema id="5586" parent="5513" name="sys">
+    <schema id="5644" parent="5513" name="sys">
+      <Grants>-664|||0|select|G
+-662|||0|select|G
+-660|||0|select|G
+-657|||0|select|G
+-642|||0|select|G
+-632|||0|select|G
+-631|||0|select|G
+-630|||0|select|G
+-629|||0|select|G
+-625|||0|select|G
+-624|||0|select|G
+-623|||0|select|G
+-622|||0|select|G
+-621|||0|select|G
+-620|||0|select|G
+-617|||0|select|G
+-615|||0|select|G
+-614|||0|select|G
+-613|||0|select|G
+-606|||0|select|G
+-605|||0|select|G
+-603|||0|select|G
+-602|||0|select|G
+-601|||0|select|G
+-600|||0|select|G
+-599|||0|select|G
+-598|||0|select|G
+-596|||0|select|G
+-589|||0|select|G
+-588|||0|select|G
+-587|||0|select|G
+-586|||0|select|G
+-582|||0|select|G
+-580|||0|select|G
+-572|||0|select|G
+-571|||0|select|G
+-570|||0|select|G
+-569|||0|select|G
+-568|||0|select|G
+-567|||0|select|G
+-566|||0|select|G
+-565|||0|select|G
+-564|||0|select|G
+-563|||0|select|G
+-562|||0|select|G
+-561|||0|select|G
+-560|||0|select|G
+-559|||0|select|G
+-558|||0|select|G
+-557|||0|select|G
+-551|||0|select|G
+-550|||0|select|G
+-549|||0|select|G
+-541|||0|select|G
+-540|||0|select|G
+-539|||0|select|G
+-538|||0|select|G
+-537|||0|select|G
+-536|||0|select|G
+-535|||0|select|G
+-519|||0|select|G
+-518|||0|select|G
+-517|||0|select|G
+-516|||0|select|G
+-515|||0|select|G
+-514|||0|select|G
+-513|||0|select|G
+-505|||0|select|G
+-504|||0|select|G
+-503|||0|select|G
+-502|||0|select|G
+-501|||0|select|G
+-500|||0|select|G
+-499|||0|select|G
+-498|||0|select|G
+-497|||0|select|G
+-496|||0|select|G
+-494|||0|select|G
+-489|||0|select|G
+-485|||0|select|G
+-484|||0|select|G
+-483|||0|select|G
+-482|||0|select|G
+-481|||0|select|G
+-480|||0|select|G
+-479|||0|select|G
+-478|||0|select|G
+-477|||0|select|G
+-476|||0|select|G
+-469|||0|select|G
+-468|||0|select|G
+-467|||0|select|G
+-466|||0|select|G
+-465|||0|select|G
+-464|||0|select|G
+-463|||0|select|G
+-462|||0|select|G
+-461|||0|select|G
+-460|||0|select|G
+-459|||0|select|G
+-458|||0|select|G
+-457|||0|select|G
+-456|||0|select|G
+-455|||0|select|G
+-454|||0|select|G
+-453|||0|select|G
+-452|||0|select|G
+-451|||0|select|G
+-450|||0|select|G
+-449|||0|select|G
+-448|||0|select|G
+-447|||0|select|G
+-446|||0|select|G
+-445|||0|select|G
+-444|||0|select|G
+-443|||0|select|G
+-442|||0|select|G
+-441|||0|select|G
+-440|||0|select|G
+-439|||0|select|G
+-438|||0|select|G
+-437|||0|select|G
+-436|||0|select|G
+-435|||0|select|G
+-434|||0|select|G
+-433|||0|select|G
+-432|||0|select|G
+-431|||0|select|G
+-430|||0|select|G
+-429|||0|select|G
+-428|||0|select|G
+-426|||0|select|G
+-425|||0|select|G
+-424|||0|select|G
+-423|||0|select|G
+-422|||0|select|G
+-421|||0|select|G
+-420|||0|select|G
+-419|||0|select|G
+-418|||0|select|G
+-417|||0|select|G
+-416|||0|select|G
+-415|||0|select|G
+-414|||0|select|G
+-413|||0|select|G
+-412|||0|select|G
+-411|||0|select|G
+-410|||0|select|G
+-409|||0|select|G
+-408|||0|select|G
+-407|||0|select|G
+-406|||0|select|G
+-405|||0|select|G
+-404|||0|select|G
+-403|||0|select|G
+-402|||0|select|G
+-401|||0|select|G
+-400|||0|select|G
+-399|||0|select|G
+-398|||0|select|G
+-397|||0|select|G
+-396|||0|select|G
+-395|||0|select|G
+-394|||0|select|G
+-393|||0|select|G
+-392|||0|select|G
+-391|||0|select|G
+-390|||0|select|G
+-389|||0|select|G
+-388|||0|select|G
+-387|||0|select|G
+-386|||0|select|G
+-385|||0|select|G
+-143|||0|select|G
+-142|||0|select|G
+-141|||0|select|G
+-140|||0|select|G
+-139|||0|select|G
+-138|||0|select|G
+-137|||0|select|G
+-136|||0|select|G
+-135|||0|select|G
+-134|||0|select|G
+-133|||0|select|G
+-132|||0|select|G
+-131|||0|select|G
+-130|||0|select|G
+-129|||0|select|G
+-107|||0|select|G
+-106|||0|select|G
+-105|||0|select|G
+-104|||0|select|G
+-103|||0|select|G
+-102|||0|select|G
+-101|||0|select|G</Grants>
+      <IntrospectionTimestamp>2024-12-02.13:32:59.260</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-02.21:32:59</LastIntrospectionLocalTimestamp>
       <ObjectId>4</ObjectId>
+      <PermissionsCheckSum>413248079978</PermissionsCheckSum>
     </schema>
+    <table id="5645" parent="5642" name="Anexos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1957582012</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5646" parent="5642" name="Anexos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1957582012</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5647" parent="5642" name="Bancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.967</ModifiedTimestamp>
+      <ObjectId>1445580188</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5648" parent="5642" name="Bancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.967</ModifiedTimestamp>
+      <ObjectId>1445580188</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5649" parent="5642" name="ClienteTipoDoc">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.970</ModifiedTimestamp>
+      <ObjectId>1701581100</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5650" parent="5642" name="ClienteTipoDoc">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.970</ModifiedTimestamp>
+      <ObjectId>1701581100</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5651" parent="5642" name="Clientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1493580359</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5652" parent="5642" name="Clientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1493580359</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5653" parent="5642" name="DetalleDocumentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1829581556</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5654" parent="5642" name="DetalleDocumentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1829581556</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5655" parent="5642" name="DocumentoBancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1893581784</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5656" parent="5642" name="DocumentoBancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1893581784</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5657" parent="5642" name="Documentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1765581328</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5658" parent="5642" name="Documentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1765581328</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5659" parent="5642" name="PlanCuentaMayores">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1237579447</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5660" parent="5642" name="PlanCuentaMayores">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1237579447</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5661" parent="5642" name="PlanCuentas">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1397580017</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5662" parent="5642" name="PlanCuentas">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1397580017</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5663" parent="5642" name="Proveedores">
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.980</ModifiedTimestamp>
+      <ObjectId>1573580644</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5664" parent="5642" name="Proveedores">
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.980</ModifiedTimestamp>
+      <ObjectId>1573580644</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5665" parent="5642" name="TcCostos">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1269579561</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5666" parent="5642" name="TcCostos">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1269579561</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5667" parent="5642" name="TipoClientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1301579675</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5668" parent="5642" name="TipoClientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1301579675</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5669" parent="5642" name="TipoDocs">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1333579789</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5670" parent="5642" name="TipoDocs">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1333579789</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5671" parent="5642" name="TipoEgresos">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1653580929</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5672" parent="5642" name="TipoEgresos">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.973</ModifiedTimestamp>
+      <ObjectId>1653580929</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5673" parent="5642" name="Usuarios">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1365579903</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5674" parent="5642" name="Usuarios">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1365579903</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5675" parent="5642" name="__EFMigrationsHistory">
+      <CreatedTimestamp>2024-12-02.13:32:36.863</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.863</ModifiedTimestamp>
+      <ObjectId>1205579333</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5676" parent="5642" name="__EFMigrationsHistory">
+      <CreatedTimestamp>2024-12-02.13:32:36.863</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-02.13:32:36.863</ModifiedTimestamp>
+      <ObjectId>1205579333</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <column id="5677" parent="5645" name="NroAnexo">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5678" parent="5645" name="Correl">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5679" parent="5645" name="Nit">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5680" parent="5645" name="FechaFactura">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5681" parent="5645" name="NroAutorizacion">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5682" parent="5645" name="NroFactura">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5683" parent="5645" name="Glosa">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5684" parent="5645" name="Importe">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5685" parent="5645" name="Sujeto">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5686" parent="5645" name="Mtoiva">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5687" parent="5645" name="Ice">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+    </column>
+    <column id="5688" parent="5645" name="Excento">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <column id="5689" parent="5645" name="Descuento">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>13</Position>
+    </column>
+    <column id="5690" parent="5645" name="DetalleDocumentoNroDetalleDoc">
+      <DasType>int|0s</DasType>
+      <Position>14</Position>
+    </column>
+    <column id="5691" parent="5645" name="NroDetalleDoc">
+      <DasType>int|0s</DasType>
+      <Position>15</Position>
+    </column>
+    <column id="5692" parent="5645" name="TipoEgresoCodTipoEgreso">
+      <DasType>int|0s</DasType>
+      <Position>16</Position>
+    </column>
+    <column id="5693" parent="5645" name="CodTipoEgreso">
+      <DasType>int|0s</DasType>
+      <Position>17</Position>
+    </column>
+    <column id="5694" parent="5645" name="ProveedorCodProv">
+      <DasType>int|0s</DasType>
+      <Position>18</Position>
+    </column>
+    <column id="5695" parent="5645" name="CodProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>19</Position>
+    </column>
+    <foreign-key id="5696" parent="5645" name="FK_Anexos_DetalleDocumentos_DetalleDocumentoNroDetalleDoc">
+      <ColNames>DetalleDocumentoNroDetalleDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1989582126</ObjectId>
+      <RefColNames>NroDetalleDoc</RefColNames>
+      <RefTableId>1829581556</RefTableId>
+      <RefTableName>DetalleDocumentos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5697" parent="5645" name="FK_Anexos_TipoEgresos_TipoEgresoCodTipoEgreso">
+      <ColNames>TipoEgresoCodTipoEgreso</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>2021582240</ObjectId>
+      <RefColNames>CodTipoEgreso</RefColNames>
+      <RefTableId>1653580929</RefTableId>
+      <RefTableName>TipoEgresos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5698" parent="5645" name="FK_Anexos_Proveedores_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>2005582183</ObjectId>
+      <RefColNames>CodProv</RefColNames>
+      <RefTableId>1573580644</RefTableId>
+      <RefTableName>Proveedores</RefTableName>
+    </foreign-key>
+    <index id="5699" parent="5645" name="PK_Anexos">
+      <Clustering>1</Clustering>
+      <ColNames>NroAnexo</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5700" parent="5645" name="IX_Anexos_DetalleDocumentoNroDetalleDoc">
+      <ColNames>DetalleDocumentoNroDetalleDoc</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5701" parent="5645" name="IX_Anexos_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5702" parent="5645" name="IX_Anexos_TipoEgresoCodTipoEgreso">
+      <ColNames>TipoEgresoCodTipoEgreso</ColNames>
+      <Position>4</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5703" parent="5645" name="PK_Anexos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1973582069</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Anexos</UnderlyingIndexName>
+    </key>
+    <column id="5704" parent="5646" name="NroAnexo">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5705" parent="5646" name="Correl">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5706" parent="5646" name="Nit">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5707" parent="5646" name="FechaFactura">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5708" parent="5646" name="NroAutorizacion">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5709" parent="5646" name="NroFactura">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5710" parent="5646" name="Glosa">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5711" parent="5646" name="Importe">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5712" parent="5646" name="Sujeto">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5713" parent="5646" name="Mtoiva">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5714" parent="5646" name="Ice">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+    </column>
+    <column id="5715" parent="5646" name="Excento">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <column id="5716" parent="5646" name="Descuento">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>13</Position>
+    </column>
+    <column id="5717" parent="5646" name="DetalleDocumentoNroDetalleDoc">
+      <DasType>int|0s</DasType>
+      <Position>14</Position>
+    </column>
+    <column id="5718" parent="5646" name="NroDetalleDoc">
+      <DasType>int|0s</DasType>
+      <Position>15</Position>
+    </column>
+    <column id="5719" parent="5646" name="TipoEgresoCodTipoEgreso">
+      <DasType>int|0s</DasType>
+      <Position>16</Position>
+    </column>
+    <column id="5720" parent="5646" name="CodTipoEgreso">
+      <DasType>int|0s</DasType>
+      <Position>17</Position>
+    </column>
+    <column id="5721" parent="5646" name="ProveedorCodProv">
+      <DasType>int|0s</DasType>
+      <Position>18</Position>
+    </column>
+    <column id="5722" parent="5646" name="CodProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>19</Position>
+    </column>
+    <foreign-key id="5723" parent="5646" name="FK_Anexos_DetalleDocumentos_DetalleDocumentoNroDetalleDoc">
+      <ColNames>DetalleDocumentoNroDetalleDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1989582126</ObjectId>
+      <RefColNames>NroDetalleDoc</RefColNames>
+      <RefTableId>1829581556</RefTableId>
+      <RefTableName>DetalleDocumentos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5724" parent="5646" name="FK_Anexos_TipoEgresos_TipoEgresoCodTipoEgreso">
+      <ColNames>TipoEgresoCodTipoEgreso</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>2021582240</ObjectId>
+      <RefColNames>CodTipoEgreso</RefColNames>
+      <RefTableId>1653580929</RefTableId>
+      <RefTableName>TipoEgresos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5725" parent="5646" name="FK_Anexos_Proveedores_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>2005582183</ObjectId>
+      <RefColNames>CodProv</RefColNames>
+      <RefTableId>1573580644</RefTableId>
+      <RefTableName>Proveedores</RefTableName>
+    </foreign-key>
+    <index id="5726" parent="5646" name="PK_Anexos">
+      <Clustering>1</Clustering>
+      <ColNames>NroAnexo</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5727" parent="5646" name="IX_Anexos_DetalleDocumentoNroDetalleDoc">
+      <ColNames>DetalleDocumentoNroDetalleDoc</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5728" parent="5646" name="IX_Anexos_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5729" parent="5646" name="IX_Anexos_TipoEgresoCodTipoEgreso">
+      <ColNames>TipoEgresoCodTipoEgreso</ColNames>
+      <Position>4</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5730" parent="5646" name="PK_Anexos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1973582069</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Anexos</UnderlyingIndexName>
+    </key>
+    <column id="5731" parent="5647" name="CodBanco">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5732" parent="5647" name="NomBanco">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5733" parent="5647" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="5734" parent="5647" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="5735" parent="5647" name="FK_Bancos_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1477580302</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <index id="5736" parent="5647" name="PK_Bancos">
+      <Clustering>1</Clustering>
+      <ColNames>CodBanco</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5737" parent="5647" name="IX_Bancos_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5738" parent="5647" name="PK_Bancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1461580245</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Bancos</UnderlyingIndexName>
+    </key>
+    <column id="5739" parent="5648" name="CodBanco">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5740" parent="5648" name="NomBanco">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5741" parent="5648" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="5742" parent="5648" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="5743" parent="5648" name="FK_Bancos_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1477580302</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <index id="5744" parent="5648" name="PK_Bancos">
+      <Clustering>1</Clustering>
+      <ColNames>CodBanco</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5745" parent="5648" name="IX_Bancos_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5746" parent="5648" name="PK_Bancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1461580245</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Bancos</UnderlyingIndexName>
+    </key>
+    <column id="5747" parent="5649" name="ClientesCodCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="5748" parent="5649" name="TipoDocsCodTipoDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="5749" parent="5649" name="FK_ClienteTipoDoc_Clientes_ClientesCodCli">
+      <ColNames>ClientesCodCli</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1733581214</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>CodCli</RefColNames>
+      <RefTableId>1493580359</RefTableId>
+      <RefTableName>Clientes</RefTableName>
+    </foreign-key>
+    <foreign-key id="5750" parent="5649" name="FK_ClienteTipoDoc_TipoDocs_TipoDocsCodTipoDoc">
+      <ColNames>TipoDocsCodTipoDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1749581271</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>CodTipoDoc</RefColNames>
+      <RefTableId>1333579789</RefTableId>
+      <RefTableName>TipoDocs</RefTableName>
+    </foreign-key>
+    <index id="5751" parent="5649" name="PK_ClienteTipoDoc">
+      <Clustering>1</Clustering>
+      <ColNames>ClientesCodCli
+TipoDocsCodTipoDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5752" parent="5649" name="IX_ClienteTipoDoc_TipoDocsCodTipoDoc">
+      <ColNames>TipoDocsCodTipoDoc</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5753" parent="5649" name="PK_ClienteTipoDoc">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1717581157</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_ClienteTipoDoc</UnderlyingIndexName>
+    </key>
+    <column id="5754" parent="5650" name="ClientesCodCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="5755" parent="5650" name="TipoDocsCodTipoDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="5756" parent="5650" name="FK_ClienteTipoDoc_Clientes_ClientesCodCli">
+      <ColNames>ClientesCodCli</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1733581214</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>CodCli</RefColNames>
+      <RefTableId>1493580359</RefTableId>
+      <RefTableName>Clientes</RefTableName>
+    </foreign-key>
+    <foreign-key id="5757" parent="5650" name="FK_ClienteTipoDoc_TipoDocs_TipoDocsCodTipoDoc">
+      <ColNames>TipoDocsCodTipoDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1749581271</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>CodTipoDoc</RefColNames>
+      <RefTableId>1333579789</RefTableId>
+      <RefTableName>TipoDocs</RefTableName>
+    </foreign-key>
+    <index id="5758" parent="5650" name="PK_ClienteTipoDoc">
+      <Clustering>1</Clustering>
+      <ColNames>ClientesCodCli
+TipoDocsCodTipoDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5759" parent="5650" name="IX_ClienteTipoDoc_TipoDocsCodTipoDoc">
+      <ColNames>TipoDocsCodTipoDoc</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5760" parent="5650" name="PK_ClienteTipoDoc">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1717581157</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_ClienteTipoDoc</UnderlyingIndexName>
+    </key>
+    <column id="5761" parent="5651" name="CodCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5762" parent="5651" name="NomCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5763" parent="5651" name="Contacto">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5764" parent="5651" name="DirCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5765" parent="5651" name="TelCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5766" parent="5651" name="EmailCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5767" parent="5651" name="Ciudad">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5768" parent="5651" name="TipoDoc">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5769" parent="5651" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5770" parent="5651" name="CodigoEx">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5771" parent="5651" name="Complemento">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+    </column>
+    <column id="5772" parent="5651" name="LimiteCre">
+      <DasType>real|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <column id="5773" parent="5651" name="FacturarA">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>13</Position>
+    </column>
+    <column id="5774" parent="5651" name="ClientTypeCodTipoCli">
+      <DasType>int|0s</DasType>
+      <Position>14</Position>
+    </column>
+    <column id="5775" parent="5651" name="CodTipoCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>15</Position>
+    </column>
+    <column id="5776" parent="5651" name="UserCodUsuario">
+      <DasType>int|0s</DasType>
+      <Position>16</Position>
+    </column>
+    <column id="5777" parent="5651" name="CodUsuario">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>17</Position>
+    </column>
+    <column id="5778" parent="5651" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>18</Position>
+    </column>
+    <column id="5779" parent="5651" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>19</Position>
+    </column>
+    <column id="5780" parent="5651" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>20</Position>
+    </column>
+    <column id="5781" parent="5651" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>21</Position>
+    </column>
+    <column id="5782" parent="5651" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>22</Position>
+    </column>
+    <foreign-key id="5783" parent="5651" name="FK_Clientes_TipoClientes_ClientTypeCodTipoCli">
+      <ColNames>ClientTypeCodTipoCli</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1541580530</ObjectId>
+      <RefColNames>CodTipoCli</RefColNames>
+      <RefTableId>1301579675</RefTableId>
+      <RefTableName>TipoClientes</RefTableName>
+    </foreign-key>
+    <foreign-key id="5784" parent="5651" name="FK_Clientes_Usuarios_UserCodUsuario">
+      <ColNames>UserCodUsuario</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1557580587</ObjectId>
+      <RefColNames>CodUsuario</RefColNames>
+      <RefTableId>1365579903</RefTableId>
+      <RefTableName>Usuarios</RefTableName>
+    </foreign-key>
+    <foreign-key id="5785" parent="5651" name="FK_Clientes_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1525580473</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <index id="5786" parent="5651" name="PK_Clientes">
+      <Clustering>1</Clustering>
+      <ColNames>CodCli</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5787" parent="5651" name="IX_Clientes_ClientTypeCodTipoCli">
+      <ColNames>ClientTypeCodTipoCli</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5788" parent="5651" name="IX_Clientes_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5789" parent="5651" name="IX_Clientes_UserCodUsuario">
+      <ColNames>UserCodUsuario</ColNames>
+      <Position>4</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5790" parent="5651" name="PK_Clientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1509580416</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Clientes</UnderlyingIndexName>
+    </key>
+    <column id="5791" parent="5652" name="CodCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5792" parent="5652" name="NomCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5793" parent="5652" name="Contacto">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5794" parent="5652" name="DirCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5795" parent="5652" name="TelCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5796" parent="5652" name="EmailCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5797" parent="5652" name="Ciudad">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5798" parent="5652" name="TipoDoc">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5799" parent="5652" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5800" parent="5652" name="CodigoEx">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5801" parent="5652" name="Complemento">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+    </column>
+    <column id="5802" parent="5652" name="LimiteCre">
+      <DasType>real|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <column id="5803" parent="5652" name="FacturarA">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>13</Position>
+    </column>
+    <column id="5804" parent="5652" name="ClientTypeCodTipoCli">
+      <DasType>int|0s</DasType>
+      <Position>14</Position>
+    </column>
+    <column id="5805" parent="5652" name="CodTipoCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>15</Position>
+    </column>
+    <column id="5806" parent="5652" name="UserCodUsuario">
+      <DasType>int|0s</DasType>
+      <Position>16</Position>
+    </column>
+    <column id="5807" parent="5652" name="CodUsuario">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>17</Position>
+    </column>
+    <column id="5808" parent="5652" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>18</Position>
+    </column>
+    <column id="5809" parent="5652" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>19</Position>
+    </column>
+    <column id="5810" parent="5652" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>20</Position>
+    </column>
+    <column id="5811" parent="5652" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>21</Position>
+    </column>
+    <column id="5812" parent="5652" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>22</Position>
+    </column>
+    <foreign-key id="5813" parent="5652" name="FK_Clientes_TipoClientes_ClientTypeCodTipoCli">
+      <ColNames>ClientTypeCodTipoCli</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1541580530</ObjectId>
+      <RefColNames>CodTipoCli</RefColNames>
+      <RefTableId>1301579675</RefTableId>
+      <RefTableName>TipoClientes</RefTableName>
+    </foreign-key>
+    <foreign-key id="5814" parent="5652" name="FK_Clientes_Usuarios_UserCodUsuario">
+      <ColNames>UserCodUsuario</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1557580587</ObjectId>
+      <RefColNames>CodUsuario</RefColNames>
+      <RefTableId>1365579903</RefTableId>
+      <RefTableName>Usuarios</RefTableName>
+    </foreign-key>
+    <foreign-key id="5815" parent="5652" name="FK_Clientes_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1525580473</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <index id="5816" parent="5652" name="PK_Clientes">
+      <Clustering>1</Clustering>
+      <ColNames>CodCli</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5817" parent="5652" name="IX_Clientes_ClientTypeCodTipoCli">
+      <ColNames>ClientTypeCodTipoCli</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5818" parent="5652" name="IX_Clientes_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5819" parent="5652" name="IX_Clientes_UserCodUsuario">
+      <ColNames>UserCodUsuario</ColNames>
+      <Position>4</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5820" parent="5652" name="PK_Clientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1509580416</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Clientes</UnderlyingIndexName>
+    </key>
+    <column id="5821" parent="5653" name="NroDetalleDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5822" parent="5653" name="Correl">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5823" parent="5653" name="Tipo">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5824" parent="5653" name="Mtobd">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5825" parent="5653" name="Mtodd">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5826" parent="5653" name="Mtobh">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5827" parent="5653" name="Mtodh">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5828" parent="5653" name="Glosa">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5829" parent="5653" name="TcCostoCodCc">
+      <DasType>nvarchar(450 char)|0s</DasType>
+      <Position>9</Position>
+    </column>
+    <column id="5830" parent="5653" name="CodCc">
+      <DasType>int|0s</DasType>
+      <Position>10</Position>
+    </column>
+    <column id="5831" parent="5653" name="DocumentoNroDoc">
+      <DasType>int|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="5832" parent="5653" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <Position>12</Position>
+    </column>
+    <foreign-key id="5833" parent="5653" name="FK_DetalleDocumentos_TcCostos_TcCostoCodCc">
+      <ColNames>TcCostoCodCc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1877581727</ObjectId>
+      <RefColNames>CodCc</RefColNames>
+      <RefTableId>1269579561</RefTableId>
+      <RefTableName>TcCostos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5834" parent="5653" name="FK_DetalleDocumentos_Documentos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1861581670</ObjectId>
+      <RefColNames>NroDoc</RefColNames>
+      <RefTableId>1765581328</RefTableId>
+      <RefTableName>Documentos</RefTableName>
+    </foreign-key>
+    <index id="5835" parent="5653" name="PK_DetalleDocumentos">
+      <Clustering>1</Clustering>
+      <ColNames>NroDetalleDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5836" parent="5653" name="IX_DetalleDocumentos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5837" parent="5653" name="IX_DetalleDocumentos_TcCostoCodCc">
+      <ColNames>TcCostoCodCc</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5838" parent="5653" name="PK_DetalleDocumentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1845581613</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_DetalleDocumentos</UnderlyingIndexName>
+    </key>
+    <column id="5839" parent="5654" name="NroDetalleDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5840" parent="5654" name="Correl">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5841" parent="5654" name="Tipo">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5842" parent="5654" name="Mtobd">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5843" parent="5654" name="Mtodd">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5844" parent="5654" name="Mtobh">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5845" parent="5654" name="Mtodh">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5846" parent="5654" name="Glosa">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5847" parent="5654" name="TcCostoCodCc">
+      <DasType>nvarchar(450 char)|0s</DasType>
+      <Position>9</Position>
+    </column>
+    <column id="5848" parent="5654" name="CodCc">
+      <DasType>int|0s</DasType>
+      <Position>10</Position>
+    </column>
+    <column id="5849" parent="5654" name="DocumentoNroDoc">
+      <DasType>int|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="5850" parent="5654" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <Position>12</Position>
+    </column>
+    <foreign-key id="5851" parent="5654" name="FK_DetalleDocumentos_TcCostos_TcCostoCodCc">
+      <ColNames>TcCostoCodCc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1877581727</ObjectId>
+      <RefColNames>CodCc</RefColNames>
+      <RefTableId>1269579561</RefTableId>
+      <RefTableName>TcCostos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5852" parent="5654" name="FK_DetalleDocumentos_Documentos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1861581670</ObjectId>
+      <RefColNames>NroDoc</RefColNames>
+      <RefTableId>1765581328</RefTableId>
+      <RefTableName>Documentos</RefTableName>
+    </foreign-key>
+    <index id="5853" parent="5654" name="PK_DetalleDocumentos">
+      <Clustering>1</Clustering>
+      <ColNames>NroDetalleDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5854" parent="5654" name="IX_DetalleDocumentos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5855" parent="5654" name="IX_DetalleDocumentos_TcCostoCodCc">
+      <ColNames>TcCostoCodCc</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5856" parent="5654" name="PK_DetalleDocumentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1845581613</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_DetalleDocumentos</UnderlyingIndexName>
+    </key>
+    <column id="5857" parent="5655" name="CodDocumentoBanco">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5858" parent="5655" name="DocumentoNroDoc">
+      <DasType>int|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="5859" parent="5655" name="CodDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5860" parent="5655" name="BancoCodBanco">
+      <DasType>int|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="5861" parent="5655" name="CodBanco">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="5862" parent="5655" name="FK_DocumentoBancos_Documentos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1941581955</ObjectId>
+      <RefColNames>NroDoc</RefColNames>
+      <RefTableId>1765581328</RefTableId>
+      <RefTableName>Documentos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5863" parent="5655" name="FK_DocumentoBancos_Bancos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1925581898</ObjectId>
+      <RefColNames>CodBanco</RefColNames>
+      <RefTableId>1445580188</RefTableId>
+      <RefTableName>Bancos</RefTableName>
+    </foreign-key>
+    <index id="5864" parent="5655" name="PK_DocumentoBancos">
+      <Clustering>1</Clustering>
+      <ColNames>CodDocumentoBanco</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5865" parent="5655" name="IX_DocumentoBancos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5866" parent="5655" name="IX_DocumentoBancos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5867" parent="5655" name="PK_DocumentoBancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1909581841</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_DocumentoBancos</UnderlyingIndexName>
+    </key>
+    <column id="5868" parent="5656" name="CodDocumentoBanco">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5869" parent="5656" name="DocumentoNroDoc">
+      <DasType>int|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="5870" parent="5656" name="CodDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5871" parent="5656" name="BancoCodBanco">
+      <DasType>int|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="5872" parent="5656" name="CodBanco">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="5873" parent="5656" name="FK_DocumentoBancos_Documentos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1941581955</ObjectId>
+      <RefColNames>NroDoc</RefColNames>
+      <RefTableId>1765581328</RefTableId>
+      <RefTableName>Documentos</RefTableName>
+    </foreign-key>
+    <foreign-key id="5874" parent="5656" name="FK_DocumentoBancos_Bancos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1925581898</ObjectId>
+      <RefColNames>CodBanco</RefColNames>
+      <RefTableId>1445580188</RefTableId>
+      <RefTableName>Bancos</RefTableName>
+    </foreign-key>
+    <index id="5875" parent="5656" name="PK_DocumentoBancos">
+      <Clustering>1</Clustering>
+      <ColNames>CodDocumentoBanco</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5876" parent="5656" name="IX_DocumentoBancos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5877" parent="5656" name="IX_DocumentoBancos_DocumentoNroDoc">
+      <ColNames>DocumentoNroDoc</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5878" parent="5656" name="PK_DocumentoBancos">
+      <CreatedTimestamp>2024-12-02.13:32:36.963</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.963</ModifiedTimestamp>
+      <ObjectId>1909581841</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_DocumentoBancos</UnderlyingIndexName>
+    </key>
+    <column id="5879" parent="5657" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5880" parent="5657" name="FechaDoc">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5881" parent="5657" name="Nombre">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5882" parent="5657" name="NroCheque">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5883" parent="5657" name="Moneda">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5884" parent="5657" name="Importe">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5885" parent="5657" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5886" parent="5657" name="Origen">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5887" parent="5657" name="FechaRegistro">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5888" parent="5657" name="HoraRegistro">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5889" parent="5657" name="ProveedorCodProv">
+      <DasType>int|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="5890" parent="5657" name="CodProv">
+      <DasType>int|0s</DasType>
+      <Position>12</Position>
+    </column>
+    <column id="5891" parent="5657" name="BancoCodBanco">
+      <DasType>int|0s</DasType>
+      <Position>13</Position>
+    </column>
+    <column id="5892" parent="5657" name="CodBanco">
+      <DasType>int|0s</DasType>
+      <Position>14</Position>
+    </column>
+    <foreign-key id="5893" parent="5657" name="FK_Documentos_Proveedores_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1813581499</ObjectId>
+      <RefColNames>CodProv</RefColNames>
+      <RefTableId>1573580644</RefTableId>
+      <RefTableName>Proveedores</RefTableName>
+    </foreign-key>
+    <foreign-key id="5894" parent="5657" name="FK_Documentos_Bancos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1797581442</ObjectId>
+      <RefColNames>CodBanco</RefColNames>
+      <RefTableId>1445580188</RefTableId>
+      <RefTableName>Bancos</RefTableName>
+    </foreign-key>
+    <index id="5895" parent="5657" name="PK_Documentos">
+      <Clustering>1</Clustering>
+      <ColNames>NroDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5896" parent="5657" name="IX_Documentos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5897" parent="5657" name="IX_Documentos_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5898" parent="5657" name="PK_Documentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1781581385</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Documentos</UnderlyingIndexName>
+    </key>
+    <column id="5899" parent="5658" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5900" parent="5658" name="FechaDoc">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5901" parent="5658" name="Nombre">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5902" parent="5658" name="NroCheque">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5903" parent="5658" name="Moneda">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5904" parent="5658" name="Importe">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5905" parent="5658" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5906" parent="5658" name="Origen">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5907" parent="5658" name="FechaRegistro">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5908" parent="5658" name="HoraRegistro">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5909" parent="5658" name="ProveedorCodProv">
+      <DasType>int|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="5910" parent="5658" name="CodProv">
+      <DasType>int|0s</DasType>
+      <Position>12</Position>
+    </column>
+    <column id="5911" parent="5658" name="BancoCodBanco">
+      <DasType>int|0s</DasType>
+      <Position>13</Position>
+    </column>
+    <column id="5912" parent="5658" name="CodBanco">
+      <DasType>int|0s</DasType>
+      <Position>14</Position>
+    </column>
+    <foreign-key id="5913" parent="5658" name="FK_Documentos_Proveedores_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1813581499</ObjectId>
+      <RefColNames>CodProv</RefColNames>
+      <RefTableId>1573580644</RefTableId>
+      <RefTableName>Proveedores</RefTableName>
+    </foreign-key>
+    <foreign-key id="5914" parent="5658" name="FK_Documentos_Bancos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1797581442</ObjectId>
+      <RefColNames>CodBanco</RefColNames>
+      <RefTableId>1445580188</RefTableId>
+      <RefTableName>Bancos</RefTableName>
+    </foreign-key>
+    <index id="5915" parent="5658" name="PK_Documentos">
+      <Clustering>1</Clustering>
+      <ColNames>NroDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5916" parent="5658" name="IX_Documentos_BancoCodBanco">
+      <ColNames>BancoCodBanco</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5917" parent="5658" name="IX_Documentos_ProveedorCodProv">
+      <ColNames>ProveedorCodProv</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5918" parent="5658" name="PK_Documentos">
+      <CreatedTimestamp>2024-12-02.13:32:36.960</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.960</ModifiedTimestamp>
+      <ObjectId>1781581385</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Documentos</UnderlyingIndexName>
+    </key>
+    <column id="5919" parent="5659" name="CodCuentaMayor">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5920" parent="5659" name="NomCuentaMayor">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5921" parent="5659" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5922" parent="5659" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5923" parent="5659" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="5924" parent="5659" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <index id="5925" parent="5659" name="PK_PlanCuentaMayores">
+      <Clustering>1</Clustering>
+      <ColNames>CodCuentaMayor</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5926" parent="5659" name="PK_PlanCuentaMayores">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.943</ModifiedTimestamp>
+      <ObjectId>1253579504</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_PlanCuentaMayores</UnderlyingIndexName>
+    </key>
+    <column id="5927" parent="5660" name="CodCuentaMayor">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5928" parent="5660" name="NomCuentaMayor">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5929" parent="5660" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5930" parent="5660" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5931" parent="5660" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="5932" parent="5660" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <index id="5933" parent="5660" name="PK_PlanCuentaMayores">
+      <Clustering>1</Clustering>
+      <ColNames>CodCuentaMayor</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5934" parent="5660" name="PK_PlanCuentaMayores">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.943</ModifiedTimestamp>
+      <ObjectId>1253579504</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_PlanCuentaMayores</UnderlyingIndexName>
+    </key>
+    <column id="5935" parent="5661" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5936" parent="5661" name="NomCuenta">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5937" parent="5661" name="Moneda">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5938" parent="5661" name="TipoCuenta">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5939" parent="5661" name="Nivel">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5940" parent="5661" name="Grupo">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5941" parent="5661" name="PlanCuentaMayorCodCuentaMayor">
+      <DasType>int|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="5942" parent="5661" name="CodCuentaMayor">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5943" parent="5661" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5944" parent="5661" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5945" parent="5661" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="5946" parent="5661" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <foreign-key id="5947" parent="5661" name="FK_PlanCuentas_PlanCuentaMayores_PlanCuentaMayorCodCuentaMayor">
+      <ColNames>PlanCuentaMayorCodCuentaMayor</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1429580131</ObjectId>
+      <RefColNames>CodCuentaMayor</RefColNames>
+      <RefTableId>1237579447</RefTableId>
+      <RefTableName>PlanCuentaMayores</RefTableName>
+    </foreign-key>
+    <index id="5948" parent="5661" name="PK_PlanCuentas">
+      <Clustering>1</Clustering>
+      <ColNames>CodCuenta</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5949" parent="5661" name="IX_PlanCuentas_PlanCuentaMayorCodCuentaMayor">
+      <ColNames>PlanCuentaMayorCodCuentaMayor</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5950" parent="5661" name="PK_PlanCuentas">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1413580074</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_PlanCuentas</UnderlyingIndexName>
+    </key>
+    <column id="5951" parent="5662" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5952" parent="5662" name="NomCuenta">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5953" parent="5662" name="Moneda">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5954" parent="5662" name="TipoCuenta">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5955" parent="5662" name="Nivel">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5956" parent="5662" name="Grupo">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5957" parent="5662" name="PlanCuentaMayorCodCuentaMayor">
+      <DasType>int|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="5958" parent="5662" name="CodCuentaMayor">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5959" parent="5662" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5960" parent="5662" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5961" parent="5662" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="5962" parent="5662" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <foreign-key id="5963" parent="5662" name="FK_PlanCuentas_PlanCuentaMayores_PlanCuentaMayorCodCuentaMayor">
+      <ColNames>PlanCuentaMayorCodCuentaMayor</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1429580131</ObjectId>
+      <RefColNames>CodCuentaMayor</RefColNames>
+      <RefTableId>1237579447</RefTableId>
+      <RefTableName>PlanCuentaMayores</RefTableName>
+    </foreign-key>
+    <index id="5964" parent="5662" name="PK_PlanCuentas">
+      <Clustering>1</Clustering>
+      <ColNames>CodCuenta</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5965" parent="5662" name="IX_PlanCuentas_PlanCuentaMayorCodCuentaMayor">
+      <ColNames>PlanCuentaMayorCodCuentaMayor</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5966" parent="5662" name="PK_PlanCuentas">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1413580074</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_PlanCuentas</UnderlyingIndexName>
+    </key>
+    <column id="5967" parent="5663" name="CodProv">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5968" parent="5663" name="NomProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5969" parent="5663" name="DirProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5970" parent="5663" name="TelProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5971" parent="5663" name="EmailProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5972" parent="5663" name="Contacto">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5973" parent="5663" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="5974" parent="5663" name="CodigoEx">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="5975" parent="5663" name="Complemento">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="5976" parent="5663" name="LimiteCre">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="5977" parent="5663" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="5978" parent="5663" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <column id="5979" parent="5663" name="UsuarioCodUsuario">
+      <DasType>int|0s</DasType>
+      <Position>13</Position>
+    </column>
+    <column id="5980" parent="5663" name="CodUsuario">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>14</Position>
+    </column>
+    <column id="5981" parent="5663" name="TipoDocCodTipoDoc">
+      <DasType>int|0s</DasType>
+      <Position>15</Position>
+    </column>
+    <column id="5982" parent="5663" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>16</Position>
+    </column>
+    <column id="5983" parent="5663" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>17</Position>
+    </column>
+    <column id="5984" parent="5663" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>18</Position>
+    </column>
+    <column id="5985" parent="5663" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>19</Position>
+    </column>
+    <foreign-key id="5986" parent="5663" name="FK_Proveedores_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1605580758</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <foreign-key id="5987" parent="5663" name="FK_Proveedores_Usuarios_UsuarioCodUsuario">
+      <ColNames>UsuarioCodUsuario</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1637580872</ObjectId>
+      <RefColNames>CodUsuario</RefColNames>
+      <RefTableId>1365579903</RefTableId>
+      <RefTableName>Usuarios</RefTableName>
+    </foreign-key>
+    <foreign-key id="5988" parent="5663" name="FK_Proveedores_TipoDocs_TipoDocCodTipoDoc">
+      <ColNames>TipoDocCodTipoDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1621580815</ObjectId>
+      <RefColNames>CodTipoDoc</RefColNames>
+      <RefTableId>1333579789</RefTableId>
+      <RefTableName>TipoDocs</RefTableName>
+    </foreign-key>
+    <index id="5989" parent="5663" name="PK_Proveedores">
+      <Clustering>1</Clustering>
+      <ColNames>CodProv</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5990" parent="5663" name="IX_Proveedores_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5991" parent="5663" name="IX_Proveedores_TipoDocCodTipoDoc">
+      <ColNames>TipoDocCodTipoDoc</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="5992" parent="5663" name="IX_Proveedores_UsuarioCodUsuario">
+      <ColNames>UsuarioCodUsuario</ColNames>
+      <Position>4</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5993" parent="5663" name="PK_Proveedores">
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1589580701</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Proveedores</UnderlyingIndexName>
+    </key>
+    <column id="5994" parent="5664" name="CodProv">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5995" parent="5664" name="NomProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5996" parent="5664" name="DirProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5997" parent="5664" name="TelProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5998" parent="5664" name="EmailProv">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="5999" parent="5664" name="Contacto">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="6000" parent="5664" name="NroDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="6001" parent="5664" name="CodigoEx">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <column id="6002" parent="5664" name="Complemento">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="6003" parent="5664" name="LimiteCre">
+      <DasType>decimal(18,2)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <column id="6004" parent="5664" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>11</Position>
+    </column>
+    <column id="6005" parent="5664" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <column id="6006" parent="5664" name="UsuarioCodUsuario">
+      <DasType>int|0s</DasType>
+      <Position>13</Position>
+    </column>
+    <column id="6007" parent="5664" name="CodUsuario">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>14</Position>
+    </column>
+    <column id="6008" parent="5664" name="TipoDocCodTipoDoc">
+      <DasType>int|0s</DasType>
+      <Position>15</Position>
+    </column>
+    <column id="6009" parent="5664" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>16</Position>
+    </column>
+    <column id="6010" parent="5664" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>17</Position>
+    </column>
+    <column id="6011" parent="5664" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>18</Position>
+    </column>
+    <column id="6012" parent="5664" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>19</Position>
+    </column>
+    <foreign-key id="6013" parent="5664" name="FK_Proveedores_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1605580758</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <foreign-key id="6014" parent="5664" name="FK_Proveedores_Usuarios_UsuarioCodUsuario">
+      <ColNames>UsuarioCodUsuario</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1637580872</ObjectId>
+      <RefColNames>CodUsuario</RefColNames>
+      <RefTableId>1365579903</RefTableId>
+      <RefTableName>Usuarios</RefTableName>
+    </foreign-key>
+    <foreign-key id="6015" parent="5664" name="FK_Proveedores_TipoDocs_TipoDocCodTipoDoc">
+      <ColNames>TipoDocCodTipoDoc</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1621580815</ObjectId>
+      <RefColNames>CodTipoDoc</RefColNames>
+      <RefTableId>1333579789</RefTableId>
+      <RefTableName>TipoDocs</RefTableName>
+    </foreign-key>
+    <index id="6016" parent="5664" name="PK_Proveedores">
+      <Clustering>1</Clustering>
+      <ColNames>CodProv</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="6017" parent="5664" name="IX_Proveedores_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="6018" parent="5664" name="IX_Proveedores_TipoDocCodTipoDoc">
+      <ColNames>TipoDocCodTipoDoc</ColNames>
+      <Position>3</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="6019" parent="5664" name="IX_Proveedores_UsuarioCodUsuario">
+      <ColNames>UsuarioCodUsuario</ColNames>
+      <Position>4</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6020" parent="5664" name="PK_Proveedores">
+      <CreatedTimestamp>2024-12-02.13:32:36.953</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.953</ModifiedTimestamp>
+      <ObjectId>1589580701</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Proveedores</UnderlyingIndexName>
+    </key>
+    <column id="6021" parent="5665" name="CodCc">
+      <DasType>nvarchar(450 char)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="6022" parent="5665" name="NomCc">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="6023" parent="5665" name="NomResp">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <index id="6024" parent="5665" name="PK_TcCostos">
+      <Clustering>1</Clustering>
+      <ColNames>CodCc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6025" parent="5665" name="PK_TcCostos">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.943</ModifiedTimestamp>
+      <ObjectId>1285579618</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TcCostos</UnderlyingIndexName>
+    </key>
+    <column id="6026" parent="5666" name="CodCc">
+      <DasType>nvarchar(450 char)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="6027" parent="5666" name="NomCc">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="6028" parent="5666" name="NomResp">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <index id="6029" parent="5666" name="PK_TcCostos">
+      <Clustering>1</Clustering>
+      <ColNames>CodCc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6030" parent="5666" name="PK_TcCostos">
+      <CreatedTimestamp>2024-12-02.13:32:36.943</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.943</ModifiedTimestamp>
+      <ObjectId>1285579618</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TcCostos</UnderlyingIndexName>
+    </key>
+    <column id="6031" parent="5667" name="CodTipoCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6032" parent="5667" name="NomTipoCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="6033" parent="5667" name="Discount">
+      <DasType>decimal(18,2)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="6034" parent="5667" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="6035" parent="5667" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="6036" parent="5667" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="6037" parent="5667" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <index id="6038" parent="5667" name="PK_TipoClientes">
+      <Clustering>1</Clustering>
+      <ColNames>CodTipoCli</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6039" parent="5667" name="PK_TipoClientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.947</ModifiedTimestamp>
+      <ObjectId>1317579732</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TipoClientes</UnderlyingIndexName>
+    </key>
+    <column id="6040" parent="5668" name="CodTipoCli">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6041" parent="5668" name="NomTipoCli">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="6042" parent="5668" name="Discount">
+      <DasType>decimal(18,2)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="6043" parent="5668" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="6044" parent="5668" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="6045" parent="5668" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="6046" parent="5668" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <index id="6047" parent="5668" name="PK_TipoClientes">
+      <Clustering>1</Clustering>
+      <ColNames>CodTipoCli</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6048" parent="5668" name="PK_TipoClientes">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.947</ModifiedTimestamp>
+      <ObjectId>1317579732</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TipoClientes</UnderlyingIndexName>
+    </key>
+    <column id="6049" parent="5669" name="CodTipoDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6050" parent="5669" name="NomTipoDoc">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="6051" parent="5669" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="6052" parent="5669" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="6053" parent="5669" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="6054" parent="5669" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <index id="6055" parent="5669" name="PK_TipoDocs">
+      <Clustering>1</Clustering>
+      <ColNames>CodTipoDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6056" parent="5669" name="PK_TipoDocs">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.947</ModifiedTimestamp>
+      <ObjectId>1349579846</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TipoDocs</UnderlyingIndexName>
+    </key>
+    <column id="6057" parent="5670" name="CodTipoDoc">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6058" parent="5670" name="NomTipoDoc">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="6059" parent="5670" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="6060" parent="5670" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="6061" parent="5670" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="6062" parent="5670" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <index id="6063" parent="5670" name="PK_TipoDocs">
+      <Clustering>1</Clustering>
+      <ColNames>CodTipoDoc</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6064" parent="5670" name="PK_TipoDocs">
+      <CreatedTimestamp>2024-12-02.13:32:36.947</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.947</ModifiedTimestamp>
+      <ObjectId>1349579846</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TipoDocs</UnderlyingIndexName>
+    </key>
+    <column id="6065" parent="5671" name="CodTipoEgreso">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6066" parent="5671" name="Descripcion">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="6067" parent="5671" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="6068" parent="5671" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="6069" parent="5671" name="FK_TipoEgresos_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1685581043</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <index id="6070" parent="5671" name="PK_TipoEgresos">
+      <Clustering>1</Clustering>
+      <ColNames>CodTipoEgreso</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="6071" parent="5671" name="IX_TipoEgresos_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6072" parent="5671" name="PK_TipoEgresos">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1669580986</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TipoEgresos</UnderlyingIndexName>
+    </key>
+    <column id="6073" parent="5672" name="CodTipoEgreso">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6074" parent="5672" name="Descripcion">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="6075" parent="5672" name="PlanCuentaCodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="6076" parent="5672" name="CodCuenta">
+      <DasType>int|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="6077" parent="5672" name="FK_TipoEgresos_PlanCuentas_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1685581043</ObjectId>
+      <RefColNames>CodCuenta</RefColNames>
+      <RefTableId>1397580017</RefTableId>
+      <RefTableName>PlanCuentas</RefTableName>
+    </foreign-key>
+    <index id="6078" parent="5672" name="PK_TipoEgresos">
+      <Clustering>1</Clustering>
+      <ColNames>CodTipoEgreso</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <index id="6079" parent="5672" name="IX_TipoEgresos_PlanCuentaCodCuenta">
+      <ColNames>PlanCuentaCodCuenta</ColNames>
+      <Position>2</Position>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6080" parent="5672" name="PK_TipoEgresos">
+      <CreatedTimestamp>2024-12-02.13:32:36.957</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.957</ModifiedTimestamp>
+      <ObjectId>1669580986</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_TipoEgresos</UnderlyingIndexName>
+    </key>
+    <column id="6081" parent="5673" name="CodUsuario">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6082" parent="5673" name="Username">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="6083" parent="5673" name="Password">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="6084" parent="5673" name="FirstName">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="6085" parent="5673" name="LastName">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="6086" parent="5673" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="6087" parent="5673" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="6088" parent="5673" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="6089" parent="5673" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <index id="6090" parent="5673" name="PK_Usuarios">
+      <Clustering>1</Clustering>
+      <ColNames>CodUsuario</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6091" parent="5673" name="PK_Usuarios">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1381579960</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Usuarios</UnderlyingIndexName>
+    </key>
+    <column id="6092" parent="5674" name="CodUsuario">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="6093" parent="5674" name="Username">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="6094" parent="5674" name="Password">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="6095" parent="5674" name="FirstName">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="6096" parent="5674" name="LastName">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="6097" parent="5674" name="CreatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="6098" parent="5674" name="CreatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="6099" parent="5674" name="UpdatedBy">
+      <DasType>nvarchar(max)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="6100" parent="5674" name="UpdatedAt">
+      <DasType>datetime2|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <index id="6101" parent="5674" name="PK_Usuarios">
+      <Clustering>1</Clustering>
+      <ColNames>CodUsuario</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6102" parent="5674" name="PK_Usuarios">
+      <CreatedTimestamp>2024-12-02.13:32:36.950</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.950</ModifiedTimestamp>
+      <ObjectId>1381579960</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_Usuarios</UnderlyingIndexName>
+    </key>
+    <column id="6103" parent="5675" name="MigrationId">
+      <DasType>nvarchar(150 char)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="6104" parent="5675" name="ProductVersion">
+      <DasType>nvarchar(32 char)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <index id="6105" parent="5675" name="PK___EFMigrationsHistory">
+      <Clustering>1</Clustering>
+      <ColNames>MigrationId</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6106" parent="5675" name="PK___EFMigrationsHistory">
+      <CreatedTimestamp>2024-12-02.13:32:36.863</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.863</ModifiedTimestamp>
+      <ObjectId>1221579390</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK___EFMigrationsHistory</UnderlyingIndexName>
+    </key>
+    <column id="6107" parent="5676" name="MigrationId">
+      <DasType>nvarchar(150 char)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="6108" parent="5676" name="ProductVersion">
+      <DasType>nvarchar(32 char)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <index id="6109" parent="5676" name="PK___EFMigrationsHistory">
+      <Clustering>1</Clustering>
+      <ColNames>MigrationId</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="6110" parent="5676" name="PK___EFMigrationsHistory">
+      <CreatedTimestamp>2024-12-02.13:32:36.863</CreatedTimestamp>
+      <ModifiedTimestamp>2024-12-02.13:32:36.863</ModifiedTimestamp>
+      <ObjectId>1221579390</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK___EFMigrationsHistory</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

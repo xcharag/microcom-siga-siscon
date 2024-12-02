@@ -6,12 +6,6 @@ namespace BaseLibrary.Entities;
 public class BaseEntity
 {
     [Required]
-    public int Id { get; set; }
-    
-    [Required]
-    public string? Name { get; set; }
-    
-    [Required]
     public string? CreatedBy { get; set; }
     
     [Required]

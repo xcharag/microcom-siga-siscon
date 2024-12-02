@@ -13,22 +13,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/AccountBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Login.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Register.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Anexos.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Banco.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Cliente.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/DetalleDocumento.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Documento.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/DocumentoBanco.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/PlanCuenta.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/PlanCuentaMayor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/ProveedorDocumento.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/TcCosto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/TipoCliente.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/TipoDoc.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources/0a78bfa6-129e-4403-b200-fdad5197bd15.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources/0a78bfa6-129e-4403-b200-fdad5197bd15.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/BaseLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/BaseLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Register.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Register.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/BaseEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Client/City.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Client/Client.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/ClientType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Client/ClientType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/ContactType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Client/ContactType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/DocumentType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Client/DocumentType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Relationship.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/ServerLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/ServerLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/Address.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/City.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/Client.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/ClientType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/Contact.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/ContactType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/Document.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Client/DocumentType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/User.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,30 +83,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver.localdb",
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver.localdb&quot;,
+      &quot;sqlserver&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: IIS Express">
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
@@ -199,7 +212,14 @@
       <workItem from="1732038118511" duration="1132000" />
       <workItem from="1732046128963" duration="597000" />
       <workItem from="1732056120919" duration="3248000" />
-      <workItem from="1732153622641" duration="1826000" />
+      <workItem from="1732153622641" duration="2917000" />
+      <workItem from="1732200060881" duration="163000" />
+      <workItem from="1732205105610" duration="4489000" />
+      <workItem from="1732225490839" duration="4509000" />
+      <workItem from="1732284672651" duration="3669000" />
+      <workItem from="1732571348986" duration="2538000" />
+      <workItem from="1732649637802" duration="782000" />
+      <workItem from="1732661456244" duration="2097000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -217,7 +237,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732060686365</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Feat: Creation of the Tables in the Db&#10;- Create the Dbcontext file &#10;- Implement the connection to the DB in the server project&#10;- Added the JsonIgnore label to the Many-to-One relations&#10;- Deleted Relationship.cs because it was not necessary">
+      <option name="closed" value="true" />
+      <created>1732155902845</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732155902845</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix: Forget to add the Unversioned Files to the previus commit">
+      <option name="closed" value="true" />
+      <created>1732155943756</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732155943756</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +276,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="chore: Adding a neccesary dependencie" />
     <MESSAGE value="Feat: Entities for clients created&#10;- Creation of all the related entities about Client.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Entities for clients created&#10;- Creation of all the related entities about Client.cs" />
+    <MESSAGE value="Feat: Creation of the Tables in the Db&#10;- Create the Dbcontext file &#10;- Implement the connection to the DB in the server project&#10;- Added the JsonIgnore label to the Many-to-One relations&#10;- Deleted Relationship.cs because it was not necessary" />
+    <MESSAGE value="Fix: Forget to add the Unversioned Files to the previus commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix: Forget to add the Unversioned Files to the previus commit" />
   </component>
 </project>

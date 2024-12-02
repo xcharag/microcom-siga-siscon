@@ -1,18 +1,22 @@
 using BaseLibrary.Entities;
-using BaseLibrary.Entities.Client;
 using Microsoft.EntityFrameworkCore;
 
 namespace ServerLibrary.Data;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public DbSet<User> Users { get; set; }
-    public DbSet<Client> Clients { get; set; }
-    public DbSet<ClientType> ClientTypes { get; set; }
-    public DbSet<Address> Addresses { get; set; }
-    public DbSet<Contact> Contacts { get; set; }
-    public DbSet<Document> Documents { get; set; }
-    public DbSet<ContactType> ContactTypes { get; set; }
-    public DbSet<DocumentType> DocumentTypes { get; set; }
-    public DbSet<City> Cities { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<TipoCliente> TipoClientes { get; set; }
+    public DbSet<TipoDoc> TipoDocs { get; set; }
+    public DbSet<Proveedor> Proveedores { get; set; }
+    public DbSet<Banco> Bancos { get; set; }
+    public DbSet<PlanCuenta> PlanCuentas { get; set; }
+    public DbSet<PlanCuentaMayor> PlanCuentaMayores { get; set; }
+    public DbSet<Documento> Documentos { get; set; }
+    public DbSet<DocumentoBanco> DocumentoBancos { get; set; }
+    public DbSet<DetalleDocumento> DetalleDocumentos { get; set; }
+    public DbSet<TcCosto> TcCostos { get; set; }
+    public DbSet<TipoEgreso> TipoEgresos { get; set; }
+    public DbSet<Anexos> Anexos { get; set; }
 }
