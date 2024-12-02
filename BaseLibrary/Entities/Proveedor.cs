@@ -47,4 +47,6 @@ public class Proveedor : BaseEntity
     //One-to-Many Relationship
     public List<Documento>? Documentos { get; set; }
     
+    public List<Anexos>? Anexos { get; set; }
+    
 }

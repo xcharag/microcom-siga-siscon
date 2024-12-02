@@ -14,9 +14,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<PlanCuenta> PlanCuentas { get; set; }
     public DbSet<PlanCuentaMayor> PlanCuentaMayores { get; set; }
     public DbSet<Documento> Documentos { get; set; }
-    public DbSet<DocumentoBanco> DocumentoBancos { get; set; }
     public DbSet<DetalleDocumento> DetalleDocumentos { get; set; }
     public DbSet<TcCosto> TcCostos { get; set; }
     public DbSet<TipoEgreso> TipoEgresos { get; set; }
     public DbSet<Anexos> Anexos { get; set; }
+    
+    //This is for the security
+    public DbSet<SystemRole> SystemRoles { get; set; }
+    public DbSet<UserRole> UserRoles { get; set; }
 }

@@ -12,7 +12,7 @@ using ServerLibrary.Data;
 namespace ServerLibrary.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241202213054_Initial")]
+    [Migration("20241202214748_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -329,35 +329,6 @@ namespace ServerLibrary.Migrations
                     b.HasIndex("ProveedorCodProv");
 
                     b.ToTable("Documentos");
-                });
-
-            modelBuilder.Entity("BaseLibrary.Entities.DocumentoBanco", b =>
-                {
-                    b.Property<int>("CodDocumentoBanco")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodDocumentoBanco"));
-
-                    b.Property<int?>("BancoCodBanco")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CodBanco")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CodDoc")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DocumentoNroDoc")
-                        .HasColumnType("int");
-
-                    b.HasKey("CodDocumentoBanco");
-
-                    b.HasIndex("BancoCodBanco");
-
-                    b.HasIndex("DocumentoNroDoc");
-
-                    b.ToTable("DocumentoBancos");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
@@ -692,7 +663,7 @@ namespace ServerLibrary.Migrations
                         .HasForeignKey("DetalleDocumentoNroDetalleDoc");
 
                     b.HasOne("BaseLibrary.Entities.Proveedor", "Proveedor")
-                        .WithMany()
+                        .WithMany("Anexos")
                         .HasForeignKey("ProveedorCodProv");
 
                     b.HasOne("BaseLibrary.Entities.TipoEgreso", "TipoEgreso")
@@ -762,21 +733,6 @@ namespace ServerLibrary.Migrations
                     b.Navigation("Banco");
 
                     b.Navigation("Proveedor");
-                });
-
-            modelBuilder.Entity("BaseLibrary.Entities.DocumentoBanco", b =>
-                {
-                    b.HasOne("BaseLibrary.Entities.Banco", "Banco")
-                        .WithMany()
-                        .HasForeignKey("BancoCodBanco");
-
-                    b.HasOne("BaseLibrary.Entities.Documento", "Documento")
-                        .WithMany()
-                        .HasForeignKey("DocumentoNroDoc");
-
-                    b.Navigation("Banco");
-
-                    b.Navigation("Documento");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
@@ -862,6 +818,8 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.Proveedor", b =>
                 {
+                    b.Navigation("Anexos");
+
                     b.Navigation("Documentos");
                 });
 

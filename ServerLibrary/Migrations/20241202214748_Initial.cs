@@ -350,32 +350,6 @@ namespace ServerLibrary.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DocumentoBancos",
-                columns: table => new
-                {
-                    CodDocumentoBanco = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DocumentoNroDoc = table.Column<int>(type: "int", nullable: true),
-                    CodDoc = table.Column<int>(type: "int", nullable: false),
-                    BancoCodBanco = table.Column<int>(type: "int", nullable: true),
-                    CodBanco = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DocumentoBancos", x => x.CodDocumentoBanco);
-                    table.ForeignKey(
-                        name: "FK_DocumentoBancos_Bancos_BancoCodBanco",
-                        column: x => x.BancoCodBanco,
-                        principalTable: "Bancos",
-                        principalColumn: "CodBanco");
-                    table.ForeignKey(
-                        name: "FK_DocumentoBancos_Documentos_DocumentoNroDoc",
-                        column: x => x.DocumentoNroDoc,
-                        principalTable: "Documentos",
-                        principalColumn: "NroDoc");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Anexos",
                 columns: table => new
                 {
@@ -471,16 +445,6 @@ namespace ServerLibrary.Migrations
                 column: "TcCostoCodCc");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DocumentoBancos_BancoCodBanco",
-                table: "DocumentoBancos",
-                column: "BancoCodBanco");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DocumentoBancos_DocumentoNroDoc",
-                table: "DocumentoBancos",
-                column: "DocumentoNroDoc");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Documentos_BancoCodBanco",
                 table: "Documentos",
                 column: "BancoCodBanco");
@@ -524,9 +488,6 @@ namespace ServerLibrary.Migrations
 
             migrationBuilder.DropTable(
                 name: "ClienteTipoDoc");
-
-            migrationBuilder.DropTable(
-                name: "DocumentoBancos");
 
             migrationBuilder.DropTable(
                 name: "DetalleDocumentos");
