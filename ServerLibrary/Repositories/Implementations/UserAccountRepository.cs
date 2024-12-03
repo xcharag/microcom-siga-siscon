@@ -1,8 +1,13 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using BaseLibrary.DTOs;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using ServerLibrary.Data;
 using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts;
@@ -46,13 +51,55 @@ public class UserAccountRepository(IOptions<JwtSection> config, AppDbContext app
         {
             await AddToDatabase(new UserRole() { RoleId = checkUserRole.Id, UserId = newUser.CodUsuario});
         }
-        return new GeneralResponse(true, "Usuario creado con exito");
+        return new GeneralResponse(true, "Usuario creado con exito");   
     }
 
-    public Task<LoginResponse> SignInAsync(Login user)
+    public async Task<LoginResponse> SignInAsync(Login? user)
     {
-        throw new NotImplementedException();
+        if (user is null) return new LoginResponse(false, "El Modelo esta vacio");
+        
+        var applicationUser = await FindUserByUsername(user.Username!);
+        if (applicationUser is null) return new LoginResponse(false, "Usuario no encontrado");
+        
+        //Verify Password
+        if (!BCrypt.Net.BCrypt.Verify(user.Password, applicationUser.Password))
+            return new LoginResponse(false, "Credenciales incorrectas");
+        
+        var getUserRole = await appDbContext.UserRoles.FirstOrDefaultAsync(x => x.UserId == applicationUser.CodUsuario);
+        if (getUserRole is null) return new LoginResponse(false, "Usuario sin roles asignados");
+        
+        var getRoleName = await appDbContext.SystemRoles.FirstOrDefaultAsync(x => x.Id == getUserRole.RoleId);
+        if (getRoleName is null) return new LoginResponse(false, "Rol no encontrado");
+        
+        string jwtToken = GenerateToken(applicationUser, getRoleName!.Name!);
+        string refreshToken = GenerateRefreshToken();
+        return new LoginResponse(true, "Inicio de Sesion Exitoso", jwtToken, refreshToken);
     }
+    
+    private string GenerateToken(Usuario user, string role)
+    {
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Value.Key!));
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        var userClaims = new[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.CodUsuario!.ToString()!),
+            new Claim(ClaimTypes.Name, user.FirstName! + " " + user.LastName!),
+            new Claim(ClaimTypes.Email, user.Username!),
+            new Claim(ClaimTypes.Role, role!)
+        };
+
+        var token = new JwtSecurityToken(
+            issuer: config.Value.Issuer,
+            audience: config.Value.Audience,
+            claims: userClaims,
+            expires: DateTime.Now.AddDays(1),
+            signingCredentials: credentials
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+    private static string GenerateRefreshToken() => Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
     
     private async Task<Usuario?> FindUserByUsername(string username)
     {

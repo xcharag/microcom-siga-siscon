@@ -12,7 +12,7 @@ using ServerLibrary.Data;
 namespace ServerLibrary.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241202214748_Initial")]
+    [Migration("20241203202000_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -162,7 +162,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DirCli")
@@ -346,7 +345,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Grupo")
@@ -396,7 +394,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomCuentaMayor")
@@ -444,7 +441,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DirProv")
@@ -495,6 +491,22 @@ namespace ServerLibrary.Migrations
                     b.ToTable("Proveedores");
                 });
 
+            modelBuilder.Entity("BaseLibrary.Entities.SystemRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SystemRoles");
+                });
+
             modelBuilder.Entity("BaseLibrary.Entities.TcCosto", b =>
                 {
                     b.Property<string>("CodCc")
@@ -525,7 +537,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Discount")
@@ -557,7 +568,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomTipoDoc")
@@ -599,6 +609,25 @@ namespace ServerLibrary.Migrations
                     b.ToTable("TipoEgresos");
                 });
 
+            modelBuilder.Entity("BaseLibrary.Entities.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("BaseLibrary.Entities.Usuario", b =>
                 {
                     b.Property<int>("CodUsuario")
@@ -611,7 +640,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
