@@ -15,25 +15,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources/0a78bfa6-129e-4403-b200-fdad5197bd15.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/dataSources/0a78bfa6-129e-4403-b200-fdad5197bd15.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/BaseEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Microcom.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Microcom.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Microcom.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Microcom.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Server.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/WebApplication1.http" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241202214748_Initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241202214748_Initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" afterDir="false" />
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done">
+      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Data/AppDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -268,7 +252,7 @@
       <workItem from="1732649637802" duration="782000" />
       <workItem from="1732661456244" duration="2097000" />
       <workItem from="1733173816620" duration="6251000" />
-      <workItem from="1733250575888" duration="5842000" />
+      <workItem from="1733250575888" duration="9788000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -326,7 +310,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733179786550</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Refactor: Re-do Server project because of a missed configuration&#10;- Before was using the minimal API instead of controllers, changed to Controllers&#10;- The createdBy is not required anymore&#10;- Authentication Finished">
+      <option name="closed" value="true" />
+      <created>1733257987637</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733257987637</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done">
+      <option name="closed" value="true" />
+      <created>1733260440391</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733260440391</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,6 +354,8 @@
     <MESSAGE value="Databases updated code and structure" />
     <MESSAGE value="Feat: Adding Security to the Project&#10;- Adding Jwt Management fro tokens, logins, etc&#10;- Adjusting some tables and creating the Roles ones" />
     <MESSAGE value="Feat: Creation of Create New Users&#10;- The repository and implementation for creating new users, also using helpers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Creation of Create New Users&#10;- The repository and implementation for creating new users, also using helpers" />
+    <MESSAGE value="Refactor: Re-do Server project because of a missed configuration&#10;- Before was using the minimal API instead of controllers, changed to Controllers&#10;- The createdBy is not required anymore&#10;- Authentication Finished" />
+    <MESSAGE value="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done" />
   </component>
 </project>
