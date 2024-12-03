@@ -22,4 +22,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     //This is for the security
     public DbSet<SystemRole> SystemRoles { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
+    
+    //This is for the refresh token
+    public DbSet<RefreshTokenInfo> RefreshTokenInfos { get; set; }
 }

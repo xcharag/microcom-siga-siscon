@@ -7,7 +7,7 @@ public class Usuario : BaseEntity
 {
     [Required]
     [Key]
-    public int? CodUsuario { get; set; }
+    public int CodUsuario { get; set; }
     
     [Required]
     public string? Username { get; set; }

@@ -25,4 +25,13 @@ public class AuthenticationController(IUserAccount accountInterface) : Controlle
         var result = await accountInterface.SignInAsync(user);
         return Ok(result);
     }
+    
+    [HttpPost("refresh-token")]
+    public async Task<IActionResult> RefreshToken([FromBody] RefreshToken? token)
+    {
+        if (token is null) return BadRequest("El modelo esta vacio");
+        
+        var result = await accountInterface.RefreshTokenAsync(token);
+        return Ok(result);
+    }
 }

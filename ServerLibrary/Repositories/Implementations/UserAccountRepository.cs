@@ -65,27 +65,67 @@ public class UserAccountRepository(IOptions<JwtSection> config, AppDbContext app
         if (!BCrypt.Net.BCrypt.Verify(user.Password, applicationUser.Password))
             return new LoginResponse(false, "Credenciales incorrectas");
         
-        var getUserRole = await appDbContext.UserRoles.FirstOrDefaultAsync(x => x.UserId == applicationUser.CodUsuario);
+        var getUserRole = await FindUserRole(applicationUser.CodUsuario);
         if (getUserRole is null) return new LoginResponse(false, "Usuario sin roles asignados");
         
-        var getRoleName = await appDbContext.SystemRoles.FirstOrDefaultAsync(x => x.Id == getUserRole.RoleId);
+        var getRoleName = await FindRoleName(getUserRole.RoleId);
         if (getRoleName is null) return new LoginResponse(false, "Rol no encontrado");
         
-        string jwtToken = GenerateToken(applicationUser, getRoleName!.Name!);
+        string jwtToken = GenerateToken(applicationUser, getRoleName.Name!);
         string refreshToken = GenerateRefreshToken();
+        
+        var findUser = await appDbContext.RefreshTokenInfos.FirstOrDefaultAsync(x => x.UserId == applicationUser.CodUsuario);
+        if (findUser is not null)
+        {
+            findUser!.Token = refreshToken;
+            await appDbContext.SaveChangesAsync();
+        }
+        else
+        {
+            await AddToDatabase(new RefreshTokenInfo(){ Token = refreshToken, UserId = applicationUser.CodUsuario });
+        }
+        
         return new LoginResponse(true, "Inicio de Sesion Exitoso", jwtToken, refreshToken);
     }
-    
+
+    public async Task<LoginResponse> RefreshTokenAsync(RefreshToken? token)
+    {
+        if (token is null) return new LoginResponse(false, "El Modelo esta vacio");
+        
+        var findToken = await appDbContext.RefreshTokenInfos.FirstOrDefaultAsync(x => x.Token!.Equals(token.Token));
+        if (findToken is null) return new LoginResponse(false, "Token de refresco necesario");
+        
+        var user = await appDbContext.Usuarios.FirstOrDefaultAsync(x => x.CodUsuario == findToken.UserId);
+        if (user is null) return new LoginResponse(false, "El token de refresco no puede ser generado porque el usuario no  ha sido encontrado");
+        
+        var getUserRole = await FindUserRole(user.CodUsuario);
+        if (getUserRole is null) return new LoginResponse(false, "Usuario sin roles asignados");
+        
+        var getRoleName = await FindRoleName(getUserRole.RoleId);
+        if (getRoleName is null) return new LoginResponse(false, "Rol no encontrado");
+        
+        string jwtToken = GenerateToken(user, getRoleName.Name!);
+        string refreshToken = GenerateRefreshToken();
+        
+        var updateRefreshToken = await appDbContext.RefreshTokenInfos.FirstOrDefaultAsync(x => x.UserId == user.CodUsuario);
+        if (updateRefreshToken is null) return new LoginResponse(false,
+                "El token de refresco no pudo ser generado porque el usuario no el usuario no se ha loggeado");
+        
+        updateRefreshToken.Token = refreshToken;
+        await appDbContext.SaveChangesAsync();
+        return new LoginResponse(true, "Token de refresco generado con exito", jwtToken, refreshToken);
+    }
+
     private string GenerateToken(Usuario user, string role)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Value.Key!));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         var userClaims = new[]
         {
-            new Claim(ClaimTypes.NameIdentifier, user.CodUsuario!.ToString()!),
+            new Claim(ClaimTypes.NameIdentifier, user.CodUsuario.ToString()),
             new Claim(ClaimTypes.Name, user.FirstName! + " " + user.LastName!),
             new Claim(ClaimTypes.Email, user.Username!),
-            new Claim(ClaimTypes.Role, role!)
+            new Claim(ClaimTypes.Role, role)
         };
 
         var token = new JwtSecurityToken(
@@ -101,9 +141,19 @@ public class UserAccountRepository(IOptions<JwtSection> config, AppDbContext app
 
     private static string GenerateRefreshToken() => Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
     
+    private async Task<UserRole?> FindUserRole(int userId)
+    {
+        return await appDbContext.UserRoles.FirstOrDefaultAsync(x => x.UserId == userId);
+    }
+    
+    private async Task<SystemRole?> FindRoleName(int roleId)
+    {
+        return await appDbContext.SystemRoles.FirstOrDefaultAsync(x => x.Id == roleId);
+    }
+    
     private async Task<Usuario?> FindUserByUsername(string username)
     {
-        return await appDbContext.Usuarios.FirstOrDefaultAsync(x => x.Username!.ToLower()!.Equals(username!.ToLower()));
+        return await appDbContext.Usuarios.FirstOrDefaultAsync(x => x.Username!.ToLower().Equals(username.ToLower()));
     }
     
     private async Task<T> AddToDatabase<T>(T model)
