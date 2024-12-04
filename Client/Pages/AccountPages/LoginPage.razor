@@ -1,7 +1,54 @@
 @page "/identity/account/login"
 
+<FluentEditForm Model="@_loginModel" OnValidSubmit="HandleLogin" Style="margin-left:20px;margin-right:20px;">
+    <DataAnnotationsValidator/>
+    
+    <FluentStack Orientation="Orientation.Vertical">
+        <FluentGrid Justify="JustifyContent.Center" Style="width: 100%;padding: 40px;">
+            <img src="logos/MCC.jpg" style="width: 150px;height: 150px;" alt="Microcom Logo"/>
+        </FluentGrid>
+        
+        <FluentTextField Id="UsernameField" @bind-Value="@_loginModel.Username" Required Style="width: 100%" Placeholder="Nombre de Usuario">
+            <FluentIcon Value="@(new Icons.Regular.Size24.Person())" Slot="start" Color="Color.Neutral" />
+        </FluentTextField>
+        <FluentValidationMessage For="@(() => _loginModel.Username)"></FluentValidationMessage>
+        
+        <FluentTextField Id="PasswordField" @bind-Value="@_loginModel.Password" Required TextFieldType="TextFieldType.Password" Style="width: 100%" Placeholder="Clave/Contraseña">
+            <FluentIcon Value="@(new Icons.Regular.Size24.Password())" Slot="start" Color="Color.Neutral" />
+        </FluentTextField>
+        <FluentValidationMessage For="@(() => _loginModel.Password)"></FluentValidationMessage>
+        
+        <FluentGrid Justify="JustifyContent.FlexEnd" Style="width: 100%">
+            <div>
+                <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Iniciar Sesion</FluentButton>
+            </div>
+        </FluentGrid>
+    </FluentStack>
+</FluentEditForm>
 
+<FluentProgressRing Style="width: 42px; height: 42px" Visible="@BusyIndicator"></FluentProgressRing>
 
 @code {
-    
+    Login _loginModel = new Login();
+    bool BusyIndicator { get; set; } = false;
+
+    public async void HandleLogin()
+    {
+        BusyIndicator = true;
+        var result = await AccountService.SignInAsync(_loginModel);
+        if (result.Flag)
+        {
+            var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
+            await customAuthStateProvider.UpdateAuthenticationState(new UserSession() { Token = result.Token, RefreshToken = result.RefreshToken});
+            ToastService.ShowSuccess("Inicio de Sesion Exitoso");
+            NavManager.NavigateTo("/", forceLoad: true, replace: false);
+        }
+        else
+        {
+            BusyIndicator = false;
+            _loginModel.Password = string.Empty;
+            ToastService.ShowError(result.Message);
+        }
+        StateHasChanged();
+    }
 }

@@ -15,7 +15,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="" />
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="Feat: Continue with security&#10;- Finishing all the security&#10;- Applying it in the Client Side the manage of Login/Register">
+      <change afterPath="$PROJECT_DIR$/Client/wwwroot/logos/MCC.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/AccountBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/AccountBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Layout/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/AccountPages/LoginPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/AccountPages/LoginPage.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,10 +53,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Data/AppDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -67,6 +76,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.Client: http.executor": "Run",
     ".NET Launch Settings Profile.WebApplication1: IIS Express.executor": "Run",
     ".NET Launch Settings Profile.WebApplication1: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -92,7 +102,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -251,6 +261,7 @@
       <workItem from="1732661456244" duration="2097000" />
       <workItem from="1733173816620" duration="6251000" />
       <workItem from="1733250575888" duration="14336000" />
+      <workItem from="1733337289051" duration="7821000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -332,7 +343,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733265825444</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Feat: Continue with security&#10;- Finishing all the security&#10;- Applying it in the Client Side the manage of Login/Register">
+      <option name="closed" value="true" />
+      <created>1733341268543</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733341268543</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +382,7 @@
     <MESSAGE value="Refactor: Re-do Server project because of a missed configuration&#10;- Before was using the minimal API instead of controllers, changed to Controllers&#10;- The createdBy is not required anymore&#10;- Authentication Finished" />
     <MESSAGE value="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done" />
     <MESSAGE value="Feat (Authentication Client): Creation of Authentication but in the client side&#10;- Not finished yet but finishing the AuthenticationStateProvider" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat (Authentication Client): Creation of Authentication but in the client side&#10;- Not finished yet but finishing the AuthenticationStateProvider" />
+    <MESSAGE value="Feat: Continue with security&#10;- Finishing all the security&#10;- Applying it in the Client Side the manage of Login/Register" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Continue with security&#10;- Finishing all the security&#10;- Applying it in the Client Side the manage of Login/Register" />
   </component>
 </project>

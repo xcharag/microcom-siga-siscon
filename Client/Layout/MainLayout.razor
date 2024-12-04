@@ -7,9 +7,15 @@
 
     <main>
         <div class="top-row px-4">
-            <a class="btn btn-none" href="identity/account/login">Inicar Sesion</a>
-            <a class="btn btn-none" href="identity/account/register">Registrarse</a>
-            <a class="btn btn-none text-danger" @onclick="LogoutClicked">Cerrar Sesion</a>
+            <AuthorizeView>
+                <Authorized>
+                    <a class="btn btn-none text-danger" @onclick="LogoutClicked">Cerrar Sesion</a>
+                </Authorized>
+                <NotAuthorized>
+                    <a class="btn btn-none" href="identity/account/login">Inicar Sesion</a>
+                    <a class="btn btn-none" href="identity/account/register">Registrarse</a>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
 
         <article class="content px-4">
