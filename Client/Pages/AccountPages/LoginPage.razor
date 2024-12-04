@@ -1,32 +1,38 @@
-@page "/identity/account/login"
+@page "/login"
 
-<FluentEditForm Model="@_loginModel" OnValidSubmit="HandleLogin" Style="margin-left:20px;margin-right:20px;">
-    <DataAnnotationsValidator/>
-    
-    <FluentStack Orientation="Orientation.Vertical">
-        <FluentGrid Justify="JustifyContent.Center" Style="width: 100%;padding: 40px;">
-            <img src="logos/MCC.jpg" style="width: 150px;height: 150px;" alt="Microcom Logo"/>
-        </FluentGrid>
-        
-        <FluentTextField Id="UsernameField" @bind-Value="@_loginModel.Username" Required Style="width: 100%" Placeholder="Nombre de Usuario">
-            <FluentIcon Value="@(new Icons.Regular.Size24.Person())" Slot="start" Color="Color.Neutral" />
-        </FluentTextField>
-        <FluentValidationMessage For="@(() => _loginModel.Username)"></FluentValidationMessage>
-        
-        <FluentTextField Id="PasswordField" @bind-Value="@_loginModel.Password" Required TextFieldType="TextFieldType.Password" Style="width: 100%" Placeholder="Clave/Contraseña">
-            <FluentIcon Value="@(new Icons.Regular.Size24.Password())" Slot="start" Color="Color.Neutral" />
-        </FluentTextField>
-        <FluentValidationMessage For="@(() => _loginModel.Password)"></FluentValidationMessage>
-        
-        <FluentGrid Justify="JustifyContent.FlexEnd" Style="width: 100%">
-            <div>
-                <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Iniciar Sesion</FluentButton>
-            </div>
-        </FluentGrid>
-    </FluentStack>
-</FluentEditForm>
+@layout EmptyLayout
 
-<FluentProgressRing Style="width: 42px; height: 42px" Visible="@BusyIndicator"></FluentProgressRing>
+<div class="contenedor" style="width:100dvw;height:100dvh;justify-content:center;align-items:center;display:grid;">
+    <FluentCard Width="350px" Height="450px" Style="justify-content: center">
+        <FluentEditForm Model="@_loginModel" OnValidSubmit="HandleLogin" Style="margin-left:20px;margin-right:20px;">
+            <DataAnnotationsValidator/>
+
+            <FluentStack Orientation="Orientation.Vertical">
+                <FluentGrid Justify="JustifyContent.Center" Style="width: 100%;padding: 40px;">
+                    <img src="logos/MCC.jpg" style="width: 150px;height: 150px;" alt="Microcom Logo"/>
+                </FluentGrid>
+
+                <FluentTextField Id="UsernameField" @bind-Value="@_loginModel.Username" Required Style="width: 100%" Placeholder="Nombre de Usuario">
+                    <FluentIcon Value="@(new Icons.Regular.Size24.Person())" Slot="start" Color="Color.Neutral" />
+                </FluentTextField>
+                <FluentValidationMessage For="@(() => _loginModel.Username)"></FluentValidationMessage>
+
+                <FluentTextField Id="PasswordField" @bind-Value="@_loginModel.Password" Required TextFieldType="TextFieldType.Password" Style="width: 100%" Placeholder="Clave/Contraseña">
+                    <FluentIcon Value="@(new Icons.Regular.Size24.Password())" Slot="start" Color="Color.Neutral" />
+                </FluentTextField>
+                <FluentValidationMessage For="@(() => _loginModel.Password)"></FluentValidationMessage>
+
+                <FluentGrid Justify="JustifyContent.FlexEnd" Style="width: 100%">
+                    <div>
+                        <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Iniciar Sesion</FluentButton>
+                    </div>
+                </FluentGrid>
+            </FluentStack>
+        </FluentEditForm>
+
+        <FluentProgressRing Style="width: 42px; height: 42px" Visible="@BusyIndicator"></FluentProgressRing>
+    </FluentCard>
+</div>
 
 @code {
     Login _loginModel = new Login();

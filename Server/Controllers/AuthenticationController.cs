@@ -1,4 +1,5 @@
 using BaseLibrary.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
 
@@ -17,6 +18,7 @@ public class AuthenticationController(IUserAccount accountInterface) : Controlle
         return Ok(result);
     }
     
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> SignInAsync(Login? user)
     {

@@ -1,28 +1,35 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
+<FluentToastProvider/>
+<FluentDialogProvider/>
+<FluentTooltipProvider/>
+<FluentMessageBarProvider/>
 
-    <main>
-        <div class="top-row px-4">
-            <AuthorizeView>
-                <Authorized>
+<AuthorizeView>
+    <Authorized>
+        <div class="page">
+            <div class="sidebar">
+                <NavMenu/>
+            </div>
+
+            <main>
+                <div class="top-row px-4">
                     <a class="btn btn-none text-danger" @onclick="LogoutClicked">Cerrar Sesion</a>
-                </Authorized>
-                <NotAuthorized>
-                    <a class="btn btn-none" href="identity/account/login">Inicar Sesion</a>
-                    <a class="btn btn-none" href="identity/account/register">Registrarse</a>
-                </NotAuthorized>
-            </AuthorizeView>
-        </div>
+                </div>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+                <article class="content px-4">
+                    @Body
+                </article>
+            </main>
+        </div>
+    </Authorized>
+    
+    <NotAuthorized>
+        @{
+            NavManager.NavigateTo($"/login?returnUrl={Uri.EscapeDataString(NavManager.Uri)}");
+        }
+    </NotAuthorized>
+</AuthorizeView>
 
 @code
 {
