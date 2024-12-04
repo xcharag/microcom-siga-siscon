@@ -23,6 +23,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<SystemRole> SystemRoles { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
     
+    public DbSet<SystemPermission> SystemPermissions { get; set; }
+    
+    public DbSet<MenuItems> MenuItems { get; set; }
+    
     //This is for the refresh token
     public DbSet<RefreshTokenInfo> RefreshTokenInfos { get; set; }
 }

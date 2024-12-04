@@ -15,9 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done">
-      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
-    </list>
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -252,7 +250,7 @@
       <workItem from="1732649637802" duration="782000" />
       <workItem from="1732661456244" duration="2097000" />
       <workItem from="1733173816620" duration="6251000" />
-      <workItem from="1733250575888" duration="9788000" />
+      <workItem from="1733250575888" duration="14336000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -326,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733260440391</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Feat (Authentication Client): Creation of Authentication but in the client side&#10;- Not finished yet but finishing the AuthenticationStateProvider">
+      <option name="closed" value="true" />
+      <created>1733265825444</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733265825444</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,6 +362,7 @@
     <MESSAGE value="Feat: Creation of Create New Users&#10;- The repository and implementation for creating new users, also using helpers" />
     <MESSAGE value="Refactor: Re-do Server project because of a missed configuration&#10;- Before was using the minimal API instead of controllers, changed to Controllers&#10;- The createdBy is not required anymore&#10;- Authentication Finished" />
     <MESSAGE value="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done" />
+    <MESSAGE value="Feat (Authentication Client): Creation of Authentication but in the client side&#10;- Not finished yet but finishing the AuthenticationStateProvider" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat (Authentication Client): Creation of Authentication but in the client side&#10;- Not finished yet but finishing the AuthenticationStateProvider" />
   </component>
 </project>
