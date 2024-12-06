@@ -327,6 +327,46 @@ namespace ServerLibrary.Migrations
                     b.ToTable("Documentos");
                 });
 
+            modelBuilder.Entity("BaseLibrary.Entities.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Menus");
+                });
+
+            modelBuilder.Entity("BaseLibrary.Entities.MenuItems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("Block")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("MenuItems");
+                });
+
             modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
                 {
                     b.Property<int>("CodCuenta")
@@ -505,6 +545,25 @@ namespace ServerLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RefreshTokenInfos");
+                });
+
+            modelBuilder.Entity("BaseLibrary.Entities.SystemPermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SystemPermissions");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.SystemRole", b =>
@@ -779,6 +838,15 @@ namespace ServerLibrary.Migrations
                     b.Navigation("Proveedor");
                 });
 
+            modelBuilder.Entity("BaseLibrary.Entities.MenuItems", b =>
+                {
+                    b.HasOne("BaseLibrary.Entities.Menu", "Menu")
+                        .WithMany("MenuItemsList")
+                        .HasForeignKey("MenuId");
+
+                    b.Navigation("Menu");
+                });
+
             modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
                 {
                     b.HasOne("BaseLibrary.Entities.PlanCuentaMayor", "PlanCuentaMayor")
@@ -844,6 +912,11 @@ namespace ServerLibrary.Migrations
             modelBuilder.Entity("BaseLibrary.Entities.Documento", b =>
                 {
                     b.Navigation("DetalleDocumentos");
+                });
+
+            modelBuilder.Entity("BaseLibrary.Entities.Menu", b =>
+                {
+                    b.Navigation("MenuItemsList");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>

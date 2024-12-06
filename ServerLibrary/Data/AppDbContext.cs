@@ -25,6 +25,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     
     public DbSet<SystemPermission> SystemPermissions { get; set; }
     
+    public DbSet<Menu> Menus { get; set; }
+    
     public DbSet<MenuItems> MenuItems { get; set; }
     
     //This is for the refresh token
