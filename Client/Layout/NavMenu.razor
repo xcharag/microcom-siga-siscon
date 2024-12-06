@@ -4,7 +4,7 @@
         <a class="navbar-brand" href="">
             <AuthorizeView>
                 <Authorized>
-                    <span class="bi bi-person-fill" aria-hidden="true"></span> Hello, @context.User.Identity!.Name!
+                    <h6 style="color: ghostwhite"> Microcom - SISCON</h6>
                 </Authorized>
                 <NotAuthorized>
                     <span class="bi bi-person-fill" aria-hidden="true"></span> Hello, stranger!
@@ -38,13 +38,13 @@
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
+    private bool _collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
-        collapseNavMenu = !collapseNavMenu;
+        _collapseNavMenu = !_collapseNavMenu;
     }
 
 }

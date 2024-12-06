@@ -51,7 +51,7 @@ public class CustomAuthenticationStateProvider(LocalStorageService localStorageS
         var userName = token.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
         var userRole = token.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role);
         var userFullName = token.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
-        return new CustomUserClaims(userId!.Value, userName!.Value, userRole!.Value, userFullName!.Value);
+        return new CustomUserClaims(userId!.Value, userName!.Value, userFullName!.Value, userRole!.Value);
     }
 
     private static ClaimsPrincipal SetClaimPrincipal(CustomUserClaims? claims)

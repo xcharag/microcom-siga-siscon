@@ -1,9 +1,11 @@
-﻿@inherits LayoutComponentBase
+﻿@using System.Security.Claims
+@inherits LayoutComponentBase
 
 <FluentToastProvider/>
 <FluentDialogProvider/>
 <FluentTooltipProvider/>
 <FluentMessageBarProvider/>
+<FluentMenuProvider/>
 
 <AuthorizeView>
     <Authorized>
@@ -14,7 +16,30 @@
 
             <main>
                 <div class="top-row px-4">
-                    <a class="btn btn-none text-danger" @onclick="LogoutClicked">Cerrar Sesion</a>
+                    <div @onclick="@(() => _open = !_open)" style="cursor: pointer;">
+                        <FluentPersona Id="UserCard" Name="@context.User.Identity!.Name"
+                                       Status="PresenceStatus.Available"
+                                       StatusSize="PresenceBadgeSize.Small"
+                                       StatusTitle="Online"
+                                       Image="@(new Icons.Regular.Size48.Person().ToDataUri(size:"25px", color:"white"))"
+                                       ImageSize="40px">
+                        </FluentPersona>
+                    </div>
+                    
+                    <FluentMenu Anchor="UserCard" @bind-Open="_open">
+                        <FluentMenuItem OnClick="OptionClicked">
+                            <FluentIcon Value="@(new Icons.Regular.Size24.Settings())"/>
+                            <span>Configuración</span>
+                        </FluentMenuItem>
+                        
+                        <FluentDivider/>
+                        
+                        <FluentMenuItem OnClick="LogoutClicked">
+                            <FluentIcon Value="@(new Icons.Regular.Size24.SignOut())"/>
+                            <span>Cerrar Sesión</span>
+                        </FluentMenuItem>
+                    </FluentMenu>
+                    
                 </div>
 
                 <article class="content px-4">
@@ -33,11 +58,18 @@
 
 @code
 {
+    bool _open = false;
+    
     async Task LogoutClicked()
     {
         var logoutModel = new UserSession();
         var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
         await customAuthStateProvider.UpdateAuthenticationState(logoutModel);
         NavManager.NavigateTo("/", forceLoad: true, replace: false);
+    }
+    
+    void OptionClicked()
+    {
+        NavManager.NavigateTo("/user/options", forceLoad: true, replace: false);
     }
 }
