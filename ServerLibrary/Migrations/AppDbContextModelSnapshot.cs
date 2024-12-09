@@ -367,15 +367,43 @@ namespace ServerLibrary.Migrations
                     b.ToTable("MenuItems");
                 });
 
-            modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
+            modelBuilder.Entity("BaseLibrary.Entities.Nivel", b =>
                 {
-                    b.Property<int>("CodCuenta")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodCuenta"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CodCuentaMayor")
+                    b.Property<int>("CodNivel")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Cuantos")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Largo")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Niveles");
+                });
+
+            modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
+                {
+                    b.Property<int>("CodCuenta")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -399,9 +427,6 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlanCuentaMayorCodCuentaMayor")
-                        .HasColumnType("int");
-
                     b.Property<string>("TipoCuenta")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -414,38 +439,7 @@ namespace ServerLibrary.Migrations
 
                     b.HasKey("CodCuenta");
 
-                    b.HasIndex("PlanCuentaMayorCodCuentaMayor");
-
                     b.ToTable("PlanCuentas");
-                });
-
-            modelBuilder.Entity("BaseLibrary.Entities.PlanCuentaMayor", b =>
-                {
-                    b.Property<int>("CodCuentaMayor")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodCuentaMayor"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomCuentaMayor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CodCuentaMayor");
-
-                    b.ToTable("PlanCuentaMayores");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.Proveedor", b =>
@@ -847,15 +841,6 @@ namespace ServerLibrary.Migrations
                     b.Navigation("Menu");
                 });
 
-            modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
-                {
-                    b.HasOne("BaseLibrary.Entities.PlanCuentaMayor", "PlanCuentaMayor")
-                        .WithMany("PlanCuentas")
-                        .HasForeignKey("PlanCuentaMayorCodCuentaMayor");
-
-                    b.Navigation("PlanCuentaMayor");
-                });
-
             modelBuilder.Entity("BaseLibrary.Entities.Proveedor", b =>
                 {
                     b.HasOne("BaseLibrary.Entities.PlanCuenta", "PlanCuenta")
@@ -926,11 +911,6 @@ namespace ServerLibrary.Migrations
                     b.Navigation("Clientes");
 
                     b.Navigation("Proveedores");
-                });
-
-            modelBuilder.Entity("BaseLibrary.Entities.PlanCuentaMayor", b =>
-                {
-                    b.Navigation("PlanCuentas");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.Proveedor", b =>

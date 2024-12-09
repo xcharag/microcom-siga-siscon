@@ -1,4 +1,5 @@
 using BaseLibrary.DTOs;
+using BaseLibrary.DTOs.Menu;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;

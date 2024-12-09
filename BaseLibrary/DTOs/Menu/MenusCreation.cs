@@ -1,4 +1,4 @@
-namespace BaseLibrary.DTOs;
+namespace BaseLibrary.DTOs.Menu;
 
 public class MenusCreation
 {

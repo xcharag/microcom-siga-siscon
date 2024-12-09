@@ -14,7 +14,8 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IGenericRepositor
 
     public async Task<GeneralResponse> Create(PlanCuenta item)
     {
-        if (!await CheckName(item.NomCuenta!)) return new GeneralResponse(false, "El plan de cuenta ya existe");
+        if (!await CheckId(item.CodCuenta!)) return new GeneralResponse(false, "El plan de cuenta ya existe");
+        
         appDbContext.PlanCuentas.Add(item);
         await Commit();
         return Success();
@@ -43,5 +44,5 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IGenericRepositor
     private static GeneralResponse Error() => new(false,"Ocurrió un error al procesar la solicitud");
     private static GeneralResponse Success() => new(true,"Operación exitosa");
     private async Task Commit() => await appDbContext.SaveChangesAsync();
-    private async Task<bool> CheckName(string name) => await appDbContext.PlanCuentas.FirstOrDefaultAsync(x => x.NomCuenta!.ToLower().Equals(name.ToLower())) is null;
+    private async Task<bool> CheckId(int id) => await appDbContext.PlanCuentas.FindAsync(id) is null;
 }

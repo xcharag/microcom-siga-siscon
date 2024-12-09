@@ -12,7 +12,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Proveedor> Proveedores { get; set; }
     public DbSet<Banco> Bancos { get; set; }
     public DbSet<PlanCuenta> PlanCuentas { get; set; }
-    public DbSet<PlanCuentaMayor> PlanCuentaMayores { get; set; }
+    public DbSet<Nivel> Niveles { get; set; }
     public DbSet<Documento> Documentos { get; set; }
     public DbSet<DetalleDocumento> DetalleDocumentos { get; set; }
     public DbSet<TcCosto> TcCostos { get; set; }
@@ -31,4 +31,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     
     //This is for the refresh token
     public DbSet<RefreshTokenInfo> RefreshTokenInfos { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<PlanCuenta>()
+            .Property(p => p.CodCuenta)
+            .ValueGeneratedNever();
+    }
 }

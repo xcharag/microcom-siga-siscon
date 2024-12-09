@@ -22,11 +22,7 @@ public class PlanCuenta : BaseEntity
     public int Nivel { get; set; }
     
     [Required]
-    public string? Grupo { get; set; }
-    
-    //Many-to-One Relationships
-    public PlanCuentaMayor? PlanCuentaMayor { get; set; }
-    public int CodCuentaMayor { get; set; }
+    public int? Grupo { get; set; }
     
     //One-to-Many Relationships
     [JsonIgnore]

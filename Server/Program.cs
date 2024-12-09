@@ -1,4 +1,5 @@
 using System.Text;
+using BaseLibrary.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -45,6 +46,8 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
 builder.Services.AddScoped<IMenu, MenuRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<PlanCuenta>, PlanCuentaRepository>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowBlazorWasm", 

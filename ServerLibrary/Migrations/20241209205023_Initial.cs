@@ -12,12 +12,27 @@ namespace ServerLibrary.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "PlanCuentaMayores",
+                name: "Menus",
                 columns: table => new
                 {
-                    CodCuentaMayor = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomCuentaMayor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Niveles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CodNivel = table.Column<int>(type: "int", nullable: false),
+                    Largo = table.Column<int>(type: "int", nullable: false),
+                    Cuantos = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -25,7 +40,55 @@ namespace ServerLibrary.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlanCuentaMayores", x => x.CodCuentaMayor);
+                    table.PrimaryKey("PK_Niveles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlanCuentas",
+                columns: table => new
+                {
+                    CodCuenta = table.Column<int>(type: "int", nullable: false),
+                    NomCuenta = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Moneda = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TipoCuenta = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nivel = table.Column<int>(type: "int", nullable: false),
+                    Grupo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlanCuentas", x => x.CodCuenta);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RefreshTokenInfos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokenInfos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SystemPermissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    MenuId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SystemPermissions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,31 +187,23 @@ namespace ServerLibrary.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlanCuentas",
+                name: "MenuItems",
                 columns: table => new
                 {
-                    CodCuenta = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomCuenta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Moneda = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TipoCuenta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nivel = table.Column<int>(type: "int", nullable: false),
-                    Grupo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlanCuentaMayorCodCuentaMayor = table.Column<int>(type: "int", nullable: true),
-                    CodCuentaMayor = table.Column<int>(type: "int", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Block = table.Column<int>(type: "int", nullable: true),
+                    MenuId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlanCuentas", x => x.CodCuenta);
+                    table.PrimaryKey("PK_MenuItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PlanCuentas_PlanCuentaMayores_PlanCuentaMayorCodCuentaMayor",
-                        column: x => x.PlanCuentaMayorCodCuentaMayor,
-                        principalTable: "PlanCuentaMayores",
-                        principalColumn: "CodCuentaMayor");
+                        name: "FK_MenuItems_Menus_MenuId",
+                        column: x => x.MenuId,
+                        principalTable: "Menus",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -166,6 +221,26 @@ namespace ServerLibrary.Migrations
                     table.PrimaryKey("PK_Bancos", x => x.CodBanco);
                     table.ForeignKey(
                         name: "FK_Bancos_PlanCuentas_PlanCuentaCodCuenta",
+                        column: x => x.PlanCuentaCodCuenta,
+                        principalTable: "PlanCuentas",
+                        principalColumn: "CodCuenta");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TipoEgresos",
+                columns: table => new
+                {
+                    CodTipoEgreso = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlanCuentaCodCuenta = table.Column<int>(type: "int", nullable: true),
+                    CodCuenta = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoEgresos", x => x.CodTipoEgreso);
+                    table.ForeignKey(
+                        name: "FK_TipoEgresos_PlanCuentas_PlanCuentaCodCuenta",
                         column: x => x.PlanCuentaCodCuenta,
                         principalTable: "PlanCuentas",
                         principalColumn: "CodCuenta");
@@ -262,26 +337,6 @@ namespace ServerLibrary.Migrations
                         column: x => x.UsuarioCodUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "CodUsuario");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TipoEgresos",
-                columns: table => new
-                {
-                    CodTipoEgreso = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PlanCuentaCodCuenta = table.Column<int>(type: "int", nullable: true),
-                    CodCuenta = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TipoEgresos", x => x.CodTipoEgreso);
-                    table.ForeignKey(
-                        name: "FK_TipoEgresos_PlanCuentas_PlanCuentaCodCuenta",
-                        column: x => x.PlanCuentaCodCuenta,
-                        principalTable: "PlanCuentas",
-                        principalColumn: "CodCuenta");
                 });
 
             migrationBuilder.CreateTable(
@@ -482,9 +537,9 @@ namespace ServerLibrary.Migrations
                 column: "ProveedorCodProv");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlanCuentas_PlanCuentaMayorCodCuentaMayor",
-                table: "PlanCuentas",
-                column: "PlanCuentaMayorCodCuentaMayor");
+                name: "IX_MenuItems_MenuId",
+                table: "MenuItems",
+                column: "MenuId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Proveedores_PlanCuentaCodCuenta",
@@ -517,6 +572,18 @@ namespace ServerLibrary.Migrations
                 name: "ClienteTipoDoc");
 
             migrationBuilder.DropTable(
+                name: "MenuItems");
+
+            migrationBuilder.DropTable(
+                name: "Niveles");
+
+            migrationBuilder.DropTable(
+                name: "RefreshTokenInfos");
+
+            migrationBuilder.DropTable(
+                name: "SystemPermissions");
+
+            migrationBuilder.DropTable(
                 name: "SystemRoles");
 
             migrationBuilder.DropTable(
@@ -530,6 +597,9 @@ namespace ServerLibrary.Migrations
 
             migrationBuilder.DropTable(
                 name: "Clientes");
+
+            migrationBuilder.DropTable(
+                name: "Menus");
 
             migrationBuilder.DropTable(
                 name: "Documentos");
@@ -554,9 +624,6 @@ namespace ServerLibrary.Migrations
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
-
-            migrationBuilder.DropTable(
-                name: "PlanCuentaMayores");
         }
     }
 }

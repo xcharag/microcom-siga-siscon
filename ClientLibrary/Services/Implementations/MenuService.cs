@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using BaseLibrary.DTOs;
+using BaseLibrary.DTOs.Menu;
 using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
 using ClientLibrary.Services.Contracts;
