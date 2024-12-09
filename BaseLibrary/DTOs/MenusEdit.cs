@@ -2,6 +2,8 @@ namespace BaseLibrary.DTOs;
 
 public class MenusEdit
 {
-    public int NewMenuId { get; set; }
-    public int MenuItemId { get; set; }
+    public int MenuId { get; set; }
+    public string MenuName { get; set; }
+    public List<int>? DeleteMenuItems { get; set; }
+    public List<MenuItemsDto>? AddMenuItems { get; set; }
 }

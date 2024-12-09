@@ -12,10 +12,12 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+builder.Services.AddTransient<CustomHttpHandler>();
 builder.Services.AddHttpClient("SystemApiClient", client =>
 {
     client.BaseAddress = new Uri("http://localhost:5232");
-});
+}).AddHttpMessageHandler<CustomHttpHandler>();
+
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5232") });
 
 builder.Services.AddAuthorizationCore();

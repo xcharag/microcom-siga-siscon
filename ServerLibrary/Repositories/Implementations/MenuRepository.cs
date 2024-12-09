@@ -51,14 +51,68 @@ public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbConte
         return new GeneralResponse(true, "Menu y Menu Items creados con exito");
     }
 
-    public Task<GeneralResponse> UpdateMenu(MenusEdit menu)
+    public async Task<GeneralResponse> UpdateMenu(MenusEdit? menu)
     {
-        throw new NotImplementedException();
+        if (menu is null) return new GeneralResponse(false, "El modelo esta vacio");
+        
+        var checkMenu = await appDbContext.Menus.FirstOrDefaultAsync(x => x.Id.Equals(menu.MenuId));
+        if (checkMenu is null) return new GeneralResponse(false, "El menu no existe");
+        
+        if (menu.MenuName != null)
+        {
+            checkMenu.Name = menu.MenuName;
+            await appDbContext.SaveChangesAsync();
+        }
+        
+        if (menu.DeleteMenuItems is not null)
+        {
+            var deleteMenuItems = await appDbContext.MenuItems
+                .Where(x => menu.DeleteMenuItems.Contains(x.Id) && x.MenuId == checkMenu.Id)
+                .ToListAsync();
+
+            appDbContext.MenuItems.RemoveRange(deleteMenuItems);
+            await appDbContext.SaveChangesAsync();
+        }
+        
+        if (menu.AddMenuItems is not null)
+        {
+            var existingMenuItems = await appDbContext.MenuItems
+                .Where(x => menu.AddMenuItems.Select(mi => mi.Name).Contains(x.Name!) && x.MenuId == checkMenu.Id)
+                .ToListAsync();
+
+            var newMenuItems = menu.AddMenuItems
+                .Where(mi => !existingMenuItems.Select(x => x.Name).Contains(mi.Name))
+                .Select(mi => new MenuItems() { Name = mi.Name, Block = mi.Block, MenuId = checkMenu.Id })
+                .ToList();
+
+            if (newMenuItems.Any())
+            {
+                appDbContext.MenuItems.AddRange(newMenuItems);
+                await appDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                return new GeneralResponse(false, "Los Menu Items ya existen");
+            }
+        }
+        
+        return new GeneralResponse(true, "Menu Items actualizados con exito");
     }
 
-    public Task<GeneralResponse> DeleteMenu(int id)
+    public async Task<GeneralResponse> DeleteMenu(int id)
     {
-        throw new NotImplementedException();
+        if (id <= 0) return new GeneralResponse(false, "El id esta vacio");
+        
+        var checkMenu = await appDbContext.Menus
+            .Include(m => m.MenuItemsList)
+            .FirstOrDefaultAsync(x => x.Id.Equals(id));
+        if (checkMenu is null) return new GeneralResponse(false, "El menu no existe");
+        
+        appDbContext.MenuItems.RemoveRange(checkMenu.MenuItemsList!);
+        appDbContext.Menus.Remove(checkMenu);
+        await appDbContext.SaveChangesAsync();
+        
+        return new GeneralResponse(true, "Menu y Menu Items eliminados con exito");
     }
 
     public async Task<GeneralResponse> AddMenuItem(MenusCreation? menu)

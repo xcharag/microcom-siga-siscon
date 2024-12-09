@@ -2,6 +2,16 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<FluentButton Appearance="Appearance.Neutral" @onclick="ShowToast">
+    <FluentIcon Value="@(new Icons.Filled.Size20.CheckmarkCircle())" Color="Color.Success" Slot="start" />
+    Show Toast
+</FluentButton>
 
-Welcome to your new app.
+@code{
+
+    private void ShowToast()
+    {
+        ToastService.ShowSuccess("Hello World");
+    }
+
+}

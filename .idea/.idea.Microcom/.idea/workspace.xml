@@ -15,19 +15,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="Feat: Implemented the Token with the Weather Template&#10;- Implementation of restricted Endpoints using the weather template endpoint">
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/MenuItemsDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/MenusCreation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/MenusEdit.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Menu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/MenuController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/MenuRepository.cs" afterDir="false" />
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/MenuItems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/MenuItems.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +52,7 @@
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Data/AppDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -269,7 +259,7 @@
       <workItem from="1733337289051" duration="11794000" />
       <workItem from="1733410043992" duration="5004000" />
       <workItem from="1733491152201" duration="565000" />
-      <workItem from="1733509299567" duration="15844000" />
+      <workItem from="1733509299567" duration="16272000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -383,7 +373,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733516807480</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Feat: Creation of The Menus&#10;- Creation of the Tables Menu and Menu Items&#10;- Implementation of the Create Endpoints of each table&#10;- Declaration of the others endpoints to implement">
+      <option name="closed" value="true" />
+      <created>1733525837198</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733525837198</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,6 +416,7 @@
     <MESSAGE value="Feat: Login finished&#10;- The design of the login is finished&#10;- Make sure to only let the user login and none of the others functions available" />
     <MESSAGE value="Feat: Finished the Login and Route Protection&#10;- Finished that the user only can login before doing anything&#10;- Finished the login page" />
     <MESSAGE value="Feat: Implemented the Token with the Weather Template&#10;- Implementation of restricted Endpoints using the weather template endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Implemented the Token with the Weather Template&#10;- Implementation of restricted Endpoints using the weather template endpoint" />
+    <MESSAGE value="Feat: Creation of The Menus&#10;- Creation of the Tables Menu and Menu Items&#10;- Implementation of the Create Endpoints of each table&#10;- Declaration of the others endpoints to implement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Creation of The Menus&#10;- Creation of the Tables Menu and Menu Items&#10;- Implementation of the Create Endpoints of each table&#10;- Declaration of the others endpoints to implement" />
   </component>
 </project>

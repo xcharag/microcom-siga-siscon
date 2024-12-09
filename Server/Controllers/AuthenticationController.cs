@@ -28,7 +28,8 @@ public class AuthenticationController(IUserAccount accountInterface) : Controlle
         return Ok(result);
     }
     
-    [HttpPost("refresh-token")]
+    [AllowAnonymous]
+    [HttpPost("refresh")]
     public async Task<IActionResult> RefreshToken([FromBody] RefreshToken? token)
     {
         if (token is null) return BadRequest("El modelo esta vacio");

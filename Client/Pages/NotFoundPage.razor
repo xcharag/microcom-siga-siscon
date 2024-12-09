@@ -1,0 +1,88 @@
+<PageTitle>Not Found</PageTitle>
+
+<LayoutView Layout="@typeof(MainLayout)">
+    <FluentStack 
+        Style="
+        text-align: center; 
+        justify-content: center; 
+        align-items: center; 
+        background: linear-gradient(135deg, #87CEEB, #4682B4);
+        height: 40rem;"
+        Orientation="Orientation.Vertical">
+        <!-- Animated Ghost -->
+        <div class="ghost">
+            <div class="ghost-eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+        </div>
+
+        <!-- Message -->
+        <div class="message">
+            <h1>404</h1>
+            <p>Oops! No logramos encontrar la pagina que estas buscando.</p>
+            <FluentButton Appearance="Appearance.Accent" @onclick="GoToHome">Volver al Panel</FluentButton>
+        </div>
+    </FluentStack>
+</LayoutView>
+
+<style>
+    /* Floating Ghost */
+    .ghost {
+        width: 150px;
+        height: 150px;
+        background: #e0f7fa;
+        border-radius: 50%;
+        position: relative;
+        margin: 20px auto;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    /* Eyes */
+    .ghost-eyes {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: 20px;
+    }
+
+    .eye {
+        width: 20px;
+        height: 20px;
+        background: #005f73;
+        border-radius: 50%;
+    }
+
+    /* Message Section */
+    .message h1 {
+        font-size: 4rem;
+        margin: 0;
+    }
+
+    .message p {
+        font-size: 1.25rem;
+        margin: 20px 0;
+    }
+
+    /* Floating Animation */
+    @@keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
+
+@code {
+    void GoToHome()
+    {
+        NavManager.NavigateTo("/", forceLoad: true, replace: false);
+    }
+}
