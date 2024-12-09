@@ -3,7 +3,7 @@
 @layout EmptyLayout
 
 <div class="contenedor" style="width:100dvw;height:100dvh;justify-content:center;align-items:center;display:grid;">
-    <FluentCard Width="350px" Height="450px" Style="justify-content: center">
+    <FluentCard Width="350px" Height="490px" Style="justify-content: center">
         <FluentEditForm Model="@_loginModel" OnValidSubmit="HandleLogin" Style="margin-left:20px;margin-right:20px;">
             <DataAnnotationsValidator/>
 
@@ -24,13 +24,11 @@
 
                 <FluentGrid Justify="JustifyContent.FlexEnd" Style="width: 100%">
                     <div>
-                        <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Iniciar Sesion</FluentButton>
+                        <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent" Loading="@BusyIndicator">Iniciar Sesion</FluentButton>
                     </div>
                 </FluentGrid>
             </FluentStack>
         </FluentEditForm>
-
-        <FluentProgressRing Style="width: 42px; height: 42px" Visible="@BusyIndicator"></FluentProgressRing>
     </FluentCard>
 </div>
 
