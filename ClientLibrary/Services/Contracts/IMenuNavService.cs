@@ -4,7 +4,7 @@ using BaseLibrary.Responses;
 
 namespace ClientLibrary.Services.Contracts;
 
-public interface IMenuService
+public interface IMenuNavService
 {
     Task<GeneralResponse> CreateMenu(MenusCreation menu);
     Task<GeneralResponse> UpdateMenu(MenusEdit menu);

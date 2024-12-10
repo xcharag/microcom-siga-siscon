@@ -9,15 +9,18 @@
 @using Client
 @using Client.Layout
 @using BaseLibrary.DTOs
+@using BaseLibrary.Entities
 @using ClientLibrary.Helpers
 @using ClientLibrary.Services.Contracts
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.FluentUI.AspNetCore.Components
-@using IMenuService = Microsoft.FluentUI.AspNetCore.Components.IMenuService
-
 
 @inject AuthenticationStateProvider AuthStateProvider
 @inject IUserAccountService AccountService
+
 @inject NavigationManager NavManager
+
 @inject IToastService ToastService
-@inject IMenuService MenuService
+
+@inject IMenuNavService MenuNavService
+@inject IGenericServiceInterface<PlanCuenta> PlanCuentaService

@@ -1,3 +1,4 @@
+using BaseLibrary.Entities;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -25,7 +26,11 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<GetHttpClient>();
 builder.Services.AddScoped<LocalStorageService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+builder.Services.AddScoped<IMenuNavService, MenuNavService>();
+builder.Services.AddScoped<IGenericServiceInterface<PlanCuenta>, GenericServiceImplementation<PlanCuenta>>();
+
 builder.Services.AddScoped<ToastService>();
 builder.Services.AddFluentUIComponents();
 

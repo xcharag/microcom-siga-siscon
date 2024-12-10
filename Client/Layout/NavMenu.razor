@@ -1,4 +1,5 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using BaseLibrary.DTOs.Menu
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">
             <h6 style="color: ghostwhite"> Microcom - SISCON</h6>
@@ -9,34 +10,85 @@
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+@*<div class="@FullNavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
+        @if (_menus != null)
+        {
+            @foreach (var menu in _menus)
+            {
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="">
+                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @menu.MenuName
+                    </NavLink>
+                    @if (menu.MenuItems != null)
+                    {
+                        <nav class="flex-column ms-3">
+                            @foreach (var menuItem in menu.MenuItems)
+                            {
+                                <div class="nav-item px-3">
+                                    <NavLink class="nav-link" href="@menuItem.Url">
+                                        <FluentIcon Value="@(new Icons.Regular.Size24.Add())"></FluentIcon> @menuItem.Name
+                                    </NavLink>
+                                </div>
+                            }
+                        </nav>
+                    }
+                </div>
+            }
+        }
+    </nav>
+</div>*@
+
+<div class="@FullNavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column" style="margin: 1rem">
+        <FluentStack Orientation="Orientation.Horizontal">
+            <FluentNavMenu>
+                @if (_menus != null) 
+                { 
+                    @foreach (var menu in _menus) 
+                    {
+                        <FluentNavGroup Id="@menu.MenuName" Title="@menu.MenuName" Icon="@(new Icons.Filled.Size20.Home())" Class="nav-item">
+                            @if (menu.MenuItems != null)
+                            {
+                                @foreach(var menuItem in menu.MenuItems)
+                                {
+                                    @if (LastBlock < menuItem.Block)
+                                    {
+                                        LastBlock = menuItem.Block;
+                                        <FluentDivider />
+                                    }
+                                    <FluentNavLink Id="@menuItem.Name" Icon="@(new Icons.Regular.Size24.Add())" Href="@menuItem.Url">
+                                        @menuItem.Name
+                                    </FluentNavLink>
+                                }
+                            }
+                        </FluentNavGroup>
+                    }
+                }
+            </FluentNavMenu>
+        </FluentStack>
     </nav>
 </div>
 
 @code {
     private bool _collapseNavMenu = true;
+    public int? LastBlock = 1;
+    private IEnumerable<MenusCreation>? _menus;
 
-    private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
+    private string FullNavMenuCssClass => $"nav-scrollable {(_collapseNavMenu ? "collapse" : "")}";
 
     private void ToggleNavMenu()
     {
         _collapseNavMenu = !_collapseNavMenu;
     }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await GetMenuItems();
+    }
+
+    private async Task GetMenuItems()
+    {
+        _menus = await MenuNavService.GetAllMenus();
+    }
 }

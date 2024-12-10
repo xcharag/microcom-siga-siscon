@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BaseLibrary.Entities;
 
-public class Nivel : BaseEntity
+public class Nivel
 {
     [Required]
     [Key]

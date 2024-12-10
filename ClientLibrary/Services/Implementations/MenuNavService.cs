@@ -7,7 +7,7 @@ using ClientLibrary.Services.Contracts;
 
 namespace ClientLibrary.Services.Implementations;
 
-public class MenuService (GetHttpClient getHttpClient) : IMenuService
+public class MenuNavService (GetHttpClient getHttpClient) : IMenuNavService
 {
     public const string MenuUrl = "api/Menu";
     
