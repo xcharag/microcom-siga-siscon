@@ -35,6 +35,7 @@ public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbConte
         var newMenu = new Menu()
         {
             Name = menu.MenuName,
+            IconName = menu.IconName,
             MenuItemsList = existingMenuItems.Concat(newMenuItems).ToList()
         };
 
@@ -59,9 +60,10 @@ public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbConte
         var checkMenu = await appDbContext.Menus.FirstOrDefaultAsync(x => x.Id.Equals(menu.MenuId));
         if (checkMenu is null) return new GeneralResponse(false, "El menu no existe");
         
-        if (menu.MenuName != null)
+        if (menu.MenuName != null || menu.IconName != null)
         {
-            checkMenu.Name = menu.MenuName;
+            checkMenu.Name = string.IsNullOrEmpty(menu.MenuName) ? checkMenu.Name : menu.MenuName;
+            checkMenu.IconName = string.IsNullOrEmpty(menu.IconName) ? checkMenu.IconName : menu.IconName;
             await appDbContext.SaveChangesAsync();
         }
         
@@ -174,6 +176,7 @@ public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbConte
         var result = menus.Select(m => new MenusCreation
         {
             MenuName = m.Name,
+            IconName = m.IconName,
             MenuItems = m.MenuItemsList!.Select(mi => new MenuItemsDto
             {
                 Name = mi.Name,

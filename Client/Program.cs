@@ -8,6 +8,7 @@ using ClientLibrary.Services.Contracts;
 using ClientLibrary.Services.Implementations;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.FluentUI.AspNetCore.Components;
+using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IMenuNavService, MenuNavService>();
 builder.Services.AddScoped<IGenericServiceInterface<PlanCuenta>, GenericServiceImplementation<PlanCuenta>>();
 
 builder.Services.AddScoped<ToastService>();
+builder.Services.AddScoped<ITooltipService, TooltipService>();
 builder.Services.AddFluentUIComponents();
 
 await builder.Build().RunAsync();
