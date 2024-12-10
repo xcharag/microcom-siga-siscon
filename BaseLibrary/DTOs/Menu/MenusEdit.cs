@@ -6,4 +6,5 @@ public class MenusEdit
     public string MenuName { get; set; }
     public List<int>? DeleteMenuItems { get; set; }
     public List<MenuItemsDto>? AddMenuItems { get; set; }
+    public List<MenuItemsDto>? UpdateMenuItems { get; set; }
 }

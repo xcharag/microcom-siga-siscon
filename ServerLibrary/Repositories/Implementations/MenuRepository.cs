@@ -25,7 +25,7 @@ public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbConte
 
         var newMenuItems = menu.MenuItems!
             .Where(mi => !existingMenuItems.Select(x => x.Name).Contains(mi.Name))
-            .Select(mi => new MenuItems() { Name = mi.Name, Block = mi.Block })
+            .Select(mi => new MenuItems() { Name = mi.Name, Block = mi.Block, Url = mi.Url})
             .ToList();
 
         // Add new MenuItems to the database
@@ -97,6 +97,26 @@ public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbConte
             }
         }
         
+        if (menu.UpdateMenuItems is not null)
+        {
+            var existingMenuItems = await appDbContext.MenuItems
+                .Where(x => menu.UpdateMenuItems.Select(mi => mi.Name).Contains(x.Name!) && x.MenuId == checkMenu.Id)
+                .ToListAsync();
+
+            foreach (var item in menu.UpdateMenuItems)
+            {
+                var existingItem = existingMenuItems.FirstOrDefault(x => x.Name!.Equals(item.Name));
+                if (existingItem is not null)
+                {
+                    existingItem.Block = item.Block;
+                    existingItem.Url = item.Url;
+                }
+            }
+
+            appDbContext.MenuItems.UpdateRange(existingMenuItems);
+            await appDbContext.SaveChangesAsync();
+        }
+        
         return new GeneralResponse(true, "Menu Items actualizados con exito");
     }
 
@@ -157,7 +177,8 @@ public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbConte
             MenuItems = m.MenuItemsList!.Select(mi => new MenuItemsDto
             {
                 Name = mi.Name,
-                Block = mi.Block
+                Block = mi.Block,
+                Url = mi.Url
             }).ToList()
         });
 

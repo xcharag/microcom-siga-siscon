@@ -15,21 +15,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Helpers/Constants.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Helpers/UtilsFunctions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IGenericServiceInterface.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/GenericServiceImplementation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenuItemsDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenuItemsDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/MenuItems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/MenuItems.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Nivel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Nivel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Layout/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IMenuService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IMenuNavService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/MenuService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/MenuNavService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database">
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenusEdit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenusEdit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/MenuRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/MenuRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +272,7 @@
       <workItem from="1733509299567" duration="16272000" />
       <workItem from="1733747895831" duration="12652000" />
       <workItem from="1733769291551" duration="14364000" />
-      <workItem from="1733834383265" duration="4907000" />
+      <workItem from="1733834383265" duration="5339000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -438,7 +426,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733779587255</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database">
+      <option name="closed" value="true" />
+      <created>1733840564048</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733840564048</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,6 +474,7 @@
     <MESSAGE value="docs: Creation of New Migrations&#10;Created new migrations for the tables created in past commits. This involved:&#10;- Using Entity framework to create the migrations" />
     <MESSAGE value="Feat: Creation Generic Interface&#10;I created the generic interface in order to use for all the tables. This commit includes:&#10;- Creation of the generic Interface&#10;- Starting to create each of the implementations and controllers&#10;- Edit of the view in the front end" />
     <MESSAGE value="Feat: Update of Plan Cuentas Endpoint&#10;I modified how Plan de Cuenta will work, making the assign of the PK manually:&#10;- The rules of this PK will have to be defined in the client side&#10;- ReDo the migrations folder and DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Update of Plan Cuentas Endpoint&#10;I modified how Plan de Cuenta will work, making the assign of the PK manually:&#10;- The rules of this PK will have to be defined in the client side&#10;- ReDo the migrations folder and DB" />
+    <MESSAGE value="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database" />
   </component>
 </project>
