@@ -15,16 +15,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="fix: The Menu Endpoint now saves and retrieves the URL&#10;I fixed the service implementation in the server for retrieving the Url of each Menuitem">
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenusCreation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenusCreation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenusEdit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Menu/MenusEdit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Layout/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/MenuRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/MenuRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +57,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
@@ -279,7 +272,7 @@
       <workItem from="1733509299567" duration="16272000" />
       <workItem from="1733747895831" duration="12652000" />
       <workItem from="1733769291551" duration="14364000" />
-      <workItem from="1733834383265" duration="9310000" />
+      <workItem from="1733834383265" duration="11247000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -449,7 +442,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733840908109</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly">
+      <option name="closed" value="true" />
+      <created>1733845436758</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733845436758</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,6 +492,7 @@
     <MESSAGE value="Feat: Update of Plan Cuentas Endpoint&#10;I modified how Plan de Cuenta will work, making the assign of the PK manually:&#10;- The rules of this PK will have to be defined in the client side&#10;- ReDo the migrations folder and DB" />
     <MESSAGE value="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database" />
     <MESSAGE value="fix: The Menu Endpoint now saves and retrieves the URL&#10;I fixed the service implementation in the server for retrieving the Url of each Menuitem" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: The Menu Endpoint now saves and retrieves the URL&#10;I fixed the service implementation in the server for retrieving the Url of each Menuitem" />
+    <MESSAGE value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
   </component>
 </project>

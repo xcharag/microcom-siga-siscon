@@ -2,7 +2,7 @@
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">
-            <h6 style="color: ghostwhite"> Microcom - SISCON</h6>
+            <h6 style="color: ghostwhite"> MicrocomTI - SisCon</h6>
         </a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
@@ -11,24 +11,32 @@
 </div>
 
 <div class="@FullNavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column" style="margin: 1rem">
+    <nav class="flex-column" style="margin: 1rem; overflow-y: auto;">
         <FluentStack Orientation="Orientation.Horizontal">
             <FluentNavMenu>
-                @if (_menus != null) 
-                { 
-                    @foreach (var menu in _menus) 
+                @if (_menus != null)
+                {
+                    @foreach (var menu in _menus)
                     {
-                        <FluentNavGroup Id="@menu.MenuName" Title="@menu.MenuName" Icon="@(GetIconFromName(menu.IconName))" Class="nav-item">
-                            @if (menu.MenuItems != null)
-                            {
-                                @foreach(var menuItem in menu.MenuItems)
+                        @if (menu.MenuItems != null)
+                        {
+                            <FluentNavGroup Id="@menu.MenuName"
+                                            Title="@menu.MenuName"
+                                            Icon="@(GetIconFromName(menu.IconName))"
+                                            Class="nav-item"
+                                            Style="font-size: smaller">
+                                @foreach (var menuItem in menu.MenuItems)
                                 {
-                                    @if (LastBlock < menuItem.Block)
+                                    @if (_lastBlock < menuItem.Block)
                                     {
-                                        LastBlock = menuItem.Block;
-                                        <FluentDivider />
+                                        _lastBlock = menuItem.Block;
+                                        <FluentDivider/>
                                     }
-                                    <FluentNavLink Id="@menuItem.Name" Icon="@(new Icons.Regular.Size24.Add())" Href="@menuItem.Url">
+
+                                    <FluentNavLink Id="@menuItem.Name"
+                                                   Icon="@(new Icons.Regular.Size24.Add())"
+                                                   @onclick="() => NavigateTo(menuItem.Url!)"
+                                                   Style="font-size: smaller">
                                         @menuItem.Name
                                     </FluentNavLink>
                                     <FluentTooltip
@@ -39,8 +47,16 @@
                                         @menuItem.Name
                                     </FluentTooltip>
                                 }
-                            }
-                        </FluentNavGroup>
+                            </FluentNavGroup>
+                        }
+                        else
+                        {
+                            <FluentNavLink Id="@menu.MenuName"
+                                           Icon="@(GetIconFromName(menu.IconName))"
+                                           @onclick="() => NavigateTo('/'+menu.MenuName)">
+                                @menu.MenuName
+                            </FluentNavLink>
+                        }
                     }
                 }
             </FluentNavMenu>
@@ -48,9 +64,33 @@
     </nav>
 </div>
 
+<div style="display: flex; flex-direction: row; flex-grow: 1">
+    <FluentStack
+        Orientation="Orientation.Vertical"
+        HorizontalAlignment="HorizontalAlignment.Left"
+        VerticalAlignment="VerticalAlignment.Bottom"
+        Style="flex-grow: 1; margin: 1rem"
+    >
+        <FluentBadge Appearance="Appearance.Neutral">
+            <FluentIcon Value="@(new Icons.Filled.Size24.Money())" />
+            Tipo Cambio: 6.96
+        </FluentBadge>
+        
+        <FluentBadge Appearance="Appearance.Neutral">
+            <FluentIcon Value="@(new Icons.Filled.Size24.Calendar())"></FluentIcon>
+            Gestion: 2024 Diciembre
+        </FluentBadge>
+        
+        <FluentBadge Appearance="Appearance.Neutral">
+            <FluentIcon Value="@(new Icons.Filled.Size24.PersonAccounts())"></FluentIcon>
+            Rol: Administrador
+        </FluentBadge>
+    </FluentStack>
+</div>
+
 @code {
     private bool _collapseNavMenu = true;
-    public int? LastBlock = 1;
+    private int? _lastBlock = 1;
     private IEnumerable<MenusCreation>? _menus;
 
     private string FullNavMenuCssClass => $"nav-scrollable {(_collapseNavMenu ? "collapse" : "")}";
@@ -62,14 +102,22 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await GetMenuItems();
+        if (_menus == null)
+        {
+            await GetMenuItems();
+        }
     }
 
     private async Task GetMenuItems()
     {
         _menus = await MenuNavService.GetAllMenus();
     }
-    
+
+    private void NavigateTo(string url)
+    {
+        NavManager.NavigateTo(url);
+    }
+
     private Icon GetIconFromName(string? iconName)
     {
         return iconName switch
@@ -79,6 +127,9 @@
             "Settings" => new Icons.Filled.Size28.Settings(),
             "Receipt" => new Icons.Filled.Size28.Receipt(),
             "List" => new Icons.Filled.Size28.List(),
+            "SlideSearch" => new Icons.Filled.Size28.SlideSearch(),
+            "ArrowClockwiseDashesSettings" => new Icons.Regular.Size28.ArrowClockwiseDashes(),
+            "Toolbox" => new Icons.Regular.Size16.Toolbox(),
             // Add more mappings as needed
             _ => new Icons.Filled.Size20.BookDefault() // Default icon if no match is found
         };
