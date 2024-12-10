@@ -1,16 +1,13 @@
-using BaseLibrary.DTOs;
 using BaseLibrary.DTOs.Menu;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using ServerLibrary.Data;
-using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts;
 
 namespace ServerLibrary.Repositories.Implementations;
 
-public class MenuRepository(IOptions<JwtSection> config, AppDbContext appDbContext) : IMenu
+public class MenuRepository(AppDbContext appDbContext) : IMenu
 {
     public async Task<GeneralResponse> CreateMenu(MenusCreation? menu)
     {

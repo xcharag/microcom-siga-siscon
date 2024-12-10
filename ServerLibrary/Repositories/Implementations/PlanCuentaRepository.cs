@@ -15,6 +15,8 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IGenericRepositor
     public async Task<GeneralResponse> Create(PlanCuenta item)
     {
         if (!await CheckId(item.CodCuenta!)) return new GeneralResponse(false, "El plan de cuenta ya existe");
+        var isValid = await ValidateId(item.CodCuenta);
+        if (!isValid.Flag) return isValid;
         
         appDbContext.PlanCuentas.Add(item);
         await Commit();
@@ -45,4 +47,19 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IGenericRepositor
     private static GeneralResponse Success() => new(true,"Operación exitosa");
     private async Task Commit() => await appDbContext.SaveChangesAsync();
     private async Task<bool> CheckId(int id) => await appDbContext.PlanCuentas.FindAsync(id) is null;
+
+    private async Task<GeneralResponse> ValidateId(int id)
+    {
+        string idString = id.ToString();
+        var niveles = await appDbContext.Niveles.ToListAsync();
+        
+        Nivel? existente = niveles.FirstOrDefault(x => x.Largo == idString.Length);
+        if (existente is null) return new GeneralResponse(false, "Longitud de la cuenta es incorrecta");
+        
+        string cuentaPadre = idString.Substring(0, existente.Largo - existente.Cuantos);
+        var cuentaPadreExistente = await appDbContext.PlanCuentas.FindAsync(int.Parse(cuentaPadre));
+        if (cuentaPadreExistente is null) return new GeneralResponse(false, "La cuenta padre no existe");
+        
+        return new GeneralResponse(true, "Validación exitosa");
+    }
 }
