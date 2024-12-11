@@ -16,7 +16,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/Responses/PlanCuentasResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,12 +61,12 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Layout/MainLayout.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Repositories/Implementations/MenuRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -78,36 +82,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Client: http.executor": "Run",
-    ".NET Launch Settings Profile.WebApplication1: IIS Express.executor": "Run",
-    ".NET Launch Settings Profile.WebApplication1: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "HotReloadSettingsPage",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Client: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.WebApplication1: IIS Express.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.WebApplication1: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver.localdb",
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver.localdb&quot;,
+      &quot;sqlserver&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -273,6 +277,8 @@
       <workItem from="1733747895831" duration="12652000" />
       <workItem from="1733769291551" duration="14364000" />
       <workItem from="1733834383265" duration="11247000" />
+      <workItem from="1733855603177" duration="14693000" />
+      <workItem from="1733919837192" duration="4099000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -450,7 +456,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733845436758</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Feat: NavMenu Finished&#10;The Sidebar/NavMenu is finished, the role, gestion and tipo cambio are hardcoded by the moment&#10;- Change the style and make it responsive completly&#10;[Note]&#10;- Do not forget to change the hardcoded items in the sidebar (bottom part)">
+      <option name="closed" value="true" />
+      <created>1733867678911</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733867678911</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: Creation of the validation of IDs&#10;I created a function when creationg a Plan de Cuentas to validate the ID before uploading it&#10;- Created a private function to validate the ID">
+      <option name="closed" value="true" />
+      <created>1733871718669</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1733871718669</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,6 +515,8 @@
     <MESSAGE value="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database" />
     <MESSAGE value="fix: The Menu Endpoint now saves and retrieves the URL&#10;I fixed the service implementation in the server for retrieving the Url of each Menuitem" />
     <MESSAGE value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
+    <MESSAGE value="Feat: NavMenu Finished&#10;The Sidebar/NavMenu is finished, the role, gestion and tipo cambio are hardcoded by the moment&#10;- Change the style and make it responsive completly&#10;[Note]&#10;- Do not forget to change the hardcoded items in the sidebar (bottom part)" />
+    <MESSAGE value="feat: Creation of the validation of IDs&#10;I created a function when creationg a Plan de Cuentas to validate the ID before uploading it&#10;- Created a private function to validate the ID" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Creation of the validation of IDs&#10;I created a function when creationg a Plan de Cuentas to validate the ID before uploading it&#10;- Created a private function to validate the ID" />
   </component>
 </project>
