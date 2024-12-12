@@ -16,11 +16,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/Responses/PlanCuentasResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Counter.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Menu.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Weather.razor" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,12 +65,12 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Layout/MainLayout.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Server/Controllers/GenericController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Server/Controllers/GenericController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Repositories/Implementations/MenuRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -111,7 +115,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -279,6 +283,7 @@
       <workItem from="1733834383265" duration="11247000" />
       <workItem from="1733855603177" duration="14693000" />
       <workItem from="1733919837192" duration="4099000" />
+      <workItem from="1733941944400" duration="12151000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -472,7 +477,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733871718669</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Feat: Generator of CodPlanCuenta&#10;I make a generator of the Primary Key of CodPlanCuenta, following the requeriments rule for the primary key">
+      <option name="closed" value="true" />
+      <created>1733948476278</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733948476278</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,6 +530,7 @@
     <MESSAGE value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
     <MESSAGE value="Feat: NavMenu Finished&#10;The Sidebar/NavMenu is finished, the role, gestion and tipo cambio are hardcoded by the moment&#10;- Change the style and make it responsive completly&#10;[Note]&#10;- Do not forget to change the hardcoded items in the sidebar (bottom part)" />
     <MESSAGE value="feat: Creation of the validation of IDs&#10;I created a function when creationg a Plan de Cuentas to validate the ID before uploading it&#10;- Created a private function to validate the ID" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Creation of the validation of IDs&#10;I created a function when creationg a Plan de Cuentas to validate the ID before uploading it&#10;- Created a private function to validate the ID" />
+    <MESSAGE value="Feat: Generator of CodPlanCuenta&#10;I make a generator of the Primary Key of CodPlanCuenta, following the requeriments rule for the primary key" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Generator of CodPlanCuenta&#10;I make a generator of the Primary Key of CodPlanCuenta, following the requeriments rule for the primary key" />
   </component>
 </project>

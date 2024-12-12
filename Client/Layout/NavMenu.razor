@@ -1,4 +1,6 @@
-﻿@using BaseLibrary.DTOs.Menu
+﻿@using System.Security.Claims
+@using BaseLibrary.DTOs.Menu
+
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">
@@ -83,12 +85,17 @@
         
         <FluentBadge Appearance="Appearance.Neutral">
             <FluentIcon Value="@(new Icons.Filled.Size24.PersonAccounts())"></FluentIcon>
-            Rol: Administrador
+            Rol: @UserRole
         </FluentBadge>
     </FluentStack>
 </div>
 
 @code {
+    [Parameter]
+    public ClaimsPrincipal? User { get; set; }
+    
+    private string UserRole => User?.FindFirst(ClaimTypes.Role)?.Value ?? "No Role";
+
     private bool _collapseNavMenu = true;
     private int? _lastBlock = 1;
     private IEnumerable<MenusCreation>? _menus;

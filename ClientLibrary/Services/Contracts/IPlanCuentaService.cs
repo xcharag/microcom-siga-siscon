@@ -5,5 +5,5 @@ namespace ClientLibrary.Services.Contracts;
 
 public interface IPlanCuentaService : IGenericServiceInterface<PlanCuenta>
 {
-    Task<PlanCuentasResponse> GenerateCodPlanCuenta(int cuentaPadre);
+    Task<PlanCuentasResponse> GenerateCodPlanCuenta(int cuentaPadre, string baseUrl);
 }

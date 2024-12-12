@@ -1,0 +1,137 @@
+@page "/plancuentas"
+<PageTitle>Plan de Cuentas</PageTitle>
+
+<h2>Plan de Cuentas</h2>
+
+<div style="display: table; table-layout: fixed; width: 100%;">
+    <div style="overflow-x: auto;">
+        <FluentDataGrid Items="@FilteredItems"
+                        ResizableColumns="true"
+                        Pagination="@_pagination"
+                        HeaderCellAsButtonWithMenu="true"
+                        ColumnResizeLabels="@_customLabels"
+                        Style="min-width: max-content">
+            <PropertyColumn Property="@(p => p.CodCuenta)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_codFilter)"
+                            Tooltip="true"
+                            Title="Codigo Cuenta">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_codFilter
+                                      @oninput="HandleCodCuentaFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Codigo de Cuenta..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+
+            <PropertyColumn Property="@(p => p.NomCuenta)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_nameFilter)"
+                            Tooltip="true"
+                            Title="Nombre Cuenta">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_nameFilter
+                                      @oninput="HandleNameCuentaFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Nombre de Cuenta..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+            <PropertyColumn Property="@(p => p.Moneda)" Sortable="true" Align="Align.Center"></PropertyColumn>
+            <PropertyColumn Property="@(p => p.TipoCuenta)" Sortable="true" Align="Align.Center"></PropertyColumn>
+        </FluentDataGrid>
+    </div>
+</div>
+
+<FluentPaginator State="@_pagination"></FluentPaginator>
+
+<FluentSwitch @bind-Value="@_clearItems"
+              @bind-Value:after="ToggleItemsAsync"
+              UncheckedMessage="Limpiar todos los resultados"
+              CheckedMessage="Restaurar resultados">
+</FluentSwitch>
+
+@code {
+    private IQueryable<PlanCuenta>? _planesDeCuentas;
+    bool _clearItems;
+    readonly PaginationState _pagination = new PaginationState();
+    string _nameFilter = string.Empty;
+    string _codFilter = string.Empty;
+
+    readonly ColumnResizeLabels _customLabels = ColumnResizeLabels.Default with { DiscreteLabel = "Ancho (+/- 10px)", ResetAriaLabel = "Restaurar" };
+
+    IQueryable<PlanCuenta>? FilteredItems
+    {
+        get
+        {
+            var result = _planesDeCuentas;
+            if (result is not null && !string.IsNullOrEmpty(_codFilter))
+            {
+                result = result.Where(x => x.CodCuenta.ToString().Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            
+            if (result is not null && !string.IsNullOrEmpty(_nameFilter))
+            {
+                result = result.Where(x => x.NomCuenta!.Contains(_nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            
+            return result;
+        }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        if (_planesDeCuentas == null)
+        {
+            await GetPlanesDeCuentas();
+        }
+    }
+
+    private async Task GetPlanesDeCuentas()
+    {
+        var result = await PlanCuentaService.GetAll("api/PlanCuenta");
+        if (result is not null)
+        {
+            _planesDeCuentas = result.AsQueryable();
+            StateHasChanged();
+        }
+    }
+    
+    private void HandleCodCuentaFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _codFilter = value;
+        }
+    }
+    
+    private void HandleNameCuentaFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _nameFilter = value;
+        }
+    }
+    
+    private void HandleClear()
+    {
+        _codFilter = string.IsNullOrWhiteSpace(_codFilter) ? string.Empty : _codFilter;
+        _nameFilter = string.IsNullOrWhiteSpace(_nameFilter) ? string.Empty : _nameFilter;
+    }
+    
+    private async Task ToggleItemsAsync()
+    {
+        _planesDeCuentas = _clearItems ? null : ((await PlanCuentaService.GetAll("api/PlanCuenta"))!).AsQueryable();
+    }
+}
