@@ -45,13 +45,8 @@ public class Cliente : BaseEntity
     [Required]
     public string? FacturarA { get; set; }
     
-    
     //Many-to-One Relationship
     public TipoCliente? ClientType { get; set; }
-    public int CodTipoCli { get; set; }
-    
     public Usuario? User { get; set; }
-    public int CodUsuario { get; set; }
-    
-    public List<TipoDoc> TipoDocs { get; set; } = new List<TipoDoc>();
+    public PlanCuenta? PlanCuenta { get; set; }
 }

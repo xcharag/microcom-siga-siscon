@@ -13,7 +13,6 @@ public class TipoEgreso
     
     //Many to One
     public PlanCuenta? PlanCuenta { get; set; }
-    public int? CodCuenta { get; set; }
     
     [JsonIgnore]
     public List<Anexos>? Anexos { get; set; }

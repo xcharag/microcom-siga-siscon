@@ -1,0 +1,73 @@
+@using BaseLibrary.DTOs.PlanCta
+@implements IDialogContentComponent<BaseLibrary.DTOs.PlanCta.SelectCuentaPadre>
+
+<FluentDialogHeader ShowDismiss="true">
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(new Icons.Regular.Size24.New())" />
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+<FluentDialogBody>
+    <FluentDataGrid Items="@_selectableItems.AsQueryable()" ShowHover="true" TGridItem="PlanCuentaDto">
+        <SelectColumn TGridItem="PlanCuentaDto"
+                      SelectMode="DataGridSelectMode.Single"
+                      SelectFromEntireRow="true"
+                      Selectable="@(e=>e.TipoCuenta == "General")"
+                      Property="@(e=>e.Selected)"
+                      OnSelect="@(e=>e.Item.Selected = e.Selected)"/>
+        <PropertyColumn Width="100px" Property="@(p=>p.CodCuenta)" Title="Codigo Cuenta"/>
+        <PropertyColumn Width="300px" Property="@(p=>p.NomCuenta)" Title="Nombre Cuenta"/>
+        <PropertyColumn Width="150px" Property="@(p=>p.Grupo)" Title="Grupo Cuenta"/>
+        <PropertyColumn Width="150px" Property="@(p=>p.Nivel)" Title="Nivel"/>
+    </FluentDataGrid>
+</FluentDialogBody>
+
+<FluentDialogFooter>
+    <FluentButton Appearance="Appearance.Accent"
+                  OnClick="@SaveAsync">
+        Elegir y Cerrar
+    </FluentButton>
+
+    <FluentButton Appearance="Appearance.Neutral"
+                  OnClick="@CancelAsync">
+        Cancelar
+    </FluentButton>
+</FluentDialogFooter>
+
+@code {
+    [Parameter] public SelectCuentaPadre Content { get; set; } = default!;
+
+    [CascadingParameter] public FluentDialog Dialog { get; set; } = default!;
+
+    List<PlanCuentaDto> _selectableItems = new List<PlanCuentaDto>()!;
+
+    protected override void OnInitialized()
+    {
+        if (_selectableItems.Count == 0 && Content.PlanCuentasCompletas != null)
+        {
+            _selectableItems = Content.PlanCuentasCompletas.Select(dto => new PlanCuentaDto
+            {
+                CodCuenta = dto.CodCuenta,
+                Grupo = dto.Grupo,
+                Moneda = dto.Moneda,
+                Nivel = dto.Nivel,
+                NomCuenta = dto.NomCuenta,
+                TipoCuenta = dto.TipoCuenta
+            }).ToList();
+        }
+    }
+    
+    private async Task SaveAsync()
+    {
+        var selectedCuentaPadre = _selectableItems.FirstOrDefault(p => p.Selected);
+        await Dialog.CloseAsync(selectedCuentaPadre);
+    }
+
+    private async Task CancelAsync()
+    {
+        await Dialog.CancelAsync();
+    }
+}

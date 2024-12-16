@@ -47,6 +47,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
 builder.Services.AddScoped<IMenu, MenuRepository>();
 builder.Services.AddScoped<IPlanCuenta, PlanCuentaRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<Grupo>, GrupoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Nivel>, NivelesRepository>();
 
 builder.Services.AddCors(options =>

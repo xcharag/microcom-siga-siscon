@@ -22,7 +22,7 @@ public class PlanCuenta : BaseEntity
     public int Nivel { get; set; }
     
     [Required]
-    public int? Grupo { get; set; }
+    public string? Grupo { get; set; }
     
     //One-to-Many Relationships
     [JsonIgnore]

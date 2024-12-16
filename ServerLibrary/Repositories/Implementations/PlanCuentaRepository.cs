@@ -1,3 +1,4 @@
+using BaseLibrary.DTOs.PlanCta;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
@@ -8,26 +9,63 @@ namespace ServerLibrary.Repositories.Implementations;
 
 public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
 {
-    public async Task<List<PlanCuenta>> GetAll() => await appDbContext.PlanCuentas.ToListAsync();
-
-    public async Task<PlanCuenta?> GetById(int id) => await appDbContext.PlanCuentas.FindAsync(id);
-
-    public async Task<GeneralResponse> Create(PlanCuenta item)
+    public async Task<List<PlanCuentaDto>> GetAll()
     {
-        if (!await CheckId(item.CodCuenta)) return new GeneralResponse(false, "El plan de cuenta ya existe");
+        var planCuentaList = await appDbContext.PlanCuentas.ToListAsync();
+        return planCuentaList.Select(pc => new PlanCuentaDto
+        {
+            CodCuenta = pc.CodCuenta,
+            NomCuenta = pc.NomCuenta,
+            Moneda = pc.Moneda,
+            TipoCuenta = pc.TipoCuenta,
+            Nivel = pc.Nivel,
+            Grupo = pc.Grupo
+        }).ToList();
+    }
+
+    public async Task<PlanCuentaDto?> GetById(int id)
+    {
+        var planCuenta = await appDbContext.PlanCuentas.FindAsync(id);
+        return planCuenta is null ? null : new PlanCuentaDto
+        {
+            CodCuenta = planCuenta.CodCuenta,
+            NomCuenta = planCuenta.NomCuenta,
+            Moneda = planCuenta.Moneda,
+            TipoCuenta = planCuenta.TipoCuenta,
+            Nivel = planCuenta.Nivel,
+            Grupo = planCuenta.Grupo!
+        };
+    } 
+
+    public async Task<GeneralResponse> Create(PlanCuentaDto item)
+    {
         var isValid = await ValidateId(item.CodCuenta);
         if (!isValid.Flag) return isValid;
         
-        appDbContext.PlanCuentas.Add(item);
+        var planCuenta = new PlanCuenta
+        {
+            CodCuenta = item.CodCuenta,
+            NomCuenta = item.NomCuenta,
+            Moneda = item.Moneda,
+            TipoCuenta = item.TipoCuenta,
+            Nivel = item.Nivel,
+            Grupo = item.Grupo
+        };
+        
+        appDbContext.PlanCuentas.Add(planCuenta);
         await Commit();
         return Success();
     }
 
-    public async Task<GeneralResponse> Update(PlanCuenta item)
+    public async Task<GeneralResponse> Update(PlanCuentaDto item)
     {
         var planCuenta = await appDbContext.PlanCuentas.FindAsync(item.CodCuenta);
         if (planCuenta is null) return NotFound();
         planCuenta.NomCuenta = item.NomCuenta;
+        planCuenta.Moneda = item.Moneda;
+        planCuenta.TipoCuenta = item.TipoCuenta;
+        planCuenta.Nivel = item.Nivel;
+        planCuenta.Grupo = item.Grupo;
         await Commit();
         return Success();
     }
@@ -85,14 +123,19 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
     private async Task<GeneralResponse> ValidateId(int id)
     {
         var idString = id.ToString();
-        var niveles = await appDbContext.Niveles.ToListAsync();
+        var existeCuenta = await appDbContext.PlanCuentas.FindAsync(id);
+        if (existeCuenta is not null) return new GeneralResponse(false, "El codigo de cuenta ya existe");
         
+        var niveles = await appDbContext.Niveles.ToListAsync();
         var existente = niveles.FirstOrDefault(x => x.Largo == idString.Length);
         if (existente is null) return new GeneralResponse(false, "Longitud de la cuenta es incorrecta");
         
         var cuentaPadre = idString.Substring(0, existente.Largo - existente.Cuantos);
         var cuentaPadreExistente = await appDbContext.PlanCuentas.FindAsync(int.Parse(cuentaPadre));
         if (cuentaPadreExistente is null) return new GeneralResponse(false, "La cuenta padre no existe");
+        
+        if (cuentaPadreExistente.TipoCuenta != "General") return new GeneralResponse(false, "La cuenta padre no es de tipo General");
+        
         
         return new GeneralResponse(true, "Validación exitosa");
     }

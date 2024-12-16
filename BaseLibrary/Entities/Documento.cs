@@ -44,8 +44,5 @@ public class Documento
     
     //Many-to-One Relationship
     public Proveedor? Proveedor { get; set; }
-    public int? CodProv { get; set; }
-    
     public Banco? Banco { get; set; }
-    public int? CodBanco { get; set; }
 }

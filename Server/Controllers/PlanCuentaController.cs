@@ -1,3 +1,4 @@
+using BaseLibrary.DTOs.PlanCta;
 using BaseLibrary.Entities;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
@@ -33,14 +34,14 @@ public class PlanCuentaController (IPlanCuenta planCuentaInterface) : Controller
     }
     
     [HttpPost("create")]
-    public async Task<IActionResult> Create(PlanCuenta? item)
+    public async Task<IActionResult> Create(PlanCuentaDto? item)
     {
         if (item is null) return BadRequest("Objeto no válido");
         return Ok(await planCuentaInterface.Create(item));
     }
     
     [HttpPut("update")]
-    public async Task<IActionResult> Update(PlanCuenta? item)
+    public async Task<IActionResult> Update(PlanCuentaDto? item)
     {
         if (item is null) return BadRequest("Objeto no válido");
         return Ok(await planCuentaInterface.Update(item));

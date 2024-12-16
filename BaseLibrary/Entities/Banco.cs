@@ -15,7 +15,6 @@ public class Banco
     
     //Many-to-One Relationship
     public PlanCuenta? PlanCuenta { get; set; }
-    public int CodCuenta { get; set; }
     
     //One-to-Many Relationship
     [JsonIgnore]

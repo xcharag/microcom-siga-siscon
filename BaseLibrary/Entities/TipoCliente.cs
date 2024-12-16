@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace BaseLibrary.Entities;
 
-public class TipoCliente : BaseEntity
+public class TipoCliente
 {
     [Required]
     [Key]

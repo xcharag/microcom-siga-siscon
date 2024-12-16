@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using BaseLibrary.DTOs.PlanCta;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
@@ -7,23 +6,23 @@ using ClientLibrary.Services.Contracts;
 
 namespace ClientLibrary.Services.Implementations;
 
-public class PlanCuentaService(GetHttpClient getHttpClient) : IPlanCuentaService
+public class GrupoService(GetHttpClient getHttpClient) : IGrupoService
 {
-    public async Task<List<PlanCuentaDto>?> GetAll(string baseUrl)
+    public async Task<List<Grupo>?> GetAll(string baseUrl)
     {
         var httpClient = await getHttpClient.GetPrivateHttpClient();
-        var results = await httpClient.GetFromJsonAsync<List<PlanCuentaDto>>($"{baseUrl}/all");
+        var results = await httpClient.GetFromJsonAsync<List<Grupo>>($"{baseUrl}/all");
         return results;
     }
 
-    public async Task<PlanCuentaDto?> GetById(int id, string baseUrl)
+    public async Task<Grupo?> GetById(int id, string baseUrl)
     {
         var httpClient = await getHttpClient.GetPrivateHttpClient();
-        var result = await httpClient.GetFromJsonAsync<PlanCuentaDto>($"{baseUrl}/single/{id}");
+        var result = await httpClient.GetFromJsonAsync<Grupo>($"{baseUrl}/single/{id}");
         return result!;
     }
 
-    public async Task<GeneralResponse?> Create(PlanCuentaDto item, string baseUrl)
+    public async Task<GeneralResponse?> Create(Grupo item, string baseUrl)
     {
         var httpClient = await getHttpClient.GetPrivateHttpClient();
         var response = await httpClient.PostAsJsonAsync($"{baseUrl}/create", item);
@@ -31,7 +30,7 @@ public class PlanCuentaService(GetHttpClient getHttpClient) : IPlanCuentaService
         return result;
     }
 
-    public async Task<GeneralResponse> Update(PlanCuentaDto item, string baseUrl)
+    public async Task<GeneralResponse> Update(Grupo item, string baseUrl)
     {
         var httpClient = await getHttpClient.GetPrivateHttpClient();
         var response = await httpClient.PutAsJsonAsync($"{baseUrl}/update", item);
@@ -45,12 +44,5 @@ public class PlanCuentaService(GetHttpClient getHttpClient) : IPlanCuentaService
         var response = await httpClient.DeleteAsync($"{baseUrl}/delete/{id}");
         var result = await response.Content.ReadFromJsonAsync<GeneralResponse>();
         return result!;
-    }
-
-    public async Task<PlanCuentasResponse> GenerateCodPlanCuenta(int cuentaPadre, string baseUrl)
-    {
-        var httpClient = await getHttpClient.GetPrivateHttpClient();
-        var results = await httpClient.GetFromJsonAsync<PlanCuentasResponse>($"{baseUrl}/generate/{cuentaPadre}");
-        return results!;
     }
 }

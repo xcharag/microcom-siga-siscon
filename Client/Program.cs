@@ -31,6 +31,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStat
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
 builder.Services.AddScoped<IMenuNavService, MenuNavService>();
 builder.Services.AddScoped<IPlanCuentaService, PlanCuentaService>();
+builder.Services.AddScoped<IGrupoService, GrupoService>();
 builder.Services.AddScoped<IGenericServiceInterface<Nivel>, GenericServiceImplementation<Nivel>>();
 
 builder.Services.AddScoped<ToastService>();

@@ -30,12 +30,6 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroAnexo"));
 
-                    b.Property<string>("CodProv")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CodTipoEgreso")
-                        .HasColumnType("int");
-
                     b.Property<int>("Correl")
                         .HasColumnType("int");
 
@@ -71,9 +65,6 @@ namespace ServerLibrary.Migrations
                     b.Property<int>("NroAutorizacion")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NroDetalleDoc")
-                        .HasColumnType("int");
-
                     b.Property<int>("NroFactura")
                         .HasColumnType("int");
 
@@ -105,9 +96,6 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodBanco"));
 
-                    b.Property<int>("CodCuenta")
-                        .HasColumnType("int");
-
                     b.Property<string>("NomBanco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -135,12 +123,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ClientTypeCodTipoCli")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CodTipoCli")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CodUsuario")
                         .HasColumnType("int");
 
                     b.Property<string>("CodigoEx")
@@ -222,9 +204,6 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroDetalleDoc"));
 
-                    b.Property<int?>("CodCc")
-                        .HasColumnType("int");
-
                     b.Property<int>("Correl")
                         .HasColumnType("int");
 
@@ -246,9 +225,6 @@ namespace ServerLibrary.Migrations
 
                     b.Property<decimal>("Mtodh")
                         .HasColumnType("decimal(18, 2)");
-
-                    b.Property<int?>("NroDoc")
-                        .HasColumnType("int");
 
                     b.Property<string>("TcCostoCodCc")
                         .HasColumnType("nvarchar(450)");
@@ -275,12 +251,6 @@ namespace ServerLibrary.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroDoc"));
 
                     b.Property<int?>("BancoCodBanco")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CodBanco")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CodProv")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -325,6 +295,25 @@ namespace ServerLibrary.Migrations
                     b.HasIndex("ProveedorCodProv");
 
                     b.ToTable("Documentos");
+                });
+
+            modelBuilder.Entity("BaseLibrary.Entities.Grupo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CodGrupo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Grupos");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.Menu", b =>
@@ -406,8 +395,9 @@ namespace ServerLibrary.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Grupo")
-                        .HasColumnType("int");
+                    b.Property<string>("Grupo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Moneda")
                         .IsRequired()
@@ -442,12 +432,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodProv"));
-
-                    b.Property<int>("CodCuenta")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CodUsuario")
-                        .HasColumnType("int");
 
                     b.Property<string>("CodigoEx")
                         .IsRequired()
@@ -492,9 +476,6 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TipoDocCodTipoDoc")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -507,8 +488,6 @@ namespace ServerLibrary.Migrations
                     b.HasKey("CodProv");
 
                     b.HasIndex("PlanCuentaCodCuenta");
-
-                    b.HasIndex("TipoDocCodTipoDoc");
 
                     b.HasIndex("UsuarioCodUsuario");
 
@@ -595,22 +574,10 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodTipoCli"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("NomTipoCli")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CodTipoCli");
@@ -626,20 +593,8 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodTipoDoc"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NomTipoDoc")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CodTipoDoc");
@@ -654,9 +609,6 @@ namespace ServerLibrary.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodTipoEgreso"));
-
-                    b.Property<int?>("CodCuenta")
-                        .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
@@ -731,21 +683,6 @@ namespace ServerLibrary.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("ClienteTipoDoc", b =>
-                {
-                    b.Property<int>("ClientesCodCli")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoDocsCodTipoDoc")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClientesCodCli", "TipoDocsCodTipoDoc");
-
-                    b.HasIndex("TipoDocsCodTipoDoc");
-
-                    b.ToTable("ClienteTipoDoc");
-                });
-
             modelBuilder.Entity("BaseLibrary.Entities.Anexos", b =>
                 {
                     b.HasOne("BaseLibrary.Entities.DetalleDocumento", "DetalleDocumento")
@@ -782,7 +719,7 @@ namespace ServerLibrary.Migrations
                         .WithMany("Clientes")
                         .HasForeignKey("ClientTypeCodTipoCli");
 
-                    b.HasOne("BaseLibrary.Entities.PlanCuenta", null)
+                    b.HasOne("BaseLibrary.Entities.PlanCuenta", "PlanCuenta")
                         .WithMany("Clientes")
                         .HasForeignKey("PlanCuentaCodCuenta");
 
@@ -791,6 +728,8 @@ namespace ServerLibrary.Migrations
                         .HasForeignKey("UserCodUsuario");
 
                     b.Navigation("ClientType");
+
+                    b.Navigation("PlanCuenta");
 
                     b.Navigation("User");
                 });
@@ -840,10 +779,6 @@ namespace ServerLibrary.Migrations
                         .WithMany("Proveedores")
                         .HasForeignKey("PlanCuentaCodCuenta");
 
-                    b.HasOne("BaseLibrary.Entities.TipoDoc", null)
-                        .WithMany("Proveedores")
-                        .HasForeignKey("TipoDocCodTipoDoc");
-
                     b.HasOne("BaseLibrary.Entities.Usuario", "Usuario")
                         .WithMany("Proveedores")
                         .HasForeignKey("UsuarioCodUsuario");
@@ -860,21 +795,6 @@ namespace ServerLibrary.Migrations
                         .HasForeignKey("PlanCuentaCodCuenta");
 
                     b.Navigation("PlanCuenta");
-                });
-
-            modelBuilder.Entity("ClienteTipoDoc", b =>
-                {
-                    b.HasOne("BaseLibrary.Entities.Cliente", null)
-                        .WithMany()
-                        .HasForeignKey("ClientesCodCli")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BaseLibrary.Entities.TipoDoc", null)
-                        .WithMany()
-                        .HasForeignKey("TipoDocsCodTipoDoc")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.Banco", b =>
@@ -921,11 +841,6 @@ namespace ServerLibrary.Migrations
             modelBuilder.Entity("BaseLibrary.Entities.TipoCliente", b =>
                 {
                     b.Navigation("Clientes");
-                });
-
-            modelBuilder.Entity("BaseLibrary.Entities.TipoDoc", b =>
-                {
-                    b.Navigation("Proveedores");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.TipoEgreso", b =>

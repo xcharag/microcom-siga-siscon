@@ -1,4 +1,8 @@
 @page "/plancuentas"
+@using BaseLibrary.DTOs.PlanCta
+@using Client.Components.PlanCuentas
+@inject IGrupoService GrupoService
+
 <PageTitle>Plan de Cuentas</PageTitle>
 
 <h2>Plan de Cuentas</h2>
@@ -48,30 +52,42 @@
                     </div>
                 </ColumnOptions>
             </PropertyColumn>
-            <PropertyColumn Property="@(p => p.Moneda)" Sortable="true" Align="Align.Center"></PropertyColumn>
-            <PropertyColumn Property="@(p => p.TipoCuenta)" Sortable="true" Align="Align.Center"></PropertyColumn>
+            <PropertyColumn Property="@(p => p.Moneda)" Sortable="true" Align="Align.Center"/>
+            <PropertyColumn Property="@(p => p.TipoCuenta)" Sortable="true" Align="Align.Center"/>
+            <PropertyColumn Property="@(p=>p.Grupo)" Sortable="true" Align="Align.Center"/>
         </FluentDataGrid>
     </div>
 </div>
 
 <FluentPaginator State="@_pagination"></FluentPaginator>
 
-<FluentSwitch @bind-Value="@_clearItems"
-              @bind-Value:after="ToggleItemsAsync"
-              UncheckedMessage="Limpiar todos los resultados"
-              CheckedMessage="Restaurar resultados">
-</FluentSwitch>
+<FluentButton IconStart="@(new Icons.Regular.Size20.ArrowCounterclockwise())"
+              Appearance="Appearance.Accent"
+              @onclick="ReloadTableAsync"
+              Loading="@_loading"
+              Style="margin-top: 1rem;">
+    Recargar Tabla
+</FluentButton>
+
+
+<FluentStack Orientation="Orientation.Horizontal" Style="margin-top: 4rem">
+    <FluentButton IconStart="@(new Icons.Color.Size20.AddCircle())"
+                  Appearance="Appearance.Accent"
+                  @onclick="@OpenCreateDialogAsync">Crear Nueva Cuenta</FluentButton>
+</FluentStack>
 
 @code {
-    private IQueryable<PlanCuenta>? _planesDeCuentas;
-    bool _clearItems;
+    private IQueryable<PlanCuentaDto>? _planesDeCuentas;
+    private List<PlanCuenta>? _planesDeCuentasLista;
+    private List<Grupo>? _grupos;
+    bool _loading;
     readonly PaginationState _pagination = new PaginationState();
     string _nameFilter = string.Empty;
     string _codFilter = string.Empty;
 
     readonly ColumnResizeLabels _customLabels = ColumnResizeLabels.Default with { DiscreteLabel = "Ancho (+/- 10px)", ResetAriaLabel = "Restaurar" };
 
-    IQueryable<PlanCuenta>? FilteredItems
+    IQueryable<PlanCuentaDto>? FilteredItems
     {
         get
         {
@@ -103,8 +119,60 @@
         var result = await PlanCuentaService.GetAll("api/PlanCuenta");
         if (result is not null)
         {
+            _loading = false;
             _planesDeCuentas = result.AsQueryable();
             StateHasChanged();
+        }
+    }
+
+    private async Task GetGrupos()
+    {
+        var result = await GrupoService.GetAll("api/Grupo");
+        if (result is not null)
+        {
+            _grupos = result.ToList();
+            StateHasChanged();
+        }
+    }
+
+    private async Task OpenCreateDialogAsync()
+    {
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Nuevo Plan de Cuenta",
+            Width = "600px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        _planesDeCuentasLista = _planesDeCuentas!.Select(dto => new PlanCuenta()
+        {
+            CodCuenta = dto.CodCuenta,
+            NomCuenta = dto.NomCuenta,
+            Moneda = dto.Moneda,
+            TipoCuenta = dto.TipoCuenta,
+            Nivel = dto.Nivel,
+            Grupo = dto.Grupo
+        }).ToList();
+
+        await GetGrupos();
+        
+        var planCuenta = new CrearPlanCuenta()
+        {
+            ListaGrupos = _grupos,
+            PlanCuentasCompletas = _planesDeCuentasLista
+        };
+        
+        Console.WriteLine(_planesDeCuentasLista[0].Nivel);
+
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialog>(planCuenta,parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (result.Data is not null)
+        {
+            ToastService.ShowSuccess(result.Data.ToString()!);
+            await GetPlanesDeCuentas();
         }
     }
     
@@ -130,8 +198,24 @@
         _nameFilter = string.IsNullOrWhiteSpace(_nameFilter) ? string.Empty : _nameFilter;
     }
     
-    private async Task ToggleItemsAsync()
+    private async Task ReloadTableAsync()
     {
-        _planesDeCuentas = _clearItems ? null : ((await PlanCuentaService.GetAll("api/PlanCuenta"))!).AsQueryable();
+        _loading = true;
+        await GetPlanesDeCuentas();
+    }
+
+    private PlanCuentaDto PlanCuentaToDto(PlanCuenta planCuenta)
+    {
+        var planCuentaDto = new PlanCuentaDto()
+        {
+            CodCuenta = planCuenta.CodCuenta,
+            NomCuenta = planCuenta.NomCuenta,
+            Moneda = planCuenta.Moneda,
+            TipoCuenta = planCuenta.TipoCuenta,
+            Nivel = planCuenta.Nivel,
+            Grupo = planCuenta.Grupo
+        };
+
+        return planCuentaDto;
     }
 }

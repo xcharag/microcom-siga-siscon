@@ -16,15 +16,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/CrearPlanCuenta.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/PlanCuentaDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/SelectCuentaPadre.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/PlanCuentas/AddEditDialog.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/PlanCuentas/CuentaPadreDialog.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IGrupoService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/GrupoService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/GrupoController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/NivelController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/GrupoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/PlanCuentasFormato.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Anexos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Anexos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Banco.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Banco.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/DetalleDocumento.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/DetalleDocumento.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Documento.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Documento.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Grupo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Grupo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/PlanCuenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/PlanCuenta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/TipoCliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/TipoCliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/TipoDoc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/TipoDoc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/TipoEgreso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/TipoEgreso.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Counter.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Menu.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Weather.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Helpers/CustomHttpHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Helpers/CustomHttpHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/PlanCuentaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/PlanCuentaController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241209205023_Initial.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241209205023_Initial.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241209214133_EditNiveles.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241209214133_EditNiveles.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241209221316_MenuItemUrl.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241209221316_MenuItemUrl.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241210143906_MenuIcon.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241210143906_MenuIcon.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IPlanCuenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IPlanCuenta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/PlanCuentaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/PlanCuentaRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +98,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Server/Controllers/GenericController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Server/Controllers/GenericController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
@@ -284,6 +319,10 @@
       <workItem from="1733855603177" duration="14693000" />
       <workItem from="1733919837192" duration="4099000" />
       <workItem from="1733941944400" duration="12151000" />
+      <workItem from="1734010315077" duration="9425000" />
+      <workItem from="1734027947933" duration="14016000" />
+      <workItem from="1734097939461" duration="4950000" />
+      <workItem from="1734352364634" duration="12399000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -485,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733948476278</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Feat: Pass the context of the user to the NavMenu&#10;I passed as a parameter the User from the Context in the MainLayout so the nav can show only the menus accesible to that user and his role.&#10;- Edit the mainlayout to pass the user parameter&#10;- Edit Navmenu to ask for a parameter called user">
+      <option name="closed" value="true" />
+      <created>1734015564696</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1734015564696</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,7 +553,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="chore: Adding a neccesary dependencie" />
     <MESSAGE value="Feat: Entities for clients created&#10;- Creation of all the related entities about Client.cs" />
     <MESSAGE value="Feat: Creation of the Tables in the Db&#10;- Create the Dbcontext file &#10;- Implement the connection to the DB in the server project&#10;- Added the JsonIgnore label to the Many-to-One relations&#10;- Deleted Relationship.cs because it was not necessary" />
     <MESSAGE value="Fix: Forget to add the Unversioned Files to the previus commit" />
@@ -531,6 +577,7 @@
     <MESSAGE value="Feat: NavMenu Finished&#10;The Sidebar/NavMenu is finished, the role, gestion and tipo cambio are hardcoded by the moment&#10;- Change the style and make it responsive completly&#10;[Note]&#10;- Do not forget to change the hardcoded items in the sidebar (bottom part)" />
     <MESSAGE value="feat: Creation of the validation of IDs&#10;I created a function when creationg a Plan de Cuentas to validate the ID before uploading it&#10;- Created a private function to validate the ID" />
     <MESSAGE value="Feat: Generator of CodPlanCuenta&#10;I make a generator of the Primary Key of CodPlanCuenta, following the requeriments rule for the primary key" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Generator of CodPlanCuenta&#10;I make a generator of the Primary Key of CodPlanCuenta, following the requeriments rule for the primary key" />
+    <MESSAGE value="Feat: Pass the context of the user to the NavMenu&#10;I passed as a parameter the User from the Context in the MainLayout so the nav can show only the menus accesible to that user and his role.&#10;- Edit the mainlayout to pass the user parameter&#10;- Edit Navmenu to ask for a parameter called user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Pass the context of the user to the NavMenu&#10;I passed as a parameter the User from the Context in the MainLayout so the nav can show only the menus accesible to that user and his role.&#10;- Edit the mainlayout to pass the user parameter&#10;- Edit Navmenu to ask for a parameter called user" />
   </component>
 </project>

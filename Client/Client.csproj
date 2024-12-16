@@ -21,8 +21,4 @@
       <ProjectReference Include="..\ClientLibrary\ClientLibrary.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Components\PlanCuentas\" />
-    </ItemGroup>
-
 </Project>

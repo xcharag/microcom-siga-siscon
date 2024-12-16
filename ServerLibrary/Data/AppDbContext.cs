@@ -11,6 +11,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<TipoDoc> TipoDocs { get; set; }
     public DbSet<Proveedor> Proveedores { get; set; }
     public DbSet<Banco> Bancos { get; set; }
+    public DbSet<Grupo> Grupos { get; set; }
     public DbSet<PlanCuenta> PlanCuentas { get; set; }
     public DbSet<Nivel> Niveles { get; set; }
     public DbSet<Documento> Documentos { get; set; }

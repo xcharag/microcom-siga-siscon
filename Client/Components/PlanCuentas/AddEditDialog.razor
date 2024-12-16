@@ -1,0 +1,158 @@
+@using BaseLibrary.DTOs.PlanCta
+@implements IDialogContentComponent<CrearPlanCuenta>
+
+<FluentDialogHeader ShowDismiss="true">
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(new Icons.Regular.Size24.New())" />
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+<FluentDialogBody>
+    <FluentEditForm Model="@PlanCuentaModelo" OnValidSubmit="HandleCreateAsync">
+        <DataAnnotationsValidator/>
+        
+        <FluentStack Orientation="Orientation.Vertical">
+            <FluentGrid Spacing=2 Justify="JustifyContent.FlexStart" AdaptiveRendering="true" Style="padding: 6px">
+                
+                <FluentGridItem sm="1" Justify="JustifyContent.Center" Style="align-items: center">
+                    <FluentButton Id="SearchButton" Type="ButtonType.Button" IconStart="@(new Icons.Regular.Size28.Search())" OnClick="@SearchCuentaPadre"/>
+                    <FluentTooltip Anchor="SearchButton">
+                        <FluentLabel Typo="Typography.Body">Buscar Cuenta Padre</FluentLabel>
+                    </FluentTooltip>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="8" Style="padding-right: 12px">
+                    <FluentNumberField @bind-Value=PlanCuentaModelo.CodCuenta Style="width: 100%" Placeholder="Codigo de Cuenta..." Label="Codigo de la Cuenta"/>
+                    <FluentValidationMessage For="@(() => PlanCuentaModelo.CodCuenta)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="3">
+                    <FluentNumberField @bind-Value=PlanCuentaModelo.Nivel Disabled="_nivelEnabled" Label="Nivel"/>
+                    <FluentValidationMessage For="@(() => PlanCuentaModelo.Nivel)"/>
+                </FluentGridItem>
+
+                <FluentGridItem sm="12" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=PlanCuentaModelo.NomCuenta Placeholder="Nombre de Cuenta..." Label="Nombre de la Cuenta" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(() => PlanCuentaModelo.NomCuenta)"/>
+                </FluentGridItem>
+
+                <FluentGridItem sm="6">
+                    <FluentCombobox Label="Tipo de Cuenta" Items="@_tipoCuenta" @bind-Value="PlanCuentaModelo.TipoCuenta" Placeholder="Tipo de Cuenta" Autocomplete="ComboboxAutocomplete.Inline"/>
+                    <FluentValidationMessage For="@(() => PlanCuentaModelo.TipoCuenta)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="6">
+                    <FluentCombobox Label="Grupo de Cuenta" Items="@_grupoCuenta" Disabled="_grupoEnabled" @bind-Value="PlanCuentaModelo.Grupo" Placeholder="Grupo de Cuenta Contable" Autocomplete="ComboboxAutocomplete.Inline"/>
+                    <FluentValidationMessage For="@(() => PlanCuentaModelo.Grupo)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="6">
+                    <FluentCombobox Label="Moneda" Items="@_monedas" @bind-Value="PlanCuentaModelo.Moneda" Placeholder="Moneda de la cuenta" Autocomplete="ComboboxAutocomplete.Inline"/>
+                    <FluentValidationMessage For="@(() => PlanCuentaModelo.Moneda)"/>
+                </FluentGridItem>
+            </FluentGrid>
+        </FluentStack>
+
+        <FluentDialogFooter>
+            <FluentButton Appearance="Appearance.Accent"
+                          Type="ButtonType.Submit">
+                Crear y Cerrar
+            </FluentButton>
+
+            <FluentButton Appearance="Appearance.Neutral"
+                          OnClick="@CancelAsync">
+                Cancelar
+            </FluentButton>
+        </FluentDialogFooter>
+    </FluentEditForm>
+</FluentDialogBody>
+
+@code {
+    [Parameter] public CrearPlanCuenta Content { get; set; } = default!;
+
+    [CascadingParameter] public FluentDialog Dialog { get; set; } = default!;
+
+    readonly List<string> _monedas = ["Bolivianos", "Dolares"];
+    readonly List<string> _tipoCuenta = ["General", "Detalle"];
+    List<string?> _grupoCuenta = new List<string?>();
+    bool _grupoEnabled = false;
+    bool _nivelEnabled = false;
+    PlanCuenta PlanCuentaModelo { get; set; } = new PlanCuenta();
+    int _codCuentaGenerado;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _grupoCuenta = Content.ListaGrupos?.Select(g => g.Nombre).ToList() ?? new List<string?>();
+    }
+
+    private async Task HandleCreateAsync()
+    {
+        var planCuentaEntitie = new PlanCuentaDto
+        {
+            CodCuenta = PlanCuentaModelo.CodCuenta,
+            NomCuenta = PlanCuentaModelo.NomCuenta,
+            TipoCuenta = PlanCuentaModelo.TipoCuenta,
+            Grupo = PlanCuentaModelo.Grupo,
+            Moneda = PlanCuentaModelo.Moneda,
+            Nivel = PlanCuentaModelo.Nivel
+        };
+        
+        var response = await PlanCuentaService.Create(planCuentaEntitie, "api/PlanCuenta");
+        if (!response!.Flag)
+        {
+            ToastService.ShowError(response.Message);
+            return;
+        }
+
+        await Dialog.CloseAsync(response.Message);
+    }
+    
+    private async Task CancelAsync()
+    {
+        await Dialog.CancelAsync();
+    }
+
+    async Task SearchCuentaPadre()
+    {
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Seleccionar Cuenta Padre",
+            Width = "800px",
+            TrapFocus = false,
+            Modal = true,
+            PreventScroll = true
+        };
+
+        var cuentaPadre = new SelectCuentaPadre()
+        {
+            PlanCuentasCompletas = Content.PlanCuentasCompletas
+        };
+
+        var dialog = await DialogService.ShowDialogAsync<CuentaPadreDialog>(cuentaPadre, parameters);
+        DialogResult result = await dialog.Result;
+
+        if (result.Data is not null)
+        {
+            PlanCuentaDto? planCuentaPadre = result.Data as PlanCuentaDto;
+            var codCuentaGenerado = await PlanCuentaService.GenerateCodPlanCuenta(planCuentaPadre!.CodCuenta, "api/PlanCuenta");
+            if (!codCuentaGenerado.Flag)
+            {
+                ToastService.ShowError(codCuentaGenerado.Message);
+            }
+            ToastService.ShowSuccess(codCuentaGenerado.Message);
+            PlanCuentaModelo.CodCuenta = codCuentaGenerado.CodCuenta;
+            _codCuentaGenerado = codCuentaGenerado.CodCuenta;
+            PlanCuentaModelo.Grupo = planCuentaPadre.Grupo;
+            PlanCuentaModelo.Moneda = planCuentaPadre.Moneda;
+            PlanCuentaModelo.Nivel = planCuentaPadre.Nivel + 1;
+            _nivelEnabled = true;
+            _grupoEnabled = true;
+            
+            StateHasChanged();
+        }
+    }
+}

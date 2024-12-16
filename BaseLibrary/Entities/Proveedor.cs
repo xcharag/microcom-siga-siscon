@@ -39,10 +39,8 @@ public class Proveedor : BaseEntity
     
     //Many-to-One Relationship
     public PlanCuenta? PlanCuenta { get; set; }
-    public int CodCuenta { get; set; }
     
     public Usuario? Usuario { get; set; }
-    public int CodUsuario { get; set; }
     
     //One-to-Many Relationship
     public List<Documento>? Documentos { get; set; }

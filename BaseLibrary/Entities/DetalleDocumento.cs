@@ -36,10 +36,8 @@ public class DetalleDocumento
     
     //Many to One
     public TcCosto? TcCosto { get; set; }
-    public int? CodCc { get; set; }
     
     public Documento? Documento { get; set; }
-    public int? NroDoc { get; set; }
     
     //One to Many
     public List<Anexos>? Anexos { get; set; }

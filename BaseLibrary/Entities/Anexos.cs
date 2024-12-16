@@ -53,12 +53,8 @@ public class Anexos
     
     //Many to One
     public DetalleDocumento? DetalleDocumento { get; set; }
-    public int? NroDetalleDoc { get; set; }
     
     public TipoEgreso? TipoEgreso { get; set; }
-    public int? CodTipoEgreso { get; set; }
-    
-    public Proveedor? Proveedor { get; set; }
-    public string? CodProv { get; set; }
 
+    public Proveedor? Proveedor { get; set; }
 }

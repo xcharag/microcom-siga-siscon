@@ -4,7 +4,7 @@ using ClientLibrary.Services.Contracts;
 
 namespace ClientLibrary.Helpers;
 
-public class CustomHttpHandler(GetHttpClient getHttpClient, LocalStorageService localStorageService, IUserAccountService accountService) : DelegatingHandler
+public class CustomHttpHandler(LocalStorageService localStorageService, IUserAccountService accountService) : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
