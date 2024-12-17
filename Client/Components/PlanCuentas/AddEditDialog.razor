@@ -3,7 +3,7 @@
 
 <FluentDialogHeader ShowDismiss="true">
     <FluentStack VerticalAlignment="VerticalAlignment.Center">
-        <FluentIcon Value="@(new Icons.Regular.Size24.New())" />
+        <FluentIcon Value="@(GetIcon())" />
         <FluentLabel Typo="Typography.PaneHeader">
             @Dialog.Instance.Parameters.Title
         </FluentLabel>
@@ -114,16 +114,36 @@
             Moneda = PlanCuentaModelo.Moneda,
             Nivel = PlanCuentaModelo.Nivel
         };
-        
-        var response = await PlanCuentaService.Create(planCuentaEntitie, "api/PlanCuenta");
-        if (!response!.Flag)
+
+        if (!_editMode)
         {
-            ToastService.ShowError(response.Message);
+            var response = await PlanCuentaService.Create(planCuentaEntitie, "api/PlanCuenta");
+            if (!response!.Flag)
+            {
+                ToastService.ShowError(response.Message);
+                return;
+            }
+            ToastService.ShowSuccess(response.Message);
+            await Dialog.CloseAsync(response.Message);
+        }
+        
+        var responseUpdate = await PlanCuentaService.Update(planCuentaEntitie, "api/PlanCuenta");
+        if (!responseUpdate!.Flag)
+        {
+            ToastService.ShowError(responseUpdate.Message);
             return;
         }
+        ToastService.ShowSuccess(responseUpdate.Message);
+        await Dialog.CloseAsync(responseUpdate.Message);
+    }
 
-        ToastService.ShowSuccess(response.Message);
-        await Dialog.CloseAsync(response.Message);
+    private Icon GetIcon()
+    {
+        if (_editMode)
+        {
+            return new Icons.Filled.Size20.Edit();
+        }
+        return new Icons.Regular.Size20.New();
     }
     
     private async Task CancelAsync()

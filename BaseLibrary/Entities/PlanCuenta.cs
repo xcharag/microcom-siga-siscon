@@ -33,4 +33,10 @@ public class PlanCuenta : BaseEntity
     
     [JsonIgnore]
     public List<Banco>? Bancos { get; set; } = new List<Banco>();
+    
+    [JsonIgnore]
+    public List<TipoEgreso>? TipoEgresos { get; set; } = new List<TipoEgreso>();
+    
+    [JsonIgnore]
+    public List<DetalleDocumento>? DetalleDocumentos { get; set; } = new List<DetalleDocumento>();
 }

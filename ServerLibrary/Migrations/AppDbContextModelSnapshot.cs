@@ -96,6 +96,10 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodBanco"));
 
+                    b.Property<string>("Moneda")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NomBanco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -196,6 +200,35 @@ namespace ServerLibrary.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("BaseLibrary.Entities.Correlativo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Modulo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Valor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Correlativos");
+                });
+
             modelBuilder.Entity("BaseLibrary.Entities.DetalleDocumento", b =>
                 {
                     b.Property<int>("NroDetalleDoc")
@@ -226,6 +259,9 @@ namespace ServerLibrary.Migrations
                     b.Property<decimal>("Mtodh")
                         .HasColumnType("decimal(18, 2)");
 
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("TcCostoCodCc")
                         .HasColumnType("nvarchar(450)");
 
@@ -236,6 +272,8 @@ namespace ServerLibrary.Migrations
                     b.HasKey("NroDetalleDoc");
 
                     b.HasIndex("DocumentoNroDoc");
+
+                    b.HasIndex("PlanCuentaCodCuenta");
 
                     b.HasIndex("TcCostoCodCc");
 
@@ -295,6 +333,57 @@ namespace ServerLibrary.Migrations
                     b.HasIndex("ProveedorCodProv");
 
                     b.ToTable("Documentos");
+                });
+
+            modelBuilder.Entity("BaseLibrary.Entities.Empresa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Sucursal")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Empresas");
+                });
+
+            modelBuilder.Entity("BaseLibrary.Entities.Gestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Anho")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Mes")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gestiones");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.Grupo", b =>
@@ -740,6 +829,10 @@ namespace ServerLibrary.Migrations
                         .WithMany("DetalleDocumentos")
                         .HasForeignKey("DocumentoNroDoc");
 
+                    b.HasOne("BaseLibrary.Entities.PlanCuenta", null)
+                        .WithMany("DetalleDocumentos")
+                        .HasForeignKey("PlanCuentaCodCuenta");
+
                     b.HasOne("BaseLibrary.Entities.TcCosto", "TcCosto")
                         .WithMany("DetalleDocumentos")
                         .HasForeignKey("TcCostoCodCc");
@@ -791,7 +884,7 @@ namespace ServerLibrary.Migrations
             modelBuilder.Entity("BaseLibrary.Entities.TipoEgreso", b =>
                 {
                     b.HasOne("BaseLibrary.Entities.PlanCuenta", "PlanCuenta")
-                        .WithMany()
+                        .WithMany("TipoEgresos")
                         .HasForeignKey("PlanCuentaCodCuenta");
 
                     b.Navigation("PlanCuenta");
@@ -823,7 +916,11 @@ namespace ServerLibrary.Migrations
 
                     b.Navigation("Clientes");
 
+                    b.Navigation("DetalleDocumentos");
+
                     b.Navigation("Proveedores");
+
+                    b.Navigation("TipoEgresos");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.Proveedor", b =>

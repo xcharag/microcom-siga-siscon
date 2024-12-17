@@ -13,6 +13,9 @@ public class Banco
     [Required]
     public string? NomBanco { get; set; }
     
+    [Required]
+    public string? Moneda { get; set; }
+    
     //Many-to-One Relationship
     public PlanCuenta? PlanCuenta { get; set; }
     
