@@ -79,6 +79,12 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
             .ToListAsync();
         if (hijos.Count > 0) return new GeneralResponse(false, "La cuenta tiene cuentas hijas, no se puede borrar");
         
+        //Revisar si esta en algun detalle de documento
+        var detalle = await appDbContext.DetalleDocumentos
+            .Where(p => p.PlanCuenta!.CodCuenta == id)
+            .ToListAsync();
+        if (detalle.Count > 0) return new GeneralResponse(false, "La cuenta tiene movimientos asociados, no se puede borrar");
+        
         appDbContext.PlanCuentas.Remove(planCuenta);
         await Commit();
         return Success();

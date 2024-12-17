@@ -39,6 +39,8 @@ public class DetalleDocumento
     
     public Documento? Documento { get; set; }
     
+    public PlanCuenta? PlanCuenta { get; set; }
+    
     //One to Many
     public List<Anexos>? Anexos { get; set; }
 }

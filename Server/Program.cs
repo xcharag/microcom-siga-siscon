@@ -49,6 +49,7 @@ builder.Services.AddScoped<IMenu, MenuRepository>();
 builder.Services.AddScoped<IPlanCuenta, PlanCuentaRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Grupo>, GrupoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Nivel>, NivelesRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<Banco>, BancoRepository>();
 
 builder.Services.AddCors(options =>
 {
