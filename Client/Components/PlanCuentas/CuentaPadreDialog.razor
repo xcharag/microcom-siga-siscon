@@ -11,18 +11,65 @@
 </FluentDialogHeader>
 
 <FluentDialogBody>
-    <FluentDataGrid Items="@_selectableItems.AsQueryable()" ShowHover="true" TGridItem="PlanCuentaDto">
-        <SelectColumn TGridItem="PlanCuentaDto"
-                      SelectMode="DataGridSelectMode.Single"
-                      SelectFromEntireRow="true"
-                      Selectable="@(e=>e.TipoCuenta == "General")"
-                      Property="@(e=>e.Selected)"
-                      OnSelect="@(e=>e.Item.Selected = e.Selected)"/>
-        <PropertyColumn Width="100px" Property="@(p=>p.CodCuenta)" Title="Codigo Cuenta"/>
-        <PropertyColumn Width="300px" Property="@(p=>p.NomCuenta)" Title="Nombre Cuenta"/>
-        <PropertyColumn Width="150px" Property="@(p=>p.Grupo)" Title="Grupo Cuenta"/>
-        <PropertyColumn Width="150px" Property="@(p=>p.Nivel)" Title="Nivel"/>
-    </FluentDataGrid>
+    <div style="display: table; table-layout: fixed; width: 100%;">
+        <div style="overflow-x: auto;">
+            <FluentDataGrid Items="@FilteredItems"
+                            ShowHover="true"
+                            Pagination="@_pagination"
+                            HeaderCellAsButtonWithMenu="true"
+                            Style="min-width: max-content"
+                            TGridItem="PlanCuentaDto">
+                <SelectColumn TGridItem="PlanCuentaDto"
+                              SelectMode="DataGridSelectMode.Single"
+                              SelectFromEntireRow="true"
+                              Selectable="@(e => e.TipoCuenta == "General")"
+                              Property="@(e => e.Selected)"
+                              OnSelect="@(e => e.Item.Selected = e.Selected)"/>
+                
+                <PropertyColumn Title="Codigo Cuenta"
+                                Width="100px"
+                                Property="@(p => p.CodCuenta)"
+                                Sortable="true"
+                                Tooltip="true"
+                                Filtered="!string.IsNullOrWhiteSpace(_codFilter)">  
+                    <ColumnOptions>
+                        <div class="search-box">
+                            <FluentSearch Autofocus="true"
+                                          @bind-Value=_codFilter
+                                          @oninput="HandleCodCuentaFilter"
+                                          @bind-Value:after="HandleClear"
+                                          Placeholder="Codigo de Cuenta..."
+                                          Style="width: 100%"
+                                          Label="Filtro">
+                            </FluentSearch>
+                        </div>
+                    </ColumnOptions>
+                </PropertyColumn>
+                <PropertyColumn Title="Nombre Cuenta"
+                                Width="300px" 
+                                Sortable="true"
+                                Filtered="!string.IsNullOrWhiteSpace(_nameFilter)"
+                                Tooltip="true"
+                                Property="@(p => p.NomCuenta)">
+                    <ColumnOptions>
+                        <div class="search-box">
+                            <FluentSearch Autofocus="true"
+                                          @bind-Value=_nameFilter
+                                          @oninput="HandleNameCuentaFilter"
+                                          @bind-Value:after="HandleClear"
+                                          Placeholder="Nombre de Cuenta..."
+                                          Style="width: 100%"
+                                          Label="Filtro">
+                            </FluentSearch>
+                        </div>
+                    </ColumnOptions>
+                </PropertyColumn>
+                <PropertyColumn Width="150px" Property="@(p => p.Grupo)" Title="Grupo Cuenta"/>
+                <PropertyColumn Width="150px" Property="@(p => p.Nivel)" Title="Nivel"/>
+            </FluentDataGrid>
+        </div>
+    </div>
+    <FluentPaginator State="@_pagination"></FluentPaginator>
 </FluentDialogBody>
 
 <FluentDialogFooter>
@@ -42,8 +89,51 @@
 
     [CascadingParameter] public FluentDialog Dialog { get; set; } = default!;
 
-    List<PlanCuentaDto> _selectableItems = new List<PlanCuentaDto>()!;
+    List<PlanCuentaDto> _selectableItems = new List<PlanCuentaDto>();
+    
+    //Filters
+    readonly PaginationState _pagination = new PaginationState();
+    string _nameFilter = string.Empty;
+    string _codFilter = string.Empty;
+    IQueryable<PlanCuentaDto> FilteredItems
+    {
+        get
+        {
+            var result = _selectableItems.AsQueryable();
+            if (!string.IsNullOrEmpty(_codFilter))
+            {
+                result = result.Where(x => x.CodCuenta!.ToString().Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            
+            if (!string.IsNullOrEmpty(_nameFilter))
+            {
+                result = result.Where(x => x.NomCuenta!.Contains(_nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            
+            return result;
+        }
+    }
+    private void HandleCodCuentaFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _codFilter = value;
+        }
+    }
+    private void HandleNameCuentaFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _nameFilter = value;
+        }
+    }
+    private void HandleClear()
+    {
+        _codFilter = string.IsNullOrWhiteSpace(_codFilter) ? string.Empty : _codFilter;
+        _nameFilter = string.IsNullOrWhiteSpace(_nameFilter) ? string.Empty : _nameFilter;
+    }
 
+    //OnInitialized
     protected override void OnInitialized()
     {
         if (_selectableItems.Count == 0 && Content.PlanCuentasCompletas != null)
@@ -60,12 +150,12 @@
         }
     }
     
+    //Action Buttons Dialog
     private async Task SaveAsync()
     {
         var selectedCuentaPadre = _selectableItems.FirstOrDefault(p => p.Selected);
         await Dialog.CloseAsync(selectedCuentaPadre);
     }
-
     private async Task CancelAsync()
     {
         await Dialog.CancelAsync();

@@ -58,12 +58,12 @@ namespace ServerLibrary.Migrations
                 name: "PlanCuentas",
                 columns: table => new
                 {
-                    CodCuenta = table.Column<int>(type: "int", nullable: false),
+                    CodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     NomCuenta = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Moneda = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TipoCuenta = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nivel = table.Column<int>(type: "int", nullable: false),
-                    Grupo = table.Column<int>(type: "int", nullable: false),
+                    Grupo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -143,6 +143,19 @@ namespace ServerLibrary.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TipoDocs",
+                columns: table => new
+                {
+                    CodTipoDoc = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomTipoDoc = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoDocs", x => x.CodTipoDoc);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserRoles",
                 columns: table => new
                 {
@@ -204,7 +217,7 @@ namespace ServerLibrary.Migrations
                     CodBanco = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomBanco = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlanCuentaCodCuenta = table.Column<int>(type: "int", nullable: true)
+                    PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -223,7 +236,7 @@ namespace ServerLibrary.Migrations
                     CodTipoEgreso = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PlanCuentaCodCuenta = table.Column<int>(type: "int", nullable: true)
+                    PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -255,7 +268,7 @@ namespace ServerLibrary.Migrations
                     FacturarA = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClientTypeCodTipoCli = table.Column<int>(type: "int", nullable: true),
                     UserCodUsuario = table.Column<int>(type: "int", nullable: true),
-                    PlanCuentaCodCuenta = table.Column<int>(type: "int", nullable: true),
+                    PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -296,7 +309,7 @@ namespace ServerLibrary.Migrations
                     CodigoEx = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Complemento = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LimiteCre = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PlanCuentaCodCuenta = table.Column<int>(type: "int", nullable: true),
+                    PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     UsuarioCodUsuario = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -316,25 +329,6 @@ namespace ServerLibrary.Migrations
                         column: x => x.UsuarioCodUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "CodUsuario");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TipoDocs",
-                columns: table => new
-                {
-                    CodTipoDoc = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NomTipoDoc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClienteCodCli = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TipoDocs", x => x.CodTipoDoc);
-                    table.ForeignKey(
-                        name: "FK_TipoDocs_Clientes_ClienteCodCli",
-                        column: x => x.ClienteCodCli,
-                        principalTable: "Clientes",
-                        principalColumn: "CodCli");
                 });
 
             migrationBuilder.CreateTable(
@@ -514,11 +508,6 @@ namespace ServerLibrary.Migrations
                 column: "UsuarioCodUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TipoDocs_ClienteCodCli",
-                table: "TipoDocs",
-                column: "ClienteCodCli");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TipoEgresos_PlanCuentaCodCuenta",
                 table: "TipoEgresos",
                 column: "PlanCuentaCodCuenta");
@@ -529,6 +518,9 @@ namespace ServerLibrary.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Anexos");
+
+            migrationBuilder.DropTable(
+                name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Grupos");
@@ -561,19 +553,16 @@ namespace ServerLibrary.Migrations
                 name: "TipoEgresos");
 
             migrationBuilder.DropTable(
-                name: "Menus");
+                name: "TipoClientes");
 
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Menus");
 
             migrationBuilder.DropTable(
                 name: "Documentos");
 
             migrationBuilder.DropTable(
                 name: "TcCostos");
-
-            migrationBuilder.DropTable(
-                name: "TipoClientes");
 
             migrationBuilder.DropTable(
                 name: "Bancos");

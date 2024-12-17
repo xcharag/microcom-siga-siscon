@@ -3,6 +3,7 @@ using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Data;
+using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts;
 
 namespace ServerLibrary.Repositories.Implementations;
@@ -39,7 +40,7 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
 
     public async Task<GeneralResponse> Create(PlanCuentaDto item)
     {
-        var isValid = await ValidateId(item.CodCuenta);
+        var isValid = await ValidateId(item.CodCuenta!);
         if (!isValid.Flag) return isValid;
         
         var planCuenta = new PlanCuenta
@@ -80,62 +81,75 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         return Success();
     }
 
-    public async Task<PlanCuentasResponse> GenerateCodPlanCuenta(int cuentaPadre)
+    public async Task<PlanCuentasResponse> GenerateCodPlanCuenta(string cuentaPadre)
     {
+        Console.WriteLine(cuentaPadre);
+        // Revisar si Cuenta Padre Existe
         var checkCuentaPadre = await appDbContext.PlanCuentas.FindAsync(cuentaPadre);
-        if (checkCuentaPadre is null) return new PlanCuentasResponse(false, 0, 0, "La cuenta padre no existe");
-        if (checkCuentaPadre.TipoCuenta != "General") return new PlanCuentasResponse(false, 0, 0, "La cuenta padre no es de tipo General");
+        if (checkCuentaPadre is null) return new PlanCuentasResponse(false, null!, 0, "La cuenta padre no existe.");
+        if (checkCuentaPadre.TipoCuenta != "General") return new PlanCuentasResponse(false, null!, 0, "La cuenta padre no es de tipo General.");
         
-        //Largo y Nivel de la Cuenta padre
-        int largo = checkCuentaPadre.CodCuenta.ToString().Length;
-        int nivel = checkCuentaPadre.Nivel;
+        // Largo y Nivel de la Cuenta padre
+        int largoPadre = PlanCuentaHelpers.GetLargoCuenta(checkCuentaPadre.CodCuenta!);
+        int nivelPadre = checkCuentaPadre.Nivel;
         
-        //Siguiente Nivel
-        var siguienteNivel = await appDbContext.Niveles.FindAsync(nivel+1);
-        int numeroGuiones = siguienteNivel!.Largo - largo;
+        // Siguiente Nivel
+        var siguienteNivel = await appDbContext.Niveles.FindAsync(nivelPadre + 1);
+        if (siguienteNivel is null) return new PlanCuentasResponse(false, null!, 0, "No existe un nivel mas alto configurado.");
         
-        var pattern = $"{cuentaPadre}{new string('_',numeroGuiones)}";
+        //Generacion de Patron de Busqueda con Guiones
+        int numeroGuiones = siguienteNivel.Cuantos;
+        var pattern = $"{cuentaPadre}.{new string('_', numeroGuiones)}";
 
+        //Obtener Ultima Cuenta Hija de Detalle
         var getLastAccount = await appDbContext.PlanCuentas
             .Where(pc =>
-                EF.Functions.Like(pc.CodCuenta.ToString(), pattern) &&
-                pc.CodCuenta.ToString().Length == siguienteNivel.Largo &&
+                EF.Functions.Like(pc.CodCuenta!, pattern) &&
+                pc.CodCuenta!.Replace(".", "").Length == siguienteNivel.Largo &&
                 pc.TipoCuenta == "Detalle")
             .OrderByDescending(pc => pc.CodCuenta)
             .FirstOrDefaultAsync();
 
+        //Generar Codigo de Cuenta para primer Hija
         if (getLastAccount is null)
         {
             var cantidadCeros = siguienteNivel.Cuantos - 1;
-            var primerCodCuenta = $"{cuentaPadre}{new string('0',cantidadCeros)}1";
-            return new PlanCuentasResponse(true, int.Parse(primerCodCuenta), nivel+1, "Codigo de Cuenta generada exitosamente");
+            var primerCodCuenta = $"{cuentaPadre}.{new string('0', cantidadCeros)}1";
+            return new PlanCuentasResponse(true, primerCodCuenta, nivelPadre + 1, "Codigo de Cuenta generada exitosamente");
         }
+
+        //Generar Codigo de Cuenta para siguiente Hija
+        var lastAccountNumber = int.Parse(PlanCuentaHelpers.GetLastNivelDigits(getLastAccount.CodCuenta!, siguienteNivel.Cuantos));
+        lastAccountNumber++;
+        var cantidadCerosRestantes = siguienteNivel.Cuantos - lastAccountNumber.ToString().Length;
+        var nuevoCodCuenta = $"{cuentaPadre}.{new string('0', cantidadCerosRestantes)}{lastAccountNumber}";
         
-        var nuevoCodCuenta = getLastAccount.CodCuenta + 1;
-        return new PlanCuentasResponse(true, nuevoCodCuenta, nivel+1, "Codigo de Cuenta generada exitosamente");
+        return new PlanCuentasResponse(true, nuevoCodCuenta, nivelPadre + 1, "Codigo de Cuenta generada exitosamente");
     }
 
     private static GeneralResponse NotFound() => new(false,"No se encontró el plan de cuenta");
     private static GeneralResponse Success() => new(true,"Operación exitosa");
     private async Task Commit() => await appDbContext.SaveChangesAsync();
-    private async Task<bool> CheckId(int id) => await appDbContext.PlanCuentas.FindAsync(id) is null;
-
-    private async Task<GeneralResponse> ValidateId(int id)
+    private async Task<GeneralResponse> ValidateId(string id)
     {
-        var idString = id.ToString();
+        //Revisar si Cuenta Existe
+        var lengthId = id.Replace(".", "").Length;
         var existeCuenta = await appDbContext.PlanCuentas.FindAsync(id);
         if (existeCuenta is not null) return new GeneralResponse(false, "El codigo de cuenta ya existe");
         
+        //Revisar Digitos Segun Nivel
         var niveles = await appDbContext.Niveles.ToListAsync();
-        var existente = niveles.FirstOrDefault(x => x.Largo == idString.Length);
+        var existente = niveles.FirstOrDefault(x => x.Largo == lengthId);
         if (existente is null) return new GeneralResponse(false, "Longitud de la cuenta es incorrecta");
-        
-        var cuentaPadre = idString.Substring(0, existente.Largo - existente.Cuantos);
-        var cuentaPadreExistente = await appDbContext.PlanCuentas.FindAsync(int.Parse(cuentaPadre));
-        if (cuentaPadreExistente is null) return new GeneralResponse(false, "La cuenta padre no existe");
-        
-        if (cuentaPadreExistente.TipoCuenta != "General") return new GeneralResponse(false, "La cuenta padre no es de tipo General");
-        
+
+        //Revisar Cuenta Padre Correcta
+        if (lengthId > 1)
+        {
+            var cuentaPadre = PlanCuentaHelpers.GetCuentaPadre(id, existente.Cuantos);
+            var cuentaPadreExistente = await appDbContext.PlanCuentas.FindAsync(cuentaPadre);
+            if (cuentaPadreExistente is null) return new GeneralResponse(false, "La cuenta padre no existe");
+            if (cuentaPadreExistente.TipoCuenta != "General") return new GeneralResponse(false, "La cuenta padre no es de tipo General");
+        }
         
         return new GeneralResponse(true, "Validación exitosa");
     }

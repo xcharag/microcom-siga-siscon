@@ -12,7 +12,7 @@ using ServerLibrary.Data;
 namespace ServerLibrary.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241212202623_Initial")]
+    [Migration("20241216195236_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -103,8 +103,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CodBanco");
 
@@ -168,8 +168,8 @@ namespace ServerLibrary.Migrations
                     b.Property<int>("NroDoc")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TelCli")
                         .IsRequired()
@@ -389,8 +389,8 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
                 {
-                    b.Property<int>("CodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("CodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -398,8 +398,9 @@ namespace ServerLibrary.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Grupo")
-                        .HasColumnType("int");
+                    b.Property<string>("Grupo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Moneda")
                         .IsRequired()
@@ -471,8 +472,8 @@ namespace ServerLibrary.Migrations
                     b.Property<int>("NroDoc")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TelProv")
                         .IsRequired()
@@ -595,16 +596,11 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodTipoDoc"));
 
-                    b.Property<int?>("ClienteCodCli")
-                        .HasColumnType("int");
-
                     b.Property<string>("NomTipoDoc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CodTipoDoc");
-
-                    b.HasIndex("ClienteCodCli");
 
                     b.ToTable("TipoDocs");
                 });
@@ -620,8 +616,8 @@ namespace ServerLibrary.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CodTipoEgreso");
 
@@ -726,7 +722,7 @@ namespace ServerLibrary.Migrations
                         .WithMany("Clientes")
                         .HasForeignKey("ClientTypeCodTipoCli");
 
-                    b.HasOne("BaseLibrary.Entities.PlanCuenta", null)
+                    b.HasOne("BaseLibrary.Entities.PlanCuenta", "PlanCuenta")
                         .WithMany("Clientes")
                         .HasForeignKey("PlanCuentaCodCuenta");
 
@@ -735,6 +731,8 @@ namespace ServerLibrary.Migrations
                         .HasForeignKey("UserCodUsuario");
 
                     b.Navigation("ClientType");
+
+                    b.Navigation("PlanCuenta");
 
                     b.Navigation("User");
                 });
@@ -793,13 +791,6 @@ namespace ServerLibrary.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("BaseLibrary.Entities.TipoDoc", b =>
-                {
-                    b.HasOne("BaseLibrary.Entities.Cliente", null)
-                        .WithMany("TipoDocs")
-                        .HasForeignKey("ClienteCodCli");
-                });
-
             modelBuilder.Entity("BaseLibrary.Entities.TipoEgreso", b =>
                 {
                     b.HasOne("BaseLibrary.Entities.PlanCuenta", "PlanCuenta")
@@ -812,11 +803,6 @@ namespace ServerLibrary.Migrations
             modelBuilder.Entity("BaseLibrary.Entities.Banco", b =>
                 {
                     b.Navigation("Documentos");
-                });
-
-            modelBuilder.Entity("BaseLibrary.Entities.Cliente", b =>
-                {
-                    b.Navigation("TipoDocs");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.DetalleDocumento", b =>

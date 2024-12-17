@@ -100,8 +100,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CodBanco");
 
@@ -137,8 +137,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -165,8 +165,8 @@ namespace ServerLibrary.Migrations
                     b.Property<int>("NroDoc")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TelCli")
                         .IsRequired()
@@ -176,8 +176,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("UpdatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -386,11 +386,11 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.PlanCuenta", b =>
                 {
-                    b.Property<int>("CodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("CodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -414,8 +414,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("UpdatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -445,8 +445,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -469,15 +469,15 @@ namespace ServerLibrary.Migrations
                     b.Property<int>("NroDoc")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TelProv")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("UpdatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -613,8 +613,8 @@ namespace ServerLibrary.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlanCuentaCodCuenta")
-                        .HasColumnType("int");
+                    b.Property<string>("PlanCuentaCodCuenta")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CodTipoEgreso");
 
@@ -650,8 +650,8 @@ namespace ServerLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodUsuario"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CreatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -668,8 +668,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("UpdatedAt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");

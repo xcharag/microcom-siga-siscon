@@ -47,7 +47,7 @@ public class PlanCuentaService(GetHttpClient getHttpClient) : IPlanCuentaService
         return result!;
     }
 
-    public async Task<PlanCuentasResponse> GenerateCodPlanCuenta(int cuentaPadre, string baseUrl)
+    public async Task<PlanCuentasResponse> GenerateCodPlanCuenta(string cuentaPadre, string baseUrl)
     {
         var httpClient = await getHttpClient.GetPrivateHttpClient();
         var results = await httpClient.GetFromJsonAsync<PlanCuentasResponse>($"{baseUrl}/generate/{cuentaPadre}");

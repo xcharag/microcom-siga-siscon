@@ -10,9 +10,9 @@ namespace Server.Controllers;
 public class PlanCuentaController (IPlanCuenta planCuentaInterface) : ControllerBase
 {
     [HttpGet("generate/{cuentaPadre}")]
-    public async Task<IActionResult> GenerateCodPlanCuenta(int cuentaPadre)
+    public async Task<IActionResult> GenerateCodPlanCuenta(string cuentaPadre)
     {
-        if (cuentaPadre <= 0) return BadRequest("Id no válido");
+        if (cuentaPadre == "") return BadRequest("Id no válido");
         return Ok(await planCuentaInterface.GenerateCodPlanCuenta(cuentaPadre));
     }
     

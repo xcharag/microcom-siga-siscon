@@ -6,5 +6,5 @@ namespace ServerLibrary.Repositories.Contracts;
 
 public interface IPlanCuenta : IGenericRepositoryInterface<PlanCuentaDto>
 {
-    Task<PlanCuentasResponse> GenerateCodPlanCuenta(int cuentaPadre);
+    Task<PlanCuentasResponse> GenerateCodPlanCuenta(string cuentaPadre);
 }

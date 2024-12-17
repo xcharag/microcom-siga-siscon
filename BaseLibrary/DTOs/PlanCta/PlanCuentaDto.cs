@@ -5,7 +5,7 @@ namespace BaseLibrary.DTOs.PlanCta;
 public class PlanCuentaDto
 {
     [Required]
-    public int CodCuenta { get; set; }
+    public string? CodCuenta { get; set; }
     
     [Required]
     public string? NomCuenta { get; set; }

@@ -78,7 +78,7 @@
 
 @code {
     private IQueryable<PlanCuentaDto>? _planesDeCuentas;
-    private List<PlanCuenta>? _planesDeCuentasLista;
+    private List<PlanCuenta>? _planesDeCuentasLista ;
     private List<Grupo>? _grupos;
     bool _loading;
     readonly PaginationState _pagination = new PaginationState();
@@ -94,7 +94,7 @@
             var result = _planesDeCuentas;
             if (result is not null && !string.IsNullOrEmpty(_codFilter))
             {
-                result = result.Where(x => x.CodCuenta.ToString().Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
+                result = result.Where(x => x.CodCuenta!.ToString().Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
             }
             
             if (result is not null && !string.IsNullOrEmpty(_nameFilter))
@@ -146,7 +146,7 @@
             PreventScroll = true
         };
         
-        _planesDeCuentasLista = _planesDeCuentas!.Select(dto => new PlanCuenta()
+        _planesDeCuentasLista = _planesDeCuentas?.Select(dto => new PlanCuenta()
         {
             CodCuenta = dto.CodCuenta,
             NomCuenta = dto.NomCuenta,
@@ -154,7 +154,7 @@
             TipoCuenta = dto.TipoCuenta,
             Nivel = dto.Nivel,
             Grupo = dto.Grupo
-        }).ToList();
+        }).ToList() ?? new List<PlanCuenta>();
 
         await GetGrupos();
         
@@ -163,8 +163,6 @@
             ListaGrupos = _grupos,
             PlanCuentasCompletas = _planesDeCuentasLista
         };
-        
-        Console.WriteLine(_planesDeCuentasLista[0].Nivel);
 
         var dialog = await DialogService.ShowDialogAsync<AddEditDialog>(planCuenta,parameters);
         DialogResult result = await dialog.Result;

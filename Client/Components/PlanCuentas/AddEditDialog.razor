@@ -25,7 +25,7 @@
                 </FluentGridItem>
                 
                 <FluentGridItem sm="8" Style="padding-right: 12px">
-                    <FluentNumberField @bind-Value=PlanCuentaModelo.CodCuenta Style="width: 100%" Placeholder="Codigo de Cuenta..." Label="Codigo de la Cuenta"/>
+                    <FluentTextField @bind-Value=PlanCuentaModelo.CodCuenta Style="width: 100%" Placeholder="Codigo de Cuenta..." Label="Codigo de la Cuenta"/>
                     <FluentValidationMessage For="@(() => PlanCuentaModelo.CodCuenta)"/>
                 </FluentGridItem>
                 
@@ -77,11 +77,10 @@
 
     readonly List<string> _monedas = ["Bolivianos", "Dolares"];
     readonly List<string> _tipoCuenta = ["General", "Detalle"];
-    List<string?> _grupoCuenta = new List<string?>();
-    bool _grupoEnabled = false;
-    bool _nivelEnabled = false;
+    List<string?>? _grupoCuenta;
+    bool _grupoEnabled;
+    bool _nivelEnabled;
     PlanCuenta PlanCuentaModelo { get; set; } = new PlanCuenta();
-    int _codCuentaGenerado;
 
     protected override void OnInitialized()
     {
@@ -122,6 +121,7 @@
         {
             Title = "Seleccionar Cuenta Padre",
             Width = "800px",
+            Height = "620px",
             TrapFocus = false,
             Modal = true,
             PreventScroll = true
@@ -138,14 +138,13 @@
         if (result.Data is not null)
         {
             PlanCuentaDto? planCuentaPadre = result.Data as PlanCuentaDto;
-            var codCuentaGenerado = await PlanCuentaService.GenerateCodPlanCuenta(planCuentaPadre!.CodCuenta, "api/PlanCuenta");
+            var codCuentaGenerado = await PlanCuentaService.GenerateCodPlanCuenta(planCuentaPadre!.CodCuenta!, "api/PlanCuenta");
             if (!codCuentaGenerado.Flag)
             {
                 ToastService.ShowError(codCuentaGenerado.Message);
             }
             ToastService.ShowSuccess(codCuentaGenerado.Message);
             PlanCuentaModelo.CodCuenta = codCuentaGenerado.CodCuenta;
-            _codCuentaGenerado = codCuentaGenerado.CodCuenta;
             PlanCuentaModelo.Grupo = planCuentaPadre.Grupo;
             PlanCuentaModelo.Moneda = planCuentaPadre.Moneda;
             PlanCuentaModelo.Nivel = planCuentaPadre.Nivel + 1;
