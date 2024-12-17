@@ -16,23 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ServerLibrary/Helpers/PlanCuentaHelpers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/PlanCuentaDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/PlanCuentaDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/BaseEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/PlanCuenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/PlanCuenta.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Responses/PlanCuentasResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Responses/PlanCuentasResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/GenericDialogBool.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Components/PlanCuentas/AddEditDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/PlanCuentas/AddEditDialog.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/PlanCuentas/CuentaPadreDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/PlanCuentas/CuentaPadreDialog.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Controllers/PlanCuentaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/PlanCuentaController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241212202623_Initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241212202623_Initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241216124933_NewStructure.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241216124933_NewStructure.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IPlanCuenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IPlanCuenta.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/PlanCuentaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/PlanCuentaRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +61,8 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/BaseLibrary/DTOs/PlanCta/CrearPlanCuenta.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/PlanCuentas/AddEditDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
@@ -298,6 +285,7 @@
       <workItem from="1734097939461" duration="4950000" />
       <workItem from="1734352364634" duration="12399000" />
       <workItem from="1734373644284" duration="12606000" />
+      <workItem from="1734439445584" duration="12286000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -515,7 +503,31 @@
       <option name="project" value="LOCAL" />
       <updated>1734377207960</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Feat: CodCuenta from PlanCuentas has a format with dots&#10;The CodCuenta of each plan de cuentas is generated, storaged nad validated with dots between each level">
+      <option name="closed" value="true" />
+      <created>1734442840170</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1734442840170</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fix: Fixed some bugs with the display and error messages&#10;Some extra toast that shouldnt appear were fixed adn some other fix in the Front End of the Add dialog">
+      <option name="closed" value="true" />
+      <created>1734445325175</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1734445325175</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Fix: The delete and getbyid of PlanCuenta was with int id instead of string one&#10;I changed the logic so the delete and getbyid uses an string id as a receiving parameter for the searching">
+      <option name="closed" value="true" />
+      <created>1734448296560</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1734448296560</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,9 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: Creation of the Tables in the Db&#10;- Create the Dbcontext file &#10;- Implement the connection to the DB in the server project&#10;- Added the JsonIgnore label to the Many-to-One relations&#10;- Deleted Relationship.cs because it was not necessary" />
-    <MESSAGE value="Fix: Forget to add the Unversioned Files to the previus commit" />
-    <MESSAGE value="Databases updated code and structure" />
     <MESSAGE value="Feat: Adding Security to the Project&#10;- Adding Jwt Management fro tokens, logins, etc&#10;- Adjusting some tables and creating the Roles ones" />
     <MESSAGE value="Feat: Creation of Create New Users&#10;- The repository and implementation for creating new users, also using helpers" />
     <MESSAGE value="Refactor: Re-do Server project because of a missed configuration&#10;- Before was using the minimal API instead of controllers, changed to Controllers&#10;- The createdBy is not required anymore&#10;- Authentication Finished" />
@@ -561,6 +570,9 @@
     <MESSAGE value="Feat: Generator of CodPlanCuenta&#10;I make a generator of the Primary Key of CodPlanCuenta, following the requeriments rule for the primary key" />
     <MESSAGE value="Feat: Pass the context of the user to the NavMenu&#10;I passed as a parameter the User from the Context in the MainLayout so the nav can show only the menus accesible to that user and his role.&#10;- Edit the mainlayout to pass the user parameter&#10;- Edit Navmenu to ask for a parameter called user" />
     <MESSAGE value="Feat: Finished Create Plan Cuenta&#10;I finished the button to create a new plan de cuenta with all the validations, make some other small modifications to the structre.&#10;- Documented in the lucid" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Finished Create Plan Cuenta&#10;I finished the button to create a new plan de cuenta with all the validations, make some other small modifications to the structre.&#10;- Documented in the lucid" />
+    <MESSAGE value="Feat: CodCuenta from PlanCuentas has a format with dots&#10;The CodCuenta of each plan de cuentas is generated, storaged nad validated with dots between each level" />
+    <MESSAGE value="Fix: Fixed some bugs with the display and error messages&#10;Some extra toast that shouldnt appear were fixed adn some other fix in the Front End of the Add dialog" />
+    <MESSAGE value="Fix: The delete and getbyid of PlanCuenta was with int id instead of string one&#10;I changed the logic so the delete and getbyid uses an string id as a receiving parameter for the searching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix: The delete and getbyid of PlanCuenta was with int id instead of string one&#10;I changed the logic so the delete and getbyid uses an string id as a receiving parameter for the searching" />
   </component>
 </project>

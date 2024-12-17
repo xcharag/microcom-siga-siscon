@@ -1,0 +1,45 @@
+@implements IDialogContentComponent<List<string>>
+
+<FluentDialogHeader>
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(new Icons.Regular.Size24.Delete())"></FluentIcon>
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+<FluentDialogBody>
+    <FluentLabel Typo="Typography.Body">
+        @foreach(var item in Content)
+        {
+            <p>@item</p>
+        }
+    </FluentLabel>
+</FluentDialogBody>
+
+<FluentDialogFooter>
+    <FluentButton IconStart="@(new Icons.Regular.Size24.Checkmark())" OnClick="@HandleYes">
+        Si
+    </FluentButton>
+    
+    <FluentButton IconStart="@(new Icons.Regular.Size10.PresenceBlocked())" OnClick="@HandleNo">
+        No
+    </FluentButton>
+</FluentDialogFooter>
+
+@code {
+    [Parameter] public List<string> Content { get; set; } = default!;
+    [CascadingParameter] public FluentDialog Dialog { get; set; } = default!;
+    
+    private async Task HandleYes()
+    {
+        await Dialog.CloseAsync(DialogResult.Ok(true));
+    }
+    
+    private async Task HandleNo()
+    {
+        await Dialog.CloseAsync(DialogResult.Ok(false));
+    }
+    
+}

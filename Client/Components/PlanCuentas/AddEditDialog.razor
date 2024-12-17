@@ -59,7 +59,7 @@
         <FluentDialogFooter>
             <FluentButton Appearance="Appearance.Accent"
                           Type="ButtonType.Submit">
-                Crear y Cerrar
+                @(_editMode ? "Actualizar y Cerrar" : "Crear y Cerrar")
             </FluentButton>
 
             <FluentButton Appearance="Appearance.Neutral"
@@ -81,12 +81,26 @@
     bool _grupoEnabled;
     bool _nivelEnabled;
     bool _tipoCuentaDisabled;
+    bool _editMode;
     PlanCuenta PlanCuentaModelo { get; set; } = new PlanCuenta();
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         _grupoCuenta = Content.ListaGrupos?.Select(g => g.Nombre).ToList() ?? new List<string?>();
+        if (Content.PlanCuenta is not null)
+        {
+            PlanCuentaModelo = new PlanCuenta
+            {
+                CodCuenta = Content.PlanCuenta.CodCuenta,
+                NomCuenta = Content.PlanCuenta.NomCuenta,
+                TipoCuenta = Content.PlanCuenta.TipoCuenta,
+                Grupo = Content.PlanCuenta.Grupo,
+                Moneda = Content.PlanCuenta.Moneda,
+                Nivel = Content.PlanCuenta.Nivel
+            };
+            _editMode = true;
+        }
     }
 
     private async Task HandleCreateAsync()

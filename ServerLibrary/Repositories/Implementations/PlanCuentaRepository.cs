@@ -73,6 +73,12 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         var planCuenta = await appDbContext.PlanCuentas.FindAsync(id);
         if (planCuenta == null) return NotFound();
         
+        //Revisar si Cuenta tiene Hijos
+        var hijos = await appDbContext.PlanCuentas
+            .Where(pc => EF.Functions.Like(pc.CodCuenta!, $"{id}.%"))
+            .ToListAsync();
+        if (hijos.Count > 0) return new GeneralResponse(false, "La cuenta tiene cuentas hijas, no se puede borrar");
+        
         appDbContext.PlanCuentas.Remove(planCuenta);
         await Commit();
         return Success();
