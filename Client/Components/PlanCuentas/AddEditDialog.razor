@@ -40,7 +40,7 @@
                 </FluentGridItem>
 
                 <FluentGridItem sm="6">
-                    <FluentCombobox Label="Tipo de Cuenta" Items="@_tipoCuenta" @bind-Value="PlanCuentaModelo.TipoCuenta" Placeholder="Tipo de Cuenta" Autocomplete="ComboboxAutocomplete.Inline"/>
+                    <FluentCombobox Label="Tipo de Cuenta" Disabled="_tipoCuentaDisabled" Items="@_tipoCuenta" @bind-Value="PlanCuentaModelo.TipoCuenta" Placeholder="Tipo de Cuenta" Autocomplete="ComboboxAutocomplete.Inline"/>
                     <FluentValidationMessage For="@(() => PlanCuentaModelo.TipoCuenta)"/>
                 </FluentGridItem>
                 
@@ -80,6 +80,7 @@
     List<string?>? _grupoCuenta;
     bool _grupoEnabled;
     bool _nivelEnabled;
+    bool _tipoCuentaDisabled;
     PlanCuenta PlanCuentaModelo { get; set; } = new PlanCuenta();
 
     protected override void OnInitialized()
@@ -107,6 +108,7 @@
             return;
         }
 
+        ToastService.ShowSuccess(response.Message);
         await Dialog.CloseAsync(response.Message);
     }
     
@@ -142,14 +144,18 @@
             if (!codCuentaGenerado.Flag)
             {
                 ToastService.ShowError(codCuentaGenerado.Message);
+                return;
             }
+            
             ToastService.ShowSuccess(codCuentaGenerado.Message);
             PlanCuentaModelo.CodCuenta = codCuentaGenerado.CodCuenta;
             PlanCuentaModelo.Grupo = planCuentaPadre.Grupo;
             PlanCuentaModelo.Moneda = planCuentaPadre.Moneda;
             PlanCuentaModelo.Nivel = planCuentaPadre.Nivel + 1;
+            PlanCuentaModelo.TipoCuenta = codCuentaGenerado.IsDetalle ? "Detalle" : "General";
             _nivelEnabled = true;
             _grupoEnabled = true;
+            _tipoCuentaDisabled = true;
             
             StateHasChanged();
         }

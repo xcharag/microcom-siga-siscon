@@ -169,7 +169,6 @@
         
         if (result.Data is not null)
         {
-            ToastService.ShowSuccess(result.Data.ToString()!);
             await GetPlanesDeCuentas();
         }
     }
@@ -200,20 +199,5 @@
     {
         _loading = true;
         await GetPlanesDeCuentas();
-    }
-
-    private PlanCuentaDto PlanCuentaToDto(PlanCuenta planCuenta)
-    {
-        var planCuentaDto = new PlanCuentaDto()
-        {
-            CodCuenta = planCuenta.CodCuenta,
-            NomCuenta = planCuenta.NomCuenta,
-            Moneda = planCuenta.Moneda,
-            TipoCuenta = planCuenta.TipoCuenta,
-            Nivel = planCuenta.Nivel,
-            Grupo = planCuenta.Grupo
-        };
-
-        return planCuentaDto;
     }
 }

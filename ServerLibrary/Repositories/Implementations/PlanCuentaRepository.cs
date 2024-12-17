@@ -23,7 +23,6 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
             Grupo = pc.Grupo
         }).ToList();
     }
-
     public async Task<PlanCuentaDto?> GetById(int id)
     {
         var planCuenta = await appDbContext.PlanCuentas.FindAsync(id);
@@ -37,7 +36,6 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
             Grupo = planCuenta.Grupo!
         };
     } 
-
     public async Task<GeneralResponse> Create(PlanCuentaDto item)
     {
         var isValid = await ValidateId(item.CodCuenta!);
@@ -57,7 +55,6 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         await Commit();
         return Success();
     }
-
     public async Task<GeneralResponse> Update(PlanCuentaDto item)
     {
         var planCuenta = await appDbContext.PlanCuentas.FindAsync(item.CodCuenta);
@@ -70,7 +67,6 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         await Commit();
         return Success();
     }
-
     public async Task<GeneralResponse> Delete(int id)
     {
         var planCuenta = await appDbContext.PlanCuentas.FindAsync(id);
@@ -80,7 +76,8 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         await Commit();
         return Success();
     }
-
+    
+    
     public async Task<PlanCuentasResponse> GenerateCodPlanCuenta(string cuentaPadre)
     {
         Console.WriteLine(cuentaPadre);
@@ -105,8 +102,7 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         var getLastAccount = await appDbContext.PlanCuentas
             .Where(pc =>
                 EF.Functions.Like(pc.CodCuenta!, pattern) &&
-                pc.CodCuenta!.Replace(".", "").Length == siguienteNivel.Largo &&
-                pc.TipoCuenta == "Detalle")
+                pc.CodCuenta!.Replace(".", "").Length == siguienteNivel.Largo)
             .OrderByDescending(pc => pc.CodCuenta)
             .FirstOrDefaultAsync();
 
@@ -115,7 +111,7 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         {
             var cantidadCeros = siguienteNivel.Cuantos - 1;
             var primerCodCuenta = $"{cuentaPadre}.{new string('0', cantidadCeros)}1";
-            return new PlanCuentasResponse(true, primerCodCuenta, nivelPadre + 1, "Codigo de Cuenta generada exitosamente");
+            return new PlanCuentasResponse(true, primerCodCuenta, nivelPadre + 1, "Codigo de Cuenta generada exitosamente", true);
         }
 
         //Generar Codigo de Cuenta para siguiente Hija
@@ -123,10 +119,10 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         lastAccountNumber++;
         var cantidadCerosRestantes = siguienteNivel.Cuantos - lastAccountNumber.ToString().Length;
         var nuevoCodCuenta = $"{cuentaPadre}.{new string('0', cantidadCerosRestantes)}{lastAccountNumber}";
+        if (getLastAccount.TipoCuenta == "Detalle") return new PlanCuentasResponse(true, nuevoCodCuenta, nivelPadre + 1, "Codigo de Cuenta generada exitosamente", false, true);
         
-        return new PlanCuentasResponse(true, nuevoCodCuenta, nivelPadre + 1, "Codigo de Cuenta generada exitosamente");
+        return new PlanCuentasResponse(true, nuevoCodCuenta, nivelPadre + 1, "Codigo de Cuenta generada exitosamente", false, false);
     }
-
     private static GeneralResponse NotFound() => new(false,"No se encontró el plan de cuenta");
     private static GeneralResponse Success() => new(true,"Operación exitosa");
     private async Task Commit() => await appDbContext.SaveChangesAsync();
