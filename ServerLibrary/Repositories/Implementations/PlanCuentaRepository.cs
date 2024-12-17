@@ -23,7 +23,8 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
             Grupo = pc.Grupo
         }).ToList();
     }
-    public async Task<PlanCuentaDto?> GetById(int id)
+
+    public async Task<PlanCuentaDto?> GetById(string id)
     {
         var planCuenta = await appDbContext.PlanCuentas.FindAsync(id);
         return planCuenta is null ? null : new PlanCuentaDto
@@ -67,7 +68,7 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         await Commit();
         return Success();
     }
-    public async Task<GeneralResponse> Delete(int id)
+    public async Task<GeneralResponse> Delete(string id)
     {
         var planCuenta = await appDbContext.PlanCuentas.FindAsync(id);
         if (planCuenta == null) return NotFound();
@@ -148,5 +149,15 @@ public class PlanCuentaRepository(AppDbContext appDbContext) : IPlanCuenta
         }
         
         return new GeneralResponse(true, "Validación exitosa");
+    }
+    
+    //NOT IMPLEMENTED BECAUSE ID IS NOT int
+    public Task<GeneralResponse> Delete(int id)
+    {
+        return Task.FromResult(NotFound());
+    }
+    public Task<PlanCuentaDto?> GetById(int id)
+    {
+        return Task.FromResult<PlanCuentaDto?>(null);
     }
 }

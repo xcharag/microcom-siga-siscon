@@ -55,6 +55,17 @@
             <PropertyColumn Property="@(p => p.Moneda)" Sortable="true" Align="Align.Center"/>
             <PropertyColumn Property="@(p => p.TipoCuenta)" Sortable="true" Align="Align.Center"/>
             <PropertyColumn Property="@(p=>p.Grupo)" Sortable="true" Align="Align.Center"/>
+            <TemplateColumn Align="Align.Center" Title="Opciones">
+                <FluentButton Id="EditarButton" IconStart="@(new Icons.Regular.Size24.Edit())" @onclick="@(() => HandleEditar(context))"></FluentButton>
+                <FluentTooltip Anchor="EditarButton" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                    Editar
+                </FluentTooltip>
+                
+                <FluentButton Id="BorrarButton" IconStart="@(new Icons.Regular.Size20.Delete())" @onclick="@(() => HandleBorrar(context))"></FluentButton>
+                <FluentTooltip Anchor="BorrarButton" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                    Borrar
+                </FluentTooltip>
+            </TemplateColumn>
         </FluentDataGrid>
     </div>
 </div>
@@ -106,6 +117,7 @@
         }
     }
     
+    //Crear y Visualizar
     protected override async Task OnInitializedAsync()
     {
         if (_planesDeCuentas == null)
@@ -113,7 +125,6 @@
             await GetPlanesDeCuentas();
         }
     }
-
     private async Task GetPlanesDeCuentas()
     {
         var result = await PlanCuentaService.GetAll("api/PlanCuenta");
@@ -124,7 +135,6 @@
             StateHasChanged();
         }
     }
-
     private async Task GetGrupos()
     {
         var result = await GrupoService.GetAll("api/Grupo");
@@ -134,7 +144,6 @@
             StateHasChanged();
         }
     }
-
     private async Task OpenCreateDialogAsync()
     {
         DialogParameters parameters = new DialogParameters()
@@ -173,6 +182,7 @@
         }
     }
     
+    //Filtros
     private void HandleCodCuentaFilter(ChangeEventArgs e)
     {
         if (e.Value is string value)
@@ -180,7 +190,6 @@
             _codFilter = value;
         }
     }
-    
     private void HandleNameCuentaFilter(ChangeEventArgs e)
     {
         if (e.Value is string value)
@@ -188,16 +197,50 @@
             _nameFilter = value;
         }
     }
-    
     private void HandleClear()
     {
         _codFilter = string.IsNullOrWhiteSpace(_codFilter) ? string.Empty : _codFilter;
         _nameFilter = string.IsNullOrWhiteSpace(_nameFilter) ? string.Empty : _nameFilter;
     }
-    
     private async Task ReloadTableAsync()
     {
         _loading = true;
         await GetPlanesDeCuentas();
+    }
+    
+    //Editar y Borrar
+    private async Task HandleEditar(PlanCuentaDto item)
+    {
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Editar Plan de Cuenta",
+            Width = "600px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        var planCuenta = new CrearPlanCuenta()
+        {
+            PlanCuenta = item,
+            ListaGrupos = _grupos,
+            PlanCuentasCompletas = _planesDeCuentasLista
+        };
+        
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialog>(planCuenta,parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (result.Data is not null)
+        {
+            await GetPlanesDeCuentas();
+        }
+    }
+    private async Task HandleBorrar(PlanCuentaDto item)
+    {
+        var result = await PlanCuentaService.Delete(item.CodCuenta, "api/PlanCuenta");
+        if (result is not null)
+        {
+            await GetPlanesDeCuentas();
+        }
     }
 }

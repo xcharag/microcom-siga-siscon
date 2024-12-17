@@ -20,16 +20,16 @@ public class PlanCuentaController (IPlanCuenta planCuentaInterface) : Controller
     public async Task<IActionResult> GetAll() => Ok(await planCuentaInterface.GetAll());
     
     [HttpDelete("delete/{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(string? id)
     {
-        if (id <= 0) return BadRequest("Id no válido");
+        if (id is null) return BadRequest("Id no válido");
         return Ok(await planCuentaInterface.Delete(id));
     }
 
     [HttpGet("single/{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById(string? id)
     {
-        if (id <= 0) return BadRequest("Id no válido");
+        if (id is null) return BadRequest("Id no válido");
         return Ok(await planCuentaInterface.GetById(id));
     }
     
