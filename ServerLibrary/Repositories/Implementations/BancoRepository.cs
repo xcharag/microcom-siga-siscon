@@ -1,31 +1,47 @@
+using BaseLibrary.DTOs.Parametros.Banco;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Data;
+using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts;
 
 namespace ServerLibrary.Repositories.Implementations;
 
-public class BancoRepository(AppDbContext appDbContext) : IGenericRepositoryInterface<Banco>
+public class BancoRepository(AppDbContext appDbContext) : IGenericRepositoryInterface<BancoDto>
 {
-    public async Task<List<Banco>> GetAll() => await appDbContext.Bancos.ToListAsync();
-
-    public async Task<Banco?> GetById(int id) => await appDbContext.Bancos.FindAsync(id);
-
-    public async Task<GeneralResponse> Create(Banco item)
+    public async Task<List<BancoDto>> GetAll()
     {
-        if(await CheckId(item.CodBanco)) return new GeneralResponse(false, "El banco ya existe");
+        var bancos = await appDbContext.Bancos.ToListAsync();
+        var bancosDtos = bancos.Select(Conversor.ConvertToDto<Banco, BancoDto>).ToList();
+        return bancosDtos;
+    }
+
+    public async Task<BancoDto?> GetById(int id)
+    {
+        var banco = await appDbContext.Bancos.FindAsync(id);
+        if(banco is null) return null;
+        return Conversor.ConvertToDto<Banco, BancoDto>(banco);
+    }
+
+    public async Task<GeneralResponse> Create(BancoDto item)
+    {
+        if(!await CheckId(item.CodBanco)) return new GeneralResponse(false, "El banco ya existe");
+        var checkPlanCuenta = await appDbContext.PlanCuentas.FindAsync(item.PlanCuentaCodCuenta);
+        if(checkPlanCuenta is null) return new GeneralResponse(false, "No se encontró el plan de cuenta");
         
-        appDbContext.Bancos.Add(item);
+        item.CodBanco = GenerateId(item.PlanCuentaCodCuenta!);
+        
+        appDbContext.Bancos.Add(Conversor.ConvertToEntity<BancoDto, Banco>(item, new Banco()));
         await Commit();
         return new GeneralResponse(true, "Operación exitosa");
     }
 
-    public async Task<GeneralResponse> Update(Banco item)
+    public async Task<GeneralResponse> Update(BancoDto item)
     {
         if(await CheckId(item.CodBanco)) return new GeneralResponse(false, "No se encontró el banco");
         
-        appDbContext.Bancos.Update(item);
+        appDbContext.Bancos.Update(Conversor.ConvertToEntity<BancoDto, Banco>(item, new Banco()));
         await Commit();
         return new GeneralResponse(true, "Operación exitosa");
     }
@@ -48,4 +64,18 @@ public class BancoRepository(AppDbContext appDbContext) : IGenericRepositoryInte
     
     private async Task<bool> CheckId(int id) => await appDbContext.Bancos.FindAsync(id) is null;
     private async Task Commit() => await appDbContext.SaveChangesAsync();
+    
+    private int GenerateId(string planCuentaCodCuenta)
+    {
+        //Get cuantos ultimo nivel
+        var cuantosUltimoNivel = PlanCuentaHelpers.GetCuantosUltimoNivel(planCuentaCodCuenta);
+        var digitosUltimoNivel = PlanCuentaHelpers.GetLastNivelDigits(planCuentaCodCuenta, cuantosUltimoNivel);
+        
+        //Obtener cuenta padre
+        var cuentaPadre = PlanCuentaHelpers.GetCuentaPadre(planCuentaCodCuenta, cuantosUltimoNivel);
+        var cuantosCuentaPadre = PlanCuentaHelpers.GetCuantosUltimoNivel(cuentaPadre);
+        var digitosCuentaPadre = PlanCuentaHelpers.GetLastNivelDigits(cuentaPadre, cuantosCuentaPadre);
+        
+        return int.Parse(digitosCuentaPadre + digitosUltimoNivel);
+    }
 }

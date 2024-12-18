@@ -33,6 +33,7 @@ builder.Services.AddScoped<IMenuNavService, MenuNavService>();
 builder.Services.AddScoped<IPlanCuentaService, PlanCuentaService>();
 builder.Services.AddScoped<IGrupoService, GrupoService>();
 builder.Services.AddScoped<IGenericServiceInterface<Nivel>, GenericServiceImplementation<Nivel>>();
+builder.Services.AddScoped<IGenericServiceInterface<Banco>, GenericServiceImplementation<Banco>>();
 
 builder.Services.AddScoped<ToastService>();
 builder.Services.AddScoped<ITooltipService, TooltipService>();

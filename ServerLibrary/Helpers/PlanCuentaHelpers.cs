@@ -21,4 +21,16 @@ public static class PlanCuentaHelpers
         var idWithoutDots = id.Replace(".", "");
         return idWithoutDots.Length;
     }
+    
+    public static int GetNivelCuenta(string id)
+    {
+        var dots = id.Split(".");
+        return dots.Length;
+    }
+
+    public static int GetCuantosUltimoNivel(string id)
+    {
+        var dots = id.Split(".");
+        return dots[^1].Length;
+    }
 }

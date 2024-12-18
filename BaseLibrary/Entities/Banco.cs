@@ -18,6 +18,7 @@ public class Banco
     
     //Many-to-One Relationship
     public PlanCuenta? PlanCuenta { get; set; }
+    public string? PlanCuentaCodCuenta { get; set; }
     
     //One-to-Many Relationship
     [JsonIgnore]

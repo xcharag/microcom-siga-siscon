@@ -1,0 +1,138 @@
+@typeparam TItem
+@using System.Reflection
+
+<div style="display: table; table-layout: fixed; width: 100%;">
+    <div style="overflow-x: auto;">
+        <FluentDataGrid Items="@FilteredItems"
+                        ResizableColumns="true"
+                        Pagination="@Pagination"
+                        HeaderCellAsButtonWithMenu="true"
+                        Style="min-width: max-content">
+
+            @foreach (var property in Properties)
+            {
+                if (property.Name.Contains("Cod", StringComparison.OrdinalIgnoreCase))
+                {
+                    <PropertyColumn Property="@(p => property.GetValue(p))"
+                                    Sortable="true"
+                                    Filtered="!string.IsNullOrWhiteSpace(CodFilter)"
+                                    Tooltip="true"
+                                    Width="20%"
+                                    Title="@property.Name">
+                        <ColumnOptions>
+                            <div class="search-box">
+                                <FluentSearch Autofocus="true"
+                                              @bind-Value="CodFilter"
+                                              @oninput="HandleFilterChangeCod"
+                                              Placeholder="Filtrar por Código..."
+                                              Style="width: 100%" />
+                            </div>
+                        </ColumnOptions>
+                    </PropertyColumn>
+                }
+                else if (property.Name.Contains("Nom", StringComparison.OrdinalIgnoreCase))
+                {
+                    <PropertyColumn Property="@(p => property.GetValue(p))"
+                                    Sortable="true"
+                                    Filtered="!string.IsNullOrWhiteSpace(NameFilter)"
+                                    Tooltip="true"
+                                    Width="40%"
+                                    Title="@property.Name">
+                        <ColumnOptions>
+                            <div class="search-box">
+                                <FluentSearch Autofocus="true"
+                                              @bind-Value="NameFilter"
+                                              @oninput="HandleFilterChangeName"
+                                              Placeholder="Filtrar por Nombre..."
+                                              Style="width: 100%" />
+                            </div>
+                        </ColumnOptions>
+                    </PropertyColumn>
+                }
+                else
+                {
+                    <PropertyColumn Property="@(p => property.GetValue(p))"
+                                    Sortable="true"
+                                    Width="20%"
+                                    Title="@property.Name"
+                                    Align="Align.Center" />
+                }
+            }
+            <TemplateColumn Align="Align.Center" Title="Opciones">
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Edit())"
+                              @onclick="@(() => OnEdit?.Invoke(context))" />
+                <FluentTooltip Anchor="Edit" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                    Editar
+                </FluentTooltip>
+
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())"
+                              @onclick="@(() => OnDelete?.Invoke(context))" />
+                <FluentTooltip Anchor="Delete" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                    Borrar
+                </FluentTooltip>
+            </TemplateColumn>
+        </FluentDataGrid>
+    </div>
+</div>
+
+<FluentPaginator State="@Pagination"></FluentPaginator>
+
+@code {
+    [Parameter] public IQueryable<TItem>? ItemsQueryable { get; set; }
+    [Parameter] public IEnumerable<TItem>? Items { get; set; }
+    [Parameter] public string TipoItem { get; set; } = string.Empty;
+    [Parameter] public Func<TItem, Task>? OnEdit { get; set; }
+    [Parameter] public Func<TItem, Task>? OnDelete { get; set; }
+    [Parameter] public PaginationState Pagination { get; set; } = new PaginationState();
+    
+    private string CodFilter { get; set; } = string.Empty;
+    private string NameFilter { get; set; } = string.Empty;
+
+    private List<PropertyInfo> Properties => typeof(TItem).GetProperties().ToList();
+
+    private IQueryable<TItem>? FilteredItems
+    {
+        get
+        {
+            if (Items is null) return null;
+
+            var result = Items;
+
+            if (!string.IsNullOrWhiteSpace(CodFilter))
+            {
+                result = result.Where(x => GetPropertyValue(x!, "Cod"+TipoItem)?.ToString()!.Contains(CodFilter, StringComparison.OrdinalIgnoreCase) ?? false);
+            }
+
+            if (!string.IsNullOrWhiteSpace(NameFilter))
+            {
+                result = result.Where(x => GetPropertyValue(x!, "Nom"+TipoItem)?.ToString()!.Contains(NameFilter, StringComparison.OrdinalIgnoreCase) ?? false);
+            }
+
+            return result.AsQueryable();
+        }
+    }
+
+    private void HandleFilterChangeCod(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            CodFilter = value;
+        }
+        StateHasChanged();
+    }
+    
+    private void HandleFilterChangeName(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            NameFilter = value;
+        }
+        StateHasChanged();
+    }
+
+    private object? GetPropertyValue(object obj, string propertyName)
+    {
+        return obj.GetType().GetProperty(propertyName)?.GetValue(obj);
+    }
+
+}

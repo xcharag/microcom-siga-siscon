@@ -21,4 +21,9 @@
       <ProjectReference Include="..\ClientLibrary\ClientLibrary.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Components\Parametros\PlanCuentas\AddEditDialog.razor" />
+      <AdditionalFiles Include="Components\Parametros\PlanCuentas\CuentaPadreDialog.razor" />
+    </ItemGroup>
+
 </Project>

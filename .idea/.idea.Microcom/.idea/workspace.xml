@@ -16,10 +16,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/Components/GenericDialogBool.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/PlanCuentas/AddEditDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/PlanCuentas/AddEditDialog.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/PlanCuentaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/PlanCuentaRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Banco/BancoDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/GenericAddUpdateDialog.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/Parametros/OrigenDeFondos.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/CrearPlanCuenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/PlanCuenta/CrearPlanCuenta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/PlanCuentaDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/PlanCuenta/PlanCuentaDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/SelectCuentaPadre.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/PlanCuenta/SelectCuentaPadre.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/PlanCuentas/AddEditDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/AddEditDialog.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/PlanCuentas/CuentaPadreDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/CuentaPadreDialog.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/PlanCuentas.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,12 +71,14 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/BaseLibrary/DTOs/PlanCta/CrearPlanCuenta.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/PlanCuentas/AddEditDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/PlanCuentas/AddEditDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/PlanCuentas/AddEditDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -286,6 +298,8 @@
       <workItem from="1734352364634" duration="12399000" />
       <workItem from="1734373644284" duration="12606000" />
       <workItem from="1734439445584" duration="12286000" />
+      <workItem from="1734460531102" duration="13390000" />
+      <workItem from="1734531741603" duration="1622000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -527,7 +541,39 @@
       <option name="project" value="LOCAL" />
       <updated>1734448296560</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Feat: Validation Delete has no childs in it in order to delete&#10;It must be validated that before deleting a Plan de Cuenta it must not have any childs &#10;- To implement that no plan de cuenta has participated inside a Document (Asiento Contable)">
+      <option name="closed" value="true" />
+      <created>1734461282138</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1734461282138</updated>
+    </task>
+    <task id="LOCAL-00032" summary="refactor: Adition of some tables and attributes&#10;I added some new tables because they were missing from the model in order to have a better parametrized software">
+      <option name="closed" value="true" />
+      <created>1734466862239</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1734466862239</updated>
+    </task>
+    <task id="LOCAL-00033" summary="chore: Forgot to upload the migrations&#10;jeje :D">
+      <option name="closed" value="true" />
+      <created>1734466893490</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1734466893490</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Feat: Adition of the Banco Controller, Interface and Implementation&#10;I added all the features for the table Banco in order to habilitate the CRUD for this table">
+      <option name="closed" value="true" />
+      <created>1734468024537</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1734468024537</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,10 +594,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: Adding Security to the Project&#10;- Adding Jwt Management fro tokens, logins, etc&#10;- Adjusting some tables and creating the Roles ones" />
-    <MESSAGE value="Feat: Creation of Create New Users&#10;- The repository and implementation for creating new users, also using helpers" />
-    <MESSAGE value="Refactor: Re-do Server project because of a missed configuration&#10;- Before was using the minimal API instead of controllers, changed to Controllers&#10;- The createdBy is not required anymore&#10;- Authentication Finished" />
-    <MESSAGE value="Feat: All the Authentication finished&#10;- Refresh token done&#10;- Jwt token done&#10;- Roles assigned done&#10;- login/register done" />
     <MESSAGE value="Feat (Authentication Client): Creation of Authentication but in the client side&#10;- Not finished yet but finishing the AuthenticationStateProvider" />
     <MESSAGE value="Feat: Continue with security&#10;- Finishing all the security&#10;- Applying it in the Client Side the manage of Login/Register" />
     <MESSAGE value="Feat: Login finished&#10;- The design of the login is finished&#10;- Make sure to only let the user login and none of the others functions available" />
@@ -573,6 +615,10 @@
     <MESSAGE value="Feat: CodCuenta from PlanCuentas has a format with dots&#10;The CodCuenta of each plan de cuentas is generated, storaged nad validated with dots between each level" />
     <MESSAGE value="Fix: Fixed some bugs with the display and error messages&#10;Some extra toast that shouldnt appear were fixed adn some other fix in the Front End of the Add dialog" />
     <MESSAGE value="Fix: The delete and getbyid of PlanCuenta was with int id instead of string one&#10;I changed the logic so the delete and getbyid uses an string id as a receiving parameter for the searching" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix: The delete and getbyid of PlanCuenta was with int id instead of string one&#10;I changed the logic so the delete and getbyid uses an string id as a receiving parameter for the searching" />
+    <MESSAGE value="Feat: Validation Delete has no childs in it in order to delete&#10;It must be validated that before deleting a Plan de Cuenta it must not have any childs &#10;- To implement that no plan de cuenta has participated inside a Document (Asiento Contable)" />
+    <MESSAGE value="refactor: Adition of some tables and attributes&#10;I added some new tables because they were missing from the model in order to have a better parametrized software" />
+    <MESSAGE value="chore: Forgot to upload the migrations&#10;jeje :D" />
+    <MESSAGE value="Feat: Adition of the Banco Controller, Interface and Implementation&#10;I added all the features for the table Banco in order to habilitate the CRUD for this table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Adition of the Banco Controller, Interface and Implementation&#10;I added all the features for the table Banco in order to habilitate the CRUD for this table" />
   </component>
 </project>

@@ -1,0 +1,55 @@
+@page "/origenfondos"
+@using BaseLibrary.DTOs.Parametros.Banco
+@using Client.Components
+
+<PageTitle>Origen de Fondos</PageTitle>
+
+<h2>Origenes de Fondos</h2>
+
+<GenericDataGrid TItem="BancoDto"
+                 Items="@_bancos"
+                 ItemsQueryable="_bancos?.AsQueryable()"
+                 OnEdit="HandleEditar"
+                 OnDelete="HandleBorrar"
+                 TipoItem="Banco"
+                 Pagination="@_pagination"/>
+
+@code {
+    private IEnumerable<BancoDto>? _bancos;
+    private readonly PaginationState _pagination = new PaginationState();
+    
+    private async Task HandleEditar(BancoDto banco)
+    {
+        DialogParameters dialogParameters = new DialogParameters()
+        {
+            Title = "Editar Banco",
+            Width = "600px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        
+    }
+    
+    private async Task HandleBorrar(BancoDto banco)
+    {
+        return;
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var bancosEntities = await BancoService.GetAll("api/Banco");
+        //Convert to BancoDto
+        if (bancosEntities is not null)
+        {
+            _bancos = bancosEntities.Select(b => new BancoDto()
+            {
+                CodBanco = b.CodBanco,
+                NomBanco = b.NomBanco,
+                Moneda = b.Moneda,
+            });
+        }
+    }
+
+}

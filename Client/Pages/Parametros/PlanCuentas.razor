@@ -1,7 +1,7 @@
 @page "/plancuentas"
 @using BaseLibrary.DTOs.PlanCta
 @using Client.Components
-@using Client.Components.PlanCuentas
+@using Client.Components.Parametros.PlanCuentas
 @inject IGrupoService GrupoService
 
 <PageTitle>Plan de Cuentas</PageTitle>
@@ -20,6 +20,7 @@
                             Sortable="true"
                             Filtered="!string.IsNullOrWhiteSpace(_codFilter)"
                             Tooltip="true"
+                            Width="120px"
                             Title="Codigo Cuenta">
                 <ColumnOptions>
                     <div class="search-box">
@@ -39,6 +40,7 @@
                             Sortable="true"
                             Filtered="!string.IsNullOrWhiteSpace(_nameFilter)"
                             Tooltip="true"
+                            Width="390px"
                             Title="Nombre Cuenta">
                 <ColumnOptions>
                     <div class="search-box">
@@ -53,10 +55,10 @@
                     </div>
                 </ColumnOptions>
             </PropertyColumn>
-            <PropertyColumn Property="@(p => p.Moneda)" Sortable="true" Align="Align.Center"/>
-            <PropertyColumn Property="@(p => p.TipoCuenta)" Sortable="true" Align="Align.Center"/>
-            <PropertyColumn Property="@(p=>p.Grupo)" Sortable="true" Align="Align.Center"/>
-            <TemplateColumn Align="Align.Center" Title="Opciones">
+            <PropertyColumn Property="@(p => p.Moneda)" Sortable="true" Width="120px" Align="Align.Center"/>
+            <PropertyColumn Property="@(p => p.TipoCuenta)" Sortable="true" Width="120px"  Align="Align.Center"/>
+            <PropertyColumn Property="@(p=>p.Grupo)" Sortable="true" Width="120px" Align="Align.Center"/>
+            <TemplateColumn Align="Align.Center" Width="120px" Title="Opciones">
                 <FluentButton Id="@(context.CodCuenta!.Insert(0,"E"))" IconStart="@(new Icons.Regular.Size20.Edit())" @onclick="@(() => HandleEditar(context))"></FluentButton>
                 <FluentTooltip Anchor="@(context.CodCuenta!.Insert(0,"E"))" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
                     Editar
