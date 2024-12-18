@@ -43,9 +43,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.Entity<PlanCuenta>()
             .Property(p => p.CodCuenta)
             .ValueGeneratedNever();
-        modelBuilder.Entity<PlanCuenta>()
-            .HasIndex(p => p.CodCuenta)
-            .IsUnique();
         modelBuilder.Entity<Banco>()
             .Property(p => p.CodBanco)
             .ValueGeneratedNever();

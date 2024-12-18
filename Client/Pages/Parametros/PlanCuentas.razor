@@ -176,7 +176,7 @@
             PlanCuentasCompletas = _planesDeCuentasLista
         };
 
-        var dialog = await DialogService.ShowDialogAsync<AddEditDialog>(planCuenta,parameters);
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogPlanCuenta>(planCuenta,parameters);
         DialogResult result = await dialog.Result;
         
         if (result.Data is not null)
@@ -230,7 +230,7 @@
             PlanCuentasCompletas = _planesDeCuentasLista
         };
         
-        var dialog = await DialogService.ShowDialogAsync<AddEditDialog>(planCuenta,parameters);
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogPlanCuenta>(planCuenta,parameters);
         DialogResult result = await dialog.Result;
         
         if (result.Data is not null)

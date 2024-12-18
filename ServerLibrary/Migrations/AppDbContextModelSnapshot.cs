@@ -91,10 +91,7 @@ namespace ServerLibrary.Migrations
             modelBuilder.Entity("BaseLibrary.Entities.Banco", b =>
                 {
                     b.Property<int>("CodBanco")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodBanco"));
 
                     b.Property<string>("Moneda")
                         .IsRequired()

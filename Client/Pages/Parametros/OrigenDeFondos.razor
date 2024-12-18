@@ -1,6 +1,6 @@
 @page "/origenfondos"
-@using BaseLibrary.DTOs.Parametros.Banco
 @using Client.Components
+@using Client.Components.Parametros.Banco
 
 <PageTitle>Origen de Fondos</PageTitle>
 
@@ -14,13 +14,30 @@
                  TipoItem="Banco"
                  Pagination="@_pagination"/>
 
+<FluentStack Orientation="Orientation.Horizontal" Style="margin-top: 1rem">
+    <FluentButton IconStart="@(new Icons.Regular.Size20.ArrowCounterclockwise())"
+                  Appearance="Appearance.Accent"
+                  @onclick="ReloadTableAsync"
+                  Loading="@_loading">
+        Recargar Tabla
+    </FluentButton>
+
+    <FluentButton IconStart="@(new Icons.Color.Size20.AddCircle())"
+                  Appearance="Appearance.Accent"
+                  @onclick="@OpenCreateDialogAsync">
+        Crear Nueva Cuenta
+    </FluentButton>
+</FluentStack>
+
 @code {
     private IEnumerable<BancoDto>? _bancos;
     private readonly PaginationState _pagination = new PaginationState();
+    bool _loading = false;
     
+    //Table Buttons
     private async Task HandleEditar(BancoDto banco)
     {
-        DialogParameters dialogParameters = new DialogParameters()
+        DialogParameters parameters = new DialogParameters()
         {
             Title = "Editar Banco",
             Width = "600px",
@@ -29,15 +46,92 @@
             PreventScroll = true
         };
         
+        var bancoEdit = new CrearBanco()
+        {
+            BancoDto = banco,
+            IsEditMode = true
+        };
         
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogBanco>(bancoEdit, parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (!result.Cancelled)
+        {
+            await ReloadTableAsync();
+        }
     }
-    
     private async Task HandleBorrar(BancoDto banco)
     {
-        return;
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Eliminar Banco",
+            Width = "400px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        List<string> message = new List<string>();
+        message.Insert(0,"¿Estas seguro que deseas eliminar el Banco?");
+        message.Insert(1,$"Codigo: {banco.CodBanco}");
+        message.Insert(2,$"Nombre: {banco.NomBanco}");
+        message.Insert(3,"Esta acción no se puede deshacer.");
+        
+        var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (result.Data is not null && (bool) result.Data)
+        {
+            var response = await BancoService.Delete(banco.CodBanco!, "api/Banco");
+            if (response.Flag)
+            {
+                ToastService.ShowSuccess(response.Message);
+                await GetBancosAsync();
+            }
+            else
+            {
+                ToastService.ShowError(response.Message);
+            }
+        }
+    }
+    private async Task OpenCreateDialogAsync()
+    {
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Editar Banco",
+            Width = "600px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        var bancoEmpty = new CrearBanco();
+        
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogBanco>(bancoEmpty, parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (!result.Cancelled)
+        {
+            await ReloadTableAsync();
+        }
+    }
+    
+    //Options
+    private async Task ReloadTableAsync()
+    {
+        _loading = true;
+        await GetBancosAsync();
+        _loading = false;
     }
     
     protected override async Task OnInitializedAsync()
+    {
+        if (_bancos is null)
+        {
+            await GetBancosAsync();
+        }
+    }
+    private async Task GetBancosAsync()
     {
         var bancosEntities = await BancoService.GetAll("api/Banco");
         //Convert to BancoDto
@@ -48,8 +142,10 @@
                 CodBanco = b.CodBanco,
                 NomBanco = b.NomBanco,
                 Moneda = b.Moneda,
+                PlanCuenta = b.PlanCuenta
             });
         }
+        StateHasChanged();
     }
 
 }

@@ -9,6 +9,7 @@
 @using Client
 @using Client.Layout
 @using BaseLibrary.DTOs
+@using BaseLibrary.DTOs.Parametros.Banco
 @using BaseLibrary.Entities
 @using ClientLibrary.Helpers
 @using ClientLibrary.Services.Contracts
@@ -28,4 +29,4 @@
 /* Services */
 @inject IMenuNavService MenuNavService
 @inject IPlanCuentaService PlanCuentaService
-@inject IGenericServiceInterface<Banco> BancoService
+@inject IBancoService BancoService

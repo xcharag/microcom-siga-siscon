@@ -53,21 +53,23 @@
                 {
                     <PropertyColumn Property="@(p => property.GetValue(p))"
                                     Sortable="true"
-                                    Width="20%"
+                                    Width="15%"
                                     Title="@property.Name"
                                     Align="Align.Center" />
                 }
             }
-            <TemplateColumn Align="Align.Center" Title="Opciones">
+            <TemplateColumn Align="Align.Center" Width="10%" Title="Opciones">
                 <FluentButton IconStart="@(new Icons.Regular.Size20.Edit())"
-                              @onclick="@(() => OnEdit?.Invoke(context))" />
-                <FluentTooltip Anchor="Edit" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                              Id="@Generateid()"
+                              @onclick="@(() => OnEdit?.Invoke(context)!)" />
+                <FluentTooltip Anchor="@_counter.ToString()" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
                     Editar
                 </FluentTooltip>
 
                 <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())"
-                              @onclick="@(() => OnDelete?.Invoke(context))" />
-                <FluentTooltip Anchor="Delete" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                              Id="@Generateid()"
+                              @onclick="@(() => OnDelete?.Invoke(context)!)" />
+                <FluentTooltip Anchor="@_counter.ToString()" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
                     Borrar
                 </FluentTooltip>
             </TemplateColumn>
@@ -87,6 +89,7 @@
     
     private string CodFilter { get; set; } = string.Empty;
     private string NameFilter { get; set; } = string.Empty;
+    private int _counter = 0;
 
     private List<PropertyInfo> Properties => typeof(TItem).GetProperties().ToList();
 
@@ -133,6 +136,11 @@
     private object? GetPropertyValue(object obj, string propertyName)
     {
         return obj.GetType().GetProperty(propertyName)?.GetValue(obj);
+    }
+    
+    private string Generateid()
+    {
+        return _counter++.ToString();
     }
 
 }

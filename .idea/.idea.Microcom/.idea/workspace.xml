@@ -16,20 +16,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Banco/BancoDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Components/GenericAddUpdateDialog.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Pages/Parametros/OrigenDeFondos.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Banco/CrearBanco.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/Parametros/Banco/AddEditDialogBanco.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Helpers/Conversor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IBancoService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/BancoService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IBanco.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/CrearPlanCuenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/PlanCuenta/CrearPlanCuenta.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/PlanCuentaDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/PlanCuenta/PlanCuentaDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/PlanCta/SelectCuentaPadre.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/PlanCuenta/SelectCuentaPadre.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Banco/BancoDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Banco/BancoDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/PlanCuenta/SelectCuentaPadre.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/SelectPlanCuentas.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/PlanCuentas/AddEditDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/AddEditDialog.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/PlanCuentas/CuentaPadreDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/CuentaPadreDialog.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/PlanCuentas.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/PlanCuentas.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/Banco/AddEditDialog.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/AddEditDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/AddEditDialogPlanCuenta.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/CuentaPadreDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/SelectPlanCuentaDialog.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Parametros/OrigenDeFondos.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/OrigenDeFondos.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Parametros/PlanCuentas.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/PlanCuentas.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/BancoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/BancoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241216195236_Initial.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241216195236_Initial.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241216212918_DateString.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241216212918_DateString.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241217201733_NewTables.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241217201733_NewTables.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241217203820_UpdateFkDetalleDoc.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241217203820_UpdateFkDetalleDoc.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241218152127_AddFkBanco.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/20241218152127_AddFkBanco.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/BancoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/BancoRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,14 +90,12 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/PlanCuentas/AddEditDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/PlanCuentas/AddEditDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/PlanCuentas/AddEditDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/AddEditDialog.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -94,36 +111,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Client: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.WebApplication1: IIS Express.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.WebApplication1: http.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Client: http.executor": "Run",
+    ".NET Launch Settings Profile.WebApplication1: IIS Express.executor": "Run",
+    ".NET Launch Settings Profile.WebApplication1: http.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlserver.localdb&quot;,
-      &quot;sqlserver&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb",
+      "sqlserver"
     ],
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src&quot;
+    "rider.external.source.directories": [
+      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
+}]]></component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -299,7 +316,8 @@
       <workItem from="1734373644284" duration="12606000" />
       <workItem from="1734439445584" duration="12286000" />
       <workItem from="1734460531102" duration="13390000" />
-      <workItem from="1734531741603" duration="1622000" />
+      <workItem from="1734531741603" duration="5649000" />
+      <workItem from="1734546235194" duration="9959000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -573,7 +591,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734468024537</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Feat: CRUD of the table Banco (BackEnd) &amp;&amp; Helpers&#10;I made the repository, controller, implementation of the table Banco and also made some helpers for convert from Dto to Entitie if needed">
+      <option name="closed" value="true" />
+      <created>1734538434577</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1734538434577</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +620,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat (Authentication Client): Creation of Authentication but in the client side&#10;- Not finished yet but finishing the AuthenticationStateProvider" />
     <MESSAGE value="Feat: Continue with security&#10;- Finishing all the security&#10;- Applying it in the Client Side the manage of Login/Register" />
     <MESSAGE value="Feat: Login finished&#10;- The design of the login is finished&#10;- Make sure to only let the user login and none of the others functions available" />
     <MESSAGE value="Feat: Finished the Login and Route Protection&#10;- Finished that the user only can login before doing anything&#10;- Finished the login page" />
@@ -619,6 +644,11 @@
     <MESSAGE value="refactor: Adition of some tables and attributes&#10;I added some new tables because they were missing from the model in order to have a better parametrized software" />
     <MESSAGE value="chore: Forgot to upload the migrations&#10;jeje :D" />
     <MESSAGE value="Feat: Adition of the Banco Controller, Interface and Implementation&#10;I added all the features for the table Banco in order to habilitate the CRUD for this table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Adition of the Banco Controller, Interface and Implementation&#10;I added all the features for the table Banco in order to habilitate the CRUD for this table" />
+    <MESSAGE value="Feat: CRUD of the table Banco (BackEnd) &amp;&amp; Helpers&#10;I made the repository, controller, implementation of the table Banco and also made some helpers for convert from Dto to Entitie if needed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: CRUD of the table Banco (BackEnd) &amp;&amp; Helpers&#10;I made the repository, controller, implementation of the table Banco and also made some helpers for convert from Dto to Entitie if needed" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

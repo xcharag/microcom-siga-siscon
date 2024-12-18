@@ -12,6 +12,53 @@ namespace ServerLibrary.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Correlativos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Modulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Valor = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Correlativos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Empresas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sucursal = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Empresas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Gestiones",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mes = table.Column<int>(type: "int", nullable: false),
+                    Anho = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gestiones", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Grupos",
                 columns: table => new
                 {
@@ -65,9 +112,9 @@ namespace ServerLibrary.Migrations
                     Nivel = table.Column<int>(type: "int", nullable: false),
                     Grupo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UpdatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -180,9 +227,9 @@ namespace ServerLibrary.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UpdatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -214,9 +261,9 @@ namespace ServerLibrary.Migrations
                 name: "Bancos",
                 columns: table => new
                 {
-                    CodBanco = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CodBanco = table.Column<int>(type: "int", nullable: false),
                     NomBanco = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Moneda = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -270,9 +317,9 @@ namespace ServerLibrary.Migrations
                     UserCodUsuario = table.Column<int>(type: "int", nullable: true),
                     PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UpdatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -312,9 +359,9 @@ namespace ServerLibrary.Migrations
                     PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     UsuarioCodUsuario = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UpdatedAt = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -378,7 +425,8 @@ namespace ServerLibrary.Migrations
                     Mtodh = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Glosa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TcCostoCodCc = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    DocumentoNroDoc = table.Column<int>(type: "int", nullable: true)
+                    DocumentoNroDoc = table.Column<int>(type: "int", nullable: true),
+                    PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -388,6 +436,11 @@ namespace ServerLibrary.Migrations
                         column: x => x.DocumentoNroDoc,
                         principalTable: "Documentos",
                         principalColumn: "NroDoc");
+                    table.ForeignKey(
+                        name: "FK_DetalleDocumentos_PlanCuentas_PlanCuentaCodCuenta",
+                        column: x => x.PlanCuentaCodCuenta,
+                        principalTable: "PlanCuentas",
+                        principalColumn: "CodCuenta");
                     table.ForeignKey(
                         name: "FK_DetalleDocumentos_TcCostos_TcCostoCodCc",
                         column: x => x.TcCostoCodCc,
@@ -478,6 +531,11 @@ namespace ServerLibrary.Migrations
                 column: "DocumentoNroDoc");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DetalleDocumentos_PlanCuentaCodCuenta",
+                table: "DetalleDocumentos",
+                column: "PlanCuentaCodCuenta");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DetalleDocumentos_TcCostoCodCc",
                 table: "DetalleDocumentos",
                 column: "TcCostoCodCc");
@@ -521,6 +579,15 @@ namespace ServerLibrary.Migrations
 
             migrationBuilder.DropTable(
                 name: "Clientes");
+
+            migrationBuilder.DropTable(
+                name: "Correlativos");
+
+            migrationBuilder.DropTable(
+                name: "Empresas");
+
+            migrationBuilder.DropTable(
+                name: "Gestiones");
 
             migrationBuilder.DropTable(
                 name: "Grupos");

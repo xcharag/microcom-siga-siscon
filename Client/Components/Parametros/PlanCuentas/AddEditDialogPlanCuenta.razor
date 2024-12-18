@@ -58,11 +58,13 @@
 
         <FluentDialogFooter>
             <FluentButton Appearance="Appearance.Accent"
+                          IconStart="new Icons.Regular.Size20.Save()"
                           Type="ButtonType.Submit">
                 @(_editMode ? "Actualizar y Cerrar" : "Crear y Cerrar")
             </FluentButton>
 
             <FluentButton Appearance="Appearance.Neutral"
+                          IconStart="new Icons.Regular.Size20.PresenceBlocked()"
                           OnClick="@CancelAsync">
                 Cancelar
             </FluentButton>
@@ -84,7 +86,7 @@
     bool _editMode;
     PlanCuenta PlanCuentaModelo { get; set; } = new PlanCuenta();
 
-    protected override void OnInitialized()
+    protected override void OnInitialized() 
     {
         base.OnInitialized();
         _grupoCuenta = Content.ListaGrupos?.Select(g => g.Nombre).ToList() ?? new List<string?>();
@@ -163,12 +165,12 @@
             PreventScroll = true
         };
 
-        var cuentaPadre = new SelectCuentaPadre()
+        var cuentaPadre = new SelectPlanCuentas()
         {
             PlanCuentasCompletas = Content.PlanCuentasCompletas
         };
 
-        var dialog = await DialogService.ShowDialogAsync<CuentaPadreDialog>(cuentaPadre, parameters);
+        var dialog = await DialogService.ShowDialogAsync<SelectPlanCuentaDialog>(cuentaPadre, parameters);
         DialogResult result = await dialog.Result;
 
         if (result.Data is not null)

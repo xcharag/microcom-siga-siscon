@@ -14,5 +14,5 @@ public class BancoDto
     public string? Moneda { get; set; }
     
     [Required(ErrorMessage = "El código del plan de cuenta es requerido")]
-    public string? PlanCuentaCodCuenta { get; set; }
+    public string? PlanCuenta { get; set; }
 }
