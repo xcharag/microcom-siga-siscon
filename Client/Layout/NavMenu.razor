@@ -1,14 +1,28 @@
 ﻿@using System.Security.Claims
 @using BaseLibrary.DTOs.Menu
 
-<div class="top-row ps-3 navbar navbar-dark">
+<div class="top-row navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">
-            <h6 style="color: ghostwhite"> MicrocomTI - SisCon</h6>
-        </a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <FluentGrid Spacing="1" Justify="JustifyContent.FlexStart" AdaptiveRendering="true" Style="width: 100%">
+
+            <FluentGridItem sm="12" HiddenWhen="GridItemHidden.SmAndDown" Style="align-items: center;justify-content: center">
+                <a class="navbar-brand" href="" style="height: 58px; width: 190px; align-items: center;justify-content: center">
+                    <img alt="Logo Microcom" src="logos/SantaLuz-Sidebar.png" style="height: 58px; width: 190px"/>
+                </a>
+            </FluentGridItem>
+
+            <FluentGridItem xs="8" sm="8" HiddenWhen="GridItemHidden.MdAndUp">
+                <a class="navbar-brand" href="">
+                    <h6 style="color: ghostwhite"> MicrocomTI - SisCon</h6>
+                </a>
+            </FluentGridItem>
+
+            <FluentGridItem xs="4" sm="4" Justify="JustifyContent.Center">
+                <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </FluentGridItem>
+        </FluentGrid>
     </div>
 </div>
 

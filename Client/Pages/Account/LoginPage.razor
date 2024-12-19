@@ -3,33 +3,35 @@
 @layout EmptyLayout
 
 <div class="contenedor" style="width:100dvw;height:100dvh;justify-content:center;align-items:center;display:grid;">
-    <FluentCard Width="350px" Height="490px" Style="justify-content: center">
-        <FluentEditForm Model="@_loginModel" OnValidSubmit="HandleLogin" Style="margin-left:20px;margin-right:20px;">
-            <DataAnnotationsValidator/>
+    <FluentStack Orientation="Orientation.Vertical" Style="place-items: center;place-content: center">
+        <FluentCard Width="350px" Height="490px" Style="justify-content: center">
+            <FluentEditForm Model="@_loginModel" OnValidSubmit="HandleLogin" Style="margin-left:20px;margin-right:20px;">
+                <DataAnnotationsValidator/>
 
-            <FluentStack Orientation="Orientation.Vertical">
-                <FluentGrid Justify="JustifyContent.Center" Style="width: 100%;padding: 40px;">
-                    <img src="logos/MCC.jpg" style="width: 150px;height: 150px;" alt="Microcom Logo"/>
-                </FluentGrid>
+                <FluentStack Orientation="Orientation.Vertical">
+                    <FluentGrid Justify="JustifyContent.Center" Style="width: 100%;padding: 40px;">
+                        <img src="logos/Microcom-LogIn.png" style="width: 150px;height: 150px;" alt="Microcom Logo"/>
+                    </FluentGrid>
 
-                <FluentTextField Id="UsernameField" @bind-Value="@_loginModel.Username" Style="width: 100%" Label="Nombre de Usuario" Placeholder="Nombre de Usuario">
-                    <FluentIcon Value="@(new Icons.Regular.Size24.Person())" Slot="start" Color="Color.Neutral" />
-                </FluentTextField>
-                <FluentValidationMessage For="@(() => _loginModel.Username)"></FluentValidationMessage>
+                    <FluentTextField Id="UsernameField" @bind-Value="@_loginModel.Username" Style="width: 100%" Label="Nombre de Usuario" Placeholder="Nombre de Usuario">
+                        <FluentIcon Value="@(new Icons.Regular.Size24.Person())" Slot="start" Color="Color.Neutral"/>
+                    </FluentTextField>
+                    <FluentValidationMessage For="@(() => _loginModel.Username)"></FluentValidationMessage>
 
-                <FluentTextField Id="PasswordField" @bind-Value="@_loginModel.Password" TextFieldType="TextFieldType.Password" Label="Clave/Contraseña" Style="width: 100%" Placeholder="Clave/Contraseña">
-                    <FluentIcon Value="@(new Icons.Regular.Size24.Password())" Slot="start" Color="Color.Neutral" />
-                </FluentTextField>
-                <FluentValidationMessage For="@(() => _loginModel.Password)"></FluentValidationMessage>
+                    <FluentTextField Id="PasswordField" @bind-Value="@_loginModel.Password" TextFieldType="TextFieldType.Password" Label="Clave/Contraseña" Style="width: 100%" Placeholder="Clave/Contraseña">
+                        <FluentIcon Value="@(new Icons.Regular.Size24.Password())" Slot="start" Color="Color.Neutral"/>
+                    </FluentTextField>
+                    <FluentValidationMessage For="@(() => _loginModel.Password)"></FluentValidationMessage>
 
-                <FluentGrid Justify="JustifyContent.FlexEnd" Style="width: 100%">
-                    <div>
-                        <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent" Loading="@BusyIndicator">Iniciar Sesion</FluentButton>
-                    </div>
-                </FluentGrid>
-            </FluentStack>
-        </FluentEditForm>
-    </FluentCard>
+                    <FluentGrid Justify="JustifyContent.FlexEnd" Style="width: 100%">
+                        <div>
+                            <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent" Loading="@BusyIndicator">Iniciar Sesion</FluentButton>
+                        </div>
+                    </FluentGrid>
+                </FluentStack>
+            </FluentEditForm>
+        </FluentCard>
+    </FluentStack>
 </div>
 
 @code {
