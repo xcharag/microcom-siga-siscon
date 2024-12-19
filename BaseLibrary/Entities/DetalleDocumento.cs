@@ -7,10 +7,10 @@ public class DetalleDocumento
 {
     [Required]
     [Key]
-    public int? NroDetalleDoc { get; set; }
+    public string? NroDetalleDoc { get; set; }
 
     [Required]
-    public int? Correl { get; set; }
+    public string? Correl { get; set; }
 
     [Required]
     public string? Tipo { get; set; }
@@ -36,10 +36,13 @@ public class DetalleDocumento
     
     //Many to One
     public TcCosto? TcCosto { get; set; }
+    public string? TcCostoCodCc { get; set; }
     
     public Documento? Documento { get; set; }
+    public string? DocumentoNroDoc { get; set; }
     
     public PlanCuenta? PlanCuenta { get; set; }
+    public string? PlanCuentaCodCuenta { get; set; }
     
     //One to Many
     public List<Anexos>? Anexos { get; set; }

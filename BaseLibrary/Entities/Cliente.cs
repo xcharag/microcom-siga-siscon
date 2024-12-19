@@ -7,7 +7,7 @@ public class Cliente : BaseEntity
 {
     [Required]
     [Key]
-    public int? CodCli { get; set; }
+    public string? CodCli { get; set; }
     
     [Required]
     public string? NomCli { get; set; }
@@ -47,6 +47,11 @@ public class Cliente : BaseEntity
     
     //Many-to-One Relationship
     public TipoCliente? ClientType { get; set; }
+    public int? ClientTypeCodTipoCli { get; set; }
+    
     public Usuario? User { get; set; }
+    public int? UserCodUsuario { get; set; }
+    
     public PlanCuenta? PlanCuenta { get; set; }
+    public string? PlanCuentaCodCuenta { get; set; }
 }

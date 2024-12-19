@@ -7,7 +7,7 @@ public class Anexos
 {
     [Required]
     [Key]
-    public int? NroAnexo { get; set; }
+    public string? NroAnexo { get; set; }
 
     [Required]
     public int? Correl { get; set; }
@@ -53,8 +53,11 @@ public class Anexos
     
     //Many to One
     public DetalleDocumento? DetalleDocumento { get; set; }
+    public string? DetalleDocumentoNroDetalleDoc { get; set; }
     
     public TipoEgreso? TipoEgreso { get; set; }
+    public string? TipoEgresoCodTipoEgreso { get; set; }
 
     public Proveedor? Proveedor { get; set; }
+    public string? ProveedorCodProveedor { get; set; }
 }

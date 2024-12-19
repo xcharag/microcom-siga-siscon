@@ -7,7 +7,7 @@ public class Proveedor : BaseEntity
 {
     [Required]
     [Key]
-    public int? CodProv { get; set; }
+    public string? CodProveedor { get; set; }
 
     [Required]
     public string? NomProv { get; set; }
@@ -39,8 +39,10 @@ public class Proveedor : BaseEntity
     
     //Many-to-One Relationship
     public PlanCuenta? PlanCuenta { get; set; }
+    public string? PlanCuentaCodCuenta { get; set; }
     
     public Usuario? Usuario { get; set; }
+    public int? UsuarioCodUsuario { get; set; }
     
     //One-to-Many Relationship
     public List<Documento>? Documentos { get; set; }

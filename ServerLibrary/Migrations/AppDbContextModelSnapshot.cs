@@ -24,11 +24,8 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.Anexos", b =>
                 {
-                    b.Property<int>("NroAnexo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroAnexo"));
+                    b.Property<string>("NroAnexo")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Correl")
                         .HasColumnType("int");
@@ -36,8 +33,8 @@ namespace ServerLibrary.Migrations
                     b.Property<decimal>("Descuento")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int?>("DetalleDocumentoNroDetalleDoc")
-                        .HasColumnType("int");
+                    b.Property<string>("DetalleDocumentoNroDetalleDoc")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Excento")
                         .HasColumnType("decimal(18, 2)");
@@ -68,20 +65,20 @@ namespace ServerLibrary.Migrations
                     b.Property<int>("NroFactura")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProveedorCodProv")
-                        .HasColumnType("int");
+                    b.Property<string>("ProveedorCodProveedor")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Sujeto")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int?>("TipoEgresoCodTipoEgreso")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoEgresoCodTipoEgreso")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("NroAnexo");
 
                     b.HasIndex("DetalleDocumentoNroDetalleDoc");
 
-                    b.HasIndex("ProveedorCodProv");
+                    b.HasIndex("ProveedorCodProveedor");
 
                     b.HasIndex("TipoEgresoCodTipoEgreso");
 
@@ -113,11 +110,8 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.Cliente", b =>
                 {
-                    b.Property<int>("CodCli")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodCli"));
+                    b.Property<string>("CodCli")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Ciudad")
                         .IsRequired()
@@ -228,17 +222,15 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.DetalleDocumento", b =>
                 {
-                    b.Property<int>("NroDetalleDoc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("NroDetalleDoc")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroDetalleDoc"));
+                    b.Property<string>("Correl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Correl")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DocumentoNroDoc")
-                        .HasColumnType("int");
+                    b.Property<string>("DocumentoNroDoc")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Glosa")
                         .IsRequired()
@@ -279,11 +271,8 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.Documento", b =>
                 {
-                    b.Property<int>("NroDoc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroDoc"));
+                    b.Property<string>("NroDoc")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("BancoCodBanco")
                         .HasColumnType("int");
@@ -320,14 +309,14 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProveedorCodProv")
-                        .HasColumnType("int");
+                    b.Property<string>("ProveedorCodProveedor")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("NroDoc");
 
                     b.HasIndex("BancoCodBanco");
 
-                    b.HasIndex("ProveedorCodProv");
+                    b.HasIndex("ProveedorCodProveedor");
 
                     b.ToTable("Documentos");
                 });
@@ -513,11 +502,8 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.Proveedor", b =>
                 {
-                    b.Property<int>("CodProv")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodProv"));
+                    b.Property<string>("CodProveedor")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CodigoEx")
                         .IsRequired()
@@ -571,7 +557,7 @@ namespace ServerLibrary.Migrations
                     b.Property<int?>("UsuarioCodUsuario")
                         .HasColumnType("int");
 
-                    b.HasKey("CodProv");
+                    b.HasKey("CodProveedor");
 
                     b.HasIndex("PlanCuentaCodCuenta");
 
@@ -690,11 +676,8 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.TipoEgreso", b =>
                 {
-                    b.Property<int>("CodTipoEgreso")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodTipoEgreso"));
+                    b.Property<string>("CodTipoEgreso")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
@@ -777,7 +760,7 @@ namespace ServerLibrary.Migrations
 
                     b.HasOne("BaseLibrary.Entities.Proveedor", "Proveedor")
                         .WithMany("Anexos")
-                        .HasForeignKey("ProveedorCodProv");
+                        .HasForeignKey("ProveedorCodProveedor");
 
                     b.HasOne("BaseLibrary.Entities.TipoEgreso", "TipoEgreso")
                         .WithMany("Anexos")
@@ -849,7 +832,7 @@ namespace ServerLibrary.Migrations
 
                     b.HasOne("BaseLibrary.Entities.Proveedor", "Proveedor")
                         .WithMany("Documentos")
-                        .HasForeignKey("ProveedorCodProv");
+                        .HasForeignKey("ProveedorCodProveedor");
 
                     b.Navigation("Banco");
 

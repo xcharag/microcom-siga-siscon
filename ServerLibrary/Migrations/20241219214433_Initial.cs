@@ -280,8 +280,7 @@ namespace ServerLibrary.Migrations
                 name: "TipoEgresos",
                 columns: table => new
                 {
-                    CodTipoEgreso = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CodTipoEgreso = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -299,8 +298,7 @@ namespace ServerLibrary.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    CodCli = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CodCli = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     NomCli = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Contacto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DirCli = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -345,8 +343,7 @@ namespace ServerLibrary.Migrations
                 name: "Proveedores",
                 columns: table => new
                 {
-                    CodProv = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CodProveedor = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     NomProv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DirProv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TelProv = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -365,7 +362,7 @@ namespace ServerLibrary.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Proveedores", x => x.CodProv);
+                    table.PrimaryKey("PK_Proveedores", x => x.CodProveedor);
                     table.ForeignKey(
                         name: "FK_Proveedores_PlanCuentas_PlanCuentaCodCuenta",
                         column: x => x.PlanCuentaCodCuenta,
@@ -382,8 +379,7 @@ namespace ServerLibrary.Migrations
                 name: "Documentos",
                 columns: table => new
                 {
-                    NroDoc = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NroDoc = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FechaDoc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NroCheque = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -393,7 +389,7 @@ namespace ServerLibrary.Migrations
                     Origen = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HoraRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProveedorCodProv = table.Column<int>(type: "int", nullable: true),
+                    ProveedorCodProveedor = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     BancoCodBanco = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -405,19 +401,18 @@ namespace ServerLibrary.Migrations
                         principalTable: "Bancos",
                         principalColumn: "CodBanco");
                     table.ForeignKey(
-                        name: "FK_Documentos_Proveedores_ProveedorCodProv",
-                        column: x => x.ProveedorCodProv,
+                        name: "FK_Documentos_Proveedores_ProveedorCodProveedor",
+                        column: x => x.ProveedorCodProveedor,
                         principalTable: "Proveedores",
-                        principalColumn: "CodProv");
+                        principalColumn: "CodProveedor");
                 });
 
             migrationBuilder.CreateTable(
                 name: "DetalleDocumentos",
                 columns: table => new
                 {
-                    NroDetalleDoc = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Correl = table.Column<int>(type: "int", nullable: false),
+                    NroDetalleDoc = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Correl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Mtobd = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Mtodd = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -425,7 +420,7 @@ namespace ServerLibrary.Migrations
                     Mtodh = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Glosa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TcCostoCodCc = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    DocumentoNroDoc = table.Column<int>(type: "int", nullable: true),
+                    DocumentoNroDoc = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     PlanCuentaCodCuenta = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -452,8 +447,7 @@ namespace ServerLibrary.Migrations
                 name: "Anexos",
                 columns: table => new
                 {
-                    NroAnexo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NroAnexo = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Correl = table.Column<int>(type: "int", nullable: false),
                     Nit = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaFactura = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -466,9 +460,9 @@ namespace ServerLibrary.Migrations
                     Ice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Excento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DetalleDocumentoNroDetalleDoc = table.Column<int>(type: "int", nullable: true),
-                    TipoEgresoCodTipoEgreso = table.Column<int>(type: "int", nullable: true),
-                    ProveedorCodProv = table.Column<int>(type: "int", nullable: true)
+                    DetalleDocumentoNroDetalleDoc = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TipoEgresoCodTipoEgreso = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ProveedorCodProveedor = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -479,10 +473,10 @@ namespace ServerLibrary.Migrations
                         principalTable: "DetalleDocumentos",
                         principalColumn: "NroDetalleDoc");
                     table.ForeignKey(
-                        name: "FK_Anexos_Proveedores_ProveedorCodProv",
-                        column: x => x.ProveedorCodProv,
+                        name: "FK_Anexos_Proveedores_ProveedorCodProveedor",
+                        column: x => x.ProveedorCodProveedor,
                         principalTable: "Proveedores",
-                        principalColumn: "CodProv");
+                        principalColumn: "CodProveedor");
                     table.ForeignKey(
                         name: "FK_Anexos_TipoEgresos_TipoEgresoCodTipoEgreso",
                         column: x => x.TipoEgresoCodTipoEgreso,
@@ -496,9 +490,9 @@ namespace ServerLibrary.Migrations
                 column: "DetalleDocumentoNroDetalleDoc");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Anexos_ProveedorCodProv",
+                name: "IX_Anexos_ProveedorCodProveedor",
                 table: "Anexos",
-                column: "ProveedorCodProv");
+                column: "ProveedorCodProveedor");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Anexos_TipoEgresoCodTipoEgreso",
@@ -546,9 +540,9 @@ namespace ServerLibrary.Migrations
                 column: "BancoCodBanco");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Documentos_ProveedorCodProv",
+                name: "IX_Documentos_ProveedorCodProveedor",
                 table: "Documentos",
-                column: "ProveedorCodProv");
+                column: "ProveedorCodProveedor");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MenuItems_MenuId",
