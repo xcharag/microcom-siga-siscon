@@ -16,15 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/wwwroot/logos/Microcom-LogIn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/wwwroot/logos/Microcom-Sidebar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Layout/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Layout/MainLayout.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Layout/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Layout/NavMenu.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Layout/NavMenu.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Account/LoginPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Account/LoginPage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/logos/MCC.jpg" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IGenericServiceInterfaceString.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/GenericServiceImplementationString.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +110,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -295,6 +289,7 @@
       <workItem from="1734531741603" duration="5649000" />
       <workItem from="1734546235194" duration="12514000" />
       <workItem from="1734617168018" duration="6854000" />
+      <workItem from="1734633541143" duration="11232000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -584,7 +579,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734556851936</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="refactor: Modifying the color palette and the design of the main layout and login page&#10;I did this in order to make a better look for the web page&#10;- I make all the necesary changes for a better look but some changes like the scroll in mobile has not been implemented">
+      <option name="closed" value="true" />
+      <created>1734640596357</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1734640596357</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat: Implementation of the CRUD for Centro de Costo (Only BackEnd)&#10;I created the implementation for the BackEnd for Centro de Costo Table">
+      <option name="closed" value="true" />
+      <created>1734645831614</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1734645831614</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,8 +616,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: Login finished&#10;- The design of the login is finished&#10;- Make sure to only let the user login and none of the others functions available" />
-    <MESSAGE value="Feat: Finished the Login and Route Protection&#10;- Finished that the user only can login before doing anything&#10;- Finished the login page" />
     <MESSAGE value="Feat: Implemented the Token with the Weather Template&#10;- Implementation of restricted Endpoints using the weather template endpoint" />
     <MESSAGE value="Feat: Creation of The Menus&#10;- Creation of the Tables Menu and Menu Items&#10;- Implementation of the Create Endpoints of each table&#10;- Declaration of the others endpoints to implement" />
     <MESSAGE value="Feat: New Page and CustomHttpHandler.cs&#10;- Creation of 404 page&#10;- Creation of HttpHanlder so it regenrates the token if it has reached the time limit" />
@@ -630,7 +639,9 @@
     <MESSAGE value="Feat: Adition of the Banco Controller, Interface and Implementation&#10;I added all the features for the table Banco in order to habilitate the CRUD for this table" />
     <MESSAGE value="Feat: CRUD of the table Banco (BackEnd) &amp;&amp; Helpers&#10;I made the repository, controller, implementation of the table Banco and also made some helpers for convert from Dto to Entitie if needed" />
     <MESSAGE value="Feat: Bancos CRUD Finished with FrontEnd and BackEnd Implementation&#10;I made all the necesarie changes for Bancos CRUD start working and also made some small changes to the UI of the generic data grid because it was not making the columns size properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Bancos CRUD Finished with FrontEnd and BackEnd Implementation&#10;I made all the necesarie changes for Bancos CRUD start working and also made some small changes to the UI of the generic data grid because it was not making the columns size properly" />
+    <MESSAGE value="refactor: Modifying the color palette and the design of the main layout and login page&#10;I did this in order to make a better look for the web page&#10;- I make all the necesary changes for a better look but some changes like the scroll in mobile has not been implemented" />
+    <MESSAGE value="feat: Implementation of the CRUD for Centro de Costo (Only BackEnd)&#10;I created the implementation for the BackEnd for Centro de Costo Table" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Implementation of the CRUD for Centro de Costo (Only BackEnd)&#10;I created the implementation for the BackEnd for Centro de Costo Table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

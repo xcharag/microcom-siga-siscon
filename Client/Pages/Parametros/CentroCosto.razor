@@ -1,17 +1,17 @@
-@page "/origenfondos"
+@page "/centrocosto"
 @using Client.Components
-@using Client.Components.Parametros.Banco
+@using Client.Components.Parametros.CentroCosto
 
-<PageTitle>Origen de Fondos</PageTitle>
+<PageTitle>Centro de Costos</PageTitle>
 
-<h2>Origenes de Fondos</h2>
+<h2>CentroCosto</h2>
 
-<GenericDataGrid TItem="BancoDto"
-                 Items="@_bancos"
-                 ItemsQueryable="_bancos?.AsQueryable()"
+<GenericDataGrid TItem="CentroCostoDto"
+                 Items="@_centrosCostos"
+                 ItemsQueryable="_centrosCostos?.AsQueryable()"
                  OnEdit="HandleEditar"
                  OnDelete="HandleBorrar"
-                 TipoItem="Banco"
+                 TipoItem="CentroCostoDto"
                  Pagination="@_pagination"/>
 
 <FluentStack Orientation="Orientation.Horizontal" Style="margin-top: 1rem">
@@ -30,41 +30,37 @@
 </FluentStack>
 
 @code {
-    private IEnumerable<BancoDto>? _bancos;
+    private IEnumerable<CentroCostoDto>? _centrosCostos;
     private readonly PaginationState _pagination = new PaginationState();
-    bool _loading = false;
+    bool _loading;
     
     //Table Buttons
-    private async Task HandleEditar(BancoDto banco)
+    private async Task HandleEditar(CentroCostoDto centroCosto)
     {
         DialogParameters parameters = new DialogParameters()
         {
-            Title = "Editar Banco",
+            Title = "Editar Centro de Costo",
             Width = "600px",
             TrapFocus = true,
             Modal = false,
             PreventScroll = true
         };
         
-        var bancoEdit = new CrearBanco()
-        {
-            BancoDto = banco,
-            IsEditMode = true
-        };
-        
-        var dialog = await DialogService.ShowDialogAsync<AddEditDialogBanco>(bancoEdit, parameters);
+        var dialog = await DialogService.ShowDialogAsync<AddEditCentroCosto>(centroCosto, parameters);
         DialogResult result = await dialog.Result;
         
         if (!result.Cancelled)
         {
             await ReloadTableAsync();
+            _loading = false;
         }
+        _loading = false;
     }
-    private async Task HandleBorrar(BancoDto banco)
+    private async Task HandleBorrar(CentroCostoDto centroCostoDto)
     {
         DialogParameters parameters = new DialogParameters()
         {
-            Title = "Eliminar Banco",
+            Title = "Eliminar Centro de Costo",
             Width = "400px",
             TrapFocus = true,
             Modal = false,
@@ -72,9 +68,9 @@
         };
         
         List<string> message = new List<string>();
-        message.Insert(0,"¿Estas seguro que deseas eliminar el Banco?");
-        message.Insert(1,$"Codigo: {banco.CodBanco}");
-        message.Insert(2,$"Nombre: {banco.NomBanco}");
+        message.Insert(0,"¿Estas seguro que deseas eliminar el Centro de Costo?");
+        message.Insert(1,$"Codigo: {centroCostoDto.CodCc}");
+        message.Insert(2,$"Nombre: {centroCostoDto.NomCc}");
         message.Insert(3,"Esta acción no se puede deshacer.");
         
         var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, parameters);
@@ -82,11 +78,11 @@
         
         if (result.Data is not null && (bool) result.Data)
         {
-            var response = await BancoService.Delete(banco.CodBanco!, "api/Banco");
+            var response = await CentroCostoService.Delete(centroCostoDto.CodCc!, "api/CentroCosto");
             if (response.Flag)
             {
                 ToastService.ShowSuccess(response.Message);
-                await GetBancosAsync();
+                await GetCentrosCostos();
             }
             else
             {
@@ -98,16 +94,16 @@
     {
         DialogParameters parameters = new DialogParameters()
         {
-            Title = "Crear Banco",
+            Title = "Crear Centro de Costo",
             Width = "600px",
             TrapFocus = true,
             Modal = false,
             PreventScroll = true
         };
         
-        var bancoEmpty = new CrearBanco();
+        var centroCostoEmpty = new CentroCostoDto();
         
-        var dialog = await DialogService.ShowDialogAsync<AddEditDialogBanco>(bancoEmpty, parameters);
+        var dialog = await DialogService.ShowDialogAsync<AddEditCentroCosto>(centroCostoEmpty, parameters);
         DialogResult result = await dialog.Result;
         
         if (!result.Cancelled)
@@ -120,32 +116,25 @@
     private async Task ReloadTableAsync()
     {
         _loading = true;
-        await GetBancosAsync();
+        await GetCentrosCostos();
         _loading = false;
     }
     
     protected override async Task OnInitializedAsync()
     {
-        if (_bancos is null)
+        if (_centrosCostos is null)
         {
-            await GetBancosAsync();
+            await GetCentrosCostos();
         }
     }
-    private async Task GetBancosAsync()
+    private async Task GetCentrosCostos()
     {
-        var bancosEntities = await BancoService.GetAll("api/Banco");
-        //Convert to BancoDto
-        if (bancosEntities is not null)
+        var centroCostos = await CentroCostoService.GetAll("api/CentroCosto");
+        
+        if (centroCostos is not null)
         {
-            _bancos = bancosEntities.Select(b => new BancoDto()
-            {
-                CodBanco = b.CodBanco,
-                NomBanco = b.NomBanco,
-                Moneda = b.Moneda,
-                PlanCuenta = b.PlanCuenta
-            });
+            _centrosCostos = centroCostos;
         }
         StateHasChanged();
     }
-
 }

@@ -10,6 +10,7 @@
 @using Client.Layout
 @using BaseLibrary.DTOs
 @using BaseLibrary.DTOs.Parametros.Banco
+@using BaseLibrary.DTOs.Parametros.CentroCosto
 @using BaseLibrary.Entities
 @using ClientLibrary.Helpers
 @using ClientLibrary.Services.Contracts
@@ -30,3 +31,4 @@
 @inject IMenuNavService MenuNavService
 @inject IPlanCuentaService PlanCuentaService
 @inject IBancoService BancoService
+@inject IGenericServiceInterfaceString<CentroCostoDto> CentroCostoService
