@@ -1,6 +1,6 @@
 using System.Text;
-using BaseLibrary.DTOs.Parametros.Banco;
 using BaseLibrary.DTOs.Parametros.CentroCosto;
+using BaseLibrary.DTOs.Parametros.Proveedor;
 using BaseLibrary.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +53,7 @@ builder.Services.AddScoped<IBanco, BancoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Grupo>, GrupoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Nivel>, NivelesRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterfaceString<CentroCostoDto>, CentroCostoRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<ProveedorDto>, ProveedorRepository>();
 
 
 builder.Services.AddCors(options =>

@@ -343,13 +343,15 @@ namespace ServerLibrary.Migrations
                 name: "Proveedores",
                 columns: table => new
                 {
-                    CodProveedor = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CodProveedor = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NomProv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DirProv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TelProv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmailProv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Contacto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NroDoc = table.Column<int>(type: "int", nullable: false),
+                    TipoDoc = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NroDoc = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CodigoEx = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Complemento = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LimiteCre = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -383,13 +385,15 @@ namespace ServerLibrary.Migrations
                     FechaDoc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NroCheque = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Glosa1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Glosa2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Moneda = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Importe = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Origen = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HoraRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProveedorCodProveedor = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ProveedorCodProveedor = table.Column<int>(type: "int", nullable: true),
                     BancoCodBanco = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -462,7 +466,7 @@ namespace ServerLibrary.Migrations
                     Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DetalleDocumentoNroDetalleDoc = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TipoEgresoCodTipoEgreso = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ProveedorCodProveedor = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ProveedorCodProveedor = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

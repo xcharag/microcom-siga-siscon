@@ -1,12 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BaseLibrary.Entities;
+namespace BaseLibrary.DTOs.Parametros.Proveedor;
 
-public class Proveedor : BaseEntity
+public class ProveedorDto
 {
-    [Required]
-    [Key]
     public int? CodProveedor { get; set; }
 
     [Required]
@@ -23,10 +21,10 @@ public class Proveedor : BaseEntity
 
     [Required]
     public string? Contacto { get; set; }
-
+    
     [Required]
     public string? TipoDoc { get; set; }
-    
+
     [Required]
     public string? NroDoc { get; set; }
 
@@ -37,15 +35,7 @@ public class Proveedor : BaseEntity
     public string? Complemento { get; set; }
 
     [Required]
-    [Column(TypeName = "decimal(18, 2)")]
     public decimal? LimiteCre { get; set; }
     
-    //Many-to-One Relationship
-    public PlanCuenta? PlanCuenta { get; set; }
     public string? PlanCuentaCodCuenta { get; set; }
-    
-    //One-to-Many Relationship
-    public List<Documento>? Documentos { get; set; }
-    
-    public List<Anexos>? Anexos { get; set; }
 }

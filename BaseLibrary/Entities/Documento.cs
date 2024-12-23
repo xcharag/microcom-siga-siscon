@@ -18,6 +18,12 @@ public class Documento
 
     [Required]
     public string? NroCheque { get; set; }
+    
+    [Required]
+    public string? Glosa1 { get; set; }
+    
+    [Required]
+    public string? Glosa2 { get; set; }
 
     [Required]
     public string? Moneda { get; set; }
@@ -44,7 +50,7 @@ public class Documento
     
     //Many-to-One Relationship
     public Proveedor? Proveedor { get; set; }
-    public string? ProveedorCodProveedor { get; set; }
+    public int? ProveedorCodProveedor { get; set; }
     public Banco? Banco { get; set; }
     public int? BancoCodBanco { get; set; }
 }

@@ -32,11 +32,11 @@ public class BancoRepository(AppDbContext appDbContext) : IBanco
 
     public async Task<GeneralResponse> Create(BancoDto item)
     {
-        if(!await CheckId(item.CodBanco)) return new GeneralResponse(false, "El banco ya existe");
+        if(!await CheckId(item.CodBanco)) return new GeneralResponse(false, "Ese Id de banco ya existe");
         var checkPlanCuenta = await appDbContext.PlanCuentas.FindAsync(item.PlanCuenta);
         if(checkPlanCuenta is null) return new GeneralResponse(false, "No se encontró el plan de cuenta");
+        if(checkPlanCuenta.TipoCuenta != "Detalle") return new GeneralResponse(false, "El plan de cuenta no es de tipo detalle");
         
-        item.CodBanco = GenerateId(item.PlanCuenta!);
         var itemEntity = new Banco()
         {
             CodBanco = item.CodBanco,
@@ -46,8 +46,10 @@ public class BancoRepository(AppDbContext appDbContext) : IBanco
             PlanCuenta = checkPlanCuenta
         };
         
+        checkPlanCuenta!.Bancos!.Add(itemEntity);
         appDbContext.Bancos.Add(itemEntity);
         await Commit();
+        
         return new GeneralResponse(true, "Operación exitosa");
     }
 

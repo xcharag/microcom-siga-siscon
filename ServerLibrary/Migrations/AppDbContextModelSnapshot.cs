@@ -65,8 +65,8 @@ namespace ServerLibrary.Migrations
                     b.Property<int>("NroFactura")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProveedorCodProveedor")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ProveedorCodProveedor")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Sujeto")
                         .HasColumnType("decimal(18, 2)");
@@ -287,6 +287,14 @@ namespace ServerLibrary.Migrations
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Glosa1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Glosa2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("HoraRegistro")
                         .HasColumnType("datetime2");
 
@@ -309,8 +317,8 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProveedorCodProveedor")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ProveedorCodProveedor")
+                        .HasColumnType("int");
 
                     b.HasKey("NroDoc");
 
@@ -502,8 +510,11 @@ namespace ServerLibrary.Migrations
 
             modelBuilder.Entity("BaseLibrary.Entities.Proveedor", b =>
                 {
-                    b.Property<string>("CodProveedor")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CodProveedor")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodProveedor"));
 
                     b.Property<string>("CodigoEx")
                         .IsRequired()
@@ -538,13 +549,18 @@ namespace ServerLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NroDoc")
-                        .HasColumnType("int");
+                    b.Property<string>("NroDoc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlanCuentaCodCuenta")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TelProv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoDoc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -854,13 +870,11 @@ namespace ServerLibrary.Migrations
                         .WithMany("Proveedores")
                         .HasForeignKey("PlanCuentaCodCuenta");
 
-                    b.HasOne("BaseLibrary.Entities.Usuario", "Usuario")
+                    b.HasOne("BaseLibrary.Entities.Usuario", null)
                         .WithMany("Proveedores")
                         .HasForeignKey("UsuarioCodUsuario");
 
                     b.Navigation("PlanCuenta");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("BaseLibrary.Entities.TipoEgreso", b =>

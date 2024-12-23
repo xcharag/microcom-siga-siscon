@@ -59,5 +59,5 @@ public class Anexos
     public string? TipoEgresoCodTipoEgreso { get; set; }
 
     public Proveedor? Proveedor { get; set; }
-    public string? ProveedorCodProveedor { get; set; }
+    public int? ProveedorCodProveedor { get; set; }
 }

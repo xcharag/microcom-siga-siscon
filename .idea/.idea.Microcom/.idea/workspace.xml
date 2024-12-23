@@ -16,9 +16,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IGenericServiceInterfaceString.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/GenericServiceImplementationString.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/ProveedorController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/ProveedorRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/BancoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/BancoRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +65,6 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Components/Parametros/PlanCuentas/AddEditDialog.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
@@ -290,6 +294,9 @@
       <workItem from="1734546235194" duration="12514000" />
       <workItem from="1734617168018" duration="6854000" />
       <workItem from="1734633541143" duration="11232000" />
+      <workItem from="1734703192968" duration="8002000" />
+      <workItem from="1734725229224" duration="4623000" />
+      <workItem from="1734958607291" duration="9425000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -595,7 +602,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734645831614</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="feat: FrontEnd Crud finished for Centro de Costos&#10;I added all the necesary injectioins, components and pages for the Centro de Costos CRUD submenu">
+      <option name="closed" value="true" />
+      <created>1734711556583</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1734711556583</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: Implemented the Token with the Weather Template&#10;- Implementation of restricted Endpoints using the weather template endpoint" />
     <MESSAGE value="Feat: Creation of The Menus&#10;- Creation of the Tables Menu and Menu Items&#10;- Implementation of the Create Endpoints of each table&#10;- Declaration of the others endpoints to implement" />
     <MESSAGE value="Feat: New Page and CustomHttpHandler.cs&#10;- Creation of 404 page&#10;- Creation of HttpHanlder so it regenrates the token if it has reached the time limit" />
     <MESSAGE value="docs: Creation of New Migrations&#10;Created new migrations for the tables created in past commits. This involved:&#10;- Using Entity framework to create the migrations" />
@@ -641,7 +655,8 @@
     <MESSAGE value="Feat: Bancos CRUD Finished with FrontEnd and BackEnd Implementation&#10;I made all the necesarie changes for Bancos CRUD start working and also made some small changes to the UI of the generic data grid because it was not making the columns size properly" />
     <MESSAGE value="refactor: Modifying the color palette and the design of the main layout and login page&#10;I did this in order to make a better look for the web page&#10;- I make all the necesary changes for a better look but some changes like the scroll in mobile has not been implemented" />
     <MESSAGE value="feat: Implementation of the CRUD for Centro de Costo (Only BackEnd)&#10;I created the implementation for the BackEnd for Centro de Costo Table" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Implementation of the CRUD for Centro de Costo (Only BackEnd)&#10;I created the implementation for the BackEnd for Centro de Costo Table" />
+    <MESSAGE value="feat: FrontEnd Crud finished for Centro de Costos&#10;I added all the necesary injectioins, components and pages for the Centro de Costos CRUD submenu" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: FrontEnd Crud finished for Centro de Costos&#10;I added all the necesary injectioins, components and pages for the Centro de Costos CRUD submenu" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
