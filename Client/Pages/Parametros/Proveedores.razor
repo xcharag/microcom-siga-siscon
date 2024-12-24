@@ -1,0 +1,153 @@
+@page "/proveedores"
+@using Client.Components
+@using Client.Components.Parametros.Proveedor
+
+<PageTitle>Proveedores</PageTitle>
+
+<h2>Proveedores</h2>
+
+<GenericDataGrid TItem="ProveedorDto"
+                 Items="@_proveedores"
+                 ItemsQueryable="_proveedores?.AsQueryable()"
+                 OnEdit="HandleEditar"
+                 OnDelete="HandleBorrar"
+                 TipoItem="ProveedorDto"
+                 Pagination="@_pagination"/>
+
+<FluentStack Orientation="Orientation.Horizontal" Style="margin-top: 1rem">
+    <FluentButton IconStart="@(new Icons.Regular.Size20.ArrowCounterclockwise())"
+                  Appearance="Appearance.Accent"
+                  @onclick="ReloadTableAsync"
+                  Loading="@_loading">
+        Recargar Tabla
+    </FluentButton>
+
+    <FluentButton IconStart="@(new Icons.Color.Size20.AddCircle())"
+                  Appearance="Appearance.Accent"
+                  @onclick="@OpenCreateDialogAsync">
+        Crear Nuevo
+    </FluentButton>
+</FluentStack>
+
+@code {
+    private IEnumerable<ProveedorDto>? _proveedores;
+    private readonly PaginationState _pagination = new PaginationState();
+    bool _loading = false;
+    
+    //Table Buttons
+    private async Task HandleEditar(ProveedorDto proveedor)
+    {
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Editar Proveedor",
+            Width = "600px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        var proveedorEdit = new ProveedorDto()
+        {
+            CodProveedor = proveedor.CodProveedor,
+            NomProv = proveedor.NomProv,
+            DirProv = proveedor.DirProv,
+            TelProv = proveedor.TelProv,
+            EmailProv = proveedor.EmailProv,
+            Contacto = proveedor.Contacto,
+            TipoDoc = proveedor.TipoDoc,
+            NroDoc = proveedor.NroDoc,
+            CodigoEx = proveedor.CodigoEx,
+            Complemento = proveedor.Complemento,
+            LimiteCre = proveedor.LimiteCre,
+            PlanCuentaCodCuenta = proveedor.PlanCuentaCodCuenta
+        };
+        
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogProveedor>(proveedorEdit, parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (!result.Cancelled)
+        {
+            await ReloadTableAsync();
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+    private async Task HandleBorrar(ProveedorDto proveedor)
+    {
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Eliminar Proveedor",
+            Width = "400px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        List<string> message = new List<string>();
+        message.Add("¿Está seguro que desea eliminar el proveedor?");
+        message.Add($"Nombre: {proveedor.NomProv}");
+        message.Add($"Código: {proveedor.CodProveedor}");
+        message.Add("Esta acción no se puede deshacer.");
+        
+        var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, parameters);
+        DialogResult result = await dialog.Result;
+
+        if (result.Data is not null && (bool)result.Data)
+        {
+            var response = await ProveedorService.Delete((int)proveedor.CodProveedor!, "api/Proveedor");
+            if (response.Flag)
+            {
+                ToastService.ShowSuccess(response.Message);
+                await ReloadTableAsync();
+            }
+            else
+            {
+                ToastService.ShowError(response.Message);
+            }
+        }
+        await ReloadTableAsync();
+        _loading = false;
+        StateHasChanged();
+    }
+    private async Task OpenCreateDialogAsync()
+    {
+        DialogParameters parameters = new DialogParameters()
+        {
+            Title = "Crear Proveedor",
+            Width = "600px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+        
+        var emptyProveedor = new ProveedorDto();
+        
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogProveedor>(emptyProveedor, parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (!result.Cancelled)
+        {
+            await ReloadTableAsync();
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+
+    //Options
+    private async Task ReloadTableAsync()
+    {
+        _loading = true;
+        _proveedores = await ProveedorService.GetAll("api/Proveedor");
+        _loading = false;
+        StateHasChanged();
+    }
+    
+    //Functionalities
+    protected override async Task OnInitializedAsync()
+    {
+        if (_proveedores is null)
+        {
+            await ReloadTableAsync();
+        }
+    }
+}

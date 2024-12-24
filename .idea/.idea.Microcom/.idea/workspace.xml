@@ -16,14 +16,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/ProveedorController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/ProveedorRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/Parametros/Proveedor/AddEditDialogProveedor.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/Parametros/Proveedores.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/BancoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/BancoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,6 +296,9 @@
       <workItem from="1734703192968" duration="8002000" />
       <workItem from="1734725229224" duration="4623000" />
       <workItem from="1734958607291" duration="9425000" />
+      <workItem from="1734978698344" duration="14419000" />
+      <workItem from="1735044609307" duration="9401000" />
+      <workItem from="1735065024567" duration="718000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -610,7 +612,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734711556583</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="feat: Finished the CRUD for Proveedor.csI make all the necesary changes in order to have the crud and endpoints for the table proveedor">
+      <option name="closed" value="true" />
+      <created>1734990754421</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1734990754421</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +641,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: Creation of The Menus&#10;- Creation of the Tables Menu and Menu Items&#10;- Implementation of the Create Endpoints of each table&#10;- Declaration of the others endpoints to implement" />
     <MESSAGE value="Feat: New Page and CustomHttpHandler.cs&#10;- Creation of 404 page&#10;- Creation of HttpHanlder so it regenrates the token if it has reached the time limit" />
     <MESSAGE value="docs: Creation of New Migrations&#10;Created new migrations for the tables created in past commits. This involved:&#10;- Using Entity framework to create the migrations" />
     <MESSAGE value="Feat: Creation Generic Interface&#10;I created the generic interface in order to use for all the tables. This commit includes:&#10;- Creation of the generic Interface&#10;- Starting to create each of the implementations and controllers&#10;- Edit of the view in the front end" />
@@ -656,7 +665,8 @@
     <MESSAGE value="refactor: Modifying the color palette and the design of the main layout and login page&#10;I did this in order to make a better look for the web page&#10;- I make all the necesary changes for a better look but some changes like the scroll in mobile has not been implemented" />
     <MESSAGE value="feat: Implementation of the CRUD for Centro de Costo (Only BackEnd)&#10;I created the implementation for the BackEnd for Centro de Costo Table" />
     <MESSAGE value="feat: FrontEnd Crud finished for Centro de Costos&#10;I added all the necesary injectioins, components and pages for the Centro de Costos CRUD submenu" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: FrontEnd Crud finished for Centro de Costos&#10;I added all the necesary injectioins, components and pages for the Centro de Costos CRUD submenu" />
+    <MESSAGE value="feat: Finished the CRUD for Proveedor.csI make all the necesary changes in order to have the crud and endpoints for the table proveedor" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Finished the CRUD for Proveedor.csI make all the necesary changes in order to have the crud and endpoints for the table proveedor" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

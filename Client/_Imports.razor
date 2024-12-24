@@ -11,6 +11,7 @@
 @using BaseLibrary.DTOs
 @using BaseLibrary.DTOs.Parametros.Banco
 @using BaseLibrary.DTOs.Parametros.CentroCosto
+@using BaseLibrary.DTOs.Parametros.Proveedor
 @using BaseLibrary.Entities
 @using ClientLibrary.Helpers
 @using ClientLibrary.Services.Contracts
@@ -32,3 +33,4 @@
 @inject IPlanCuentaService PlanCuentaService
 @inject IBancoService BancoService
 @inject IGenericServiceInterfaceString<CentroCostoDto> CentroCostoService
+@inject IGenericServiceInterface<ProveedorDto> ProveedorService

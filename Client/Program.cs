@@ -1,5 +1,6 @@
 using BaseLibrary.DTOs.Parametros.Banco;
 using BaseLibrary.DTOs.Parametros.CentroCosto;
+using BaseLibrary.DTOs.Parametros.Proveedor;
 using BaseLibrary.Entities;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
@@ -37,6 +38,7 @@ builder.Services.AddScoped<IGrupoService, GrupoService>();
 builder.Services.AddScoped<IBancoService, BancoService>();
 builder.Services.AddScoped<IGenericServiceInterface<Nivel>, GenericServiceImplementation<Nivel>>();
 builder.Services.AddScoped<IGenericServiceInterfaceString<CentroCostoDto>, GenericServiceImplementationString<CentroCostoDto>>();
+builder.Services.AddScoped<IGenericServiceInterface<ProveedorDto>, GenericServiceImplementation<ProveedorDto>>();
 
 
 builder.Services.AddScoped<ToastService>();

@@ -1,0 +1,151 @@
+@implements IDialogContentComponent<ProveedorDto>
+
+<FluentDialogHeader ShowDismiss="true">
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(GetIcon())" />
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+<FluentDialogBody>
+    <FluentEditForm Model="@ProveedorModelo" OnValidSubmit="HandleCreateAsync">
+        <DataAnnotationsValidator />
+
+        <FluentStack Orientation="Orientation.Vertical">
+            <FluentGrid Spacing=2 Justify="JustifyContent.FlexStart" AdaptiveRendering="true" Style="padding: 6px">
+                
+                <FluentGridItem sm="12" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.NomProv Placeholder="Nombre del Proveedor..." Label="Nombre del Proveedor" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.NomProv)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="8" Style="padding-right: 12px">
+                    <FluentTextArea @bind-Value=ProveedorModelo.DirProv Label="Direccion del Proveedor" Cols="60" Rows="3" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.DirProv)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="6" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.TelProv Placeholder="Telefono del Proveedor..." Label="Telefono del Proveedor" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.TelProv)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.EmailProv Placeholder="Email del Proveedor..." Label="Email del Proveedor" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.EmailProv)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.Contacto Placeholder="Contacto del Proveedor..." Label="Contacto del Proveedor" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.Contacto)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.TipoDoc Placeholder="Tipo de Documento..." Label="Tipo de Documento" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.TipoDoc)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.NroDoc Placeholder="Numero de Documento..." Label="Numero de Documento" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.NroDoc)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.CodigoEx Placeholder="Codigo Externo..." Label="Codigo Externo" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.CodigoEx)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.Complemento Placeholder="Complemento..." Label="Complemento" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.Complemento)"/>
+                </FluentGridItem>
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentNumberField @bind-Value=ProveedorModelo.LimiteCre Placeholder="Limite de Credito..." Label="Limite de Credito" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.LimiteCre)"/>
+                </FluentGridItem>
+                
+                
+                <FluentGridItem sm="4" Style="padding-right: 12px">
+                    <FluentTextField @bind-Value=ProveedorModelo.PlanCuentaCodCuenta Placeholder="Codigo de la Cuenta..." Label="Codigo de la Cuenta" Style="width: 100%"/>
+                    <FluentValidationMessage For="@(()=>ProveedorModelo.PlanCuentaCodCuenta)"/>
+                </FluentGridItem>
+            </FluentGrid>
+        </FluentStack>
+
+        <FluentDialogFooter>
+            <FluentButton Appearance="Appearance.Accent"
+                          IconStart="new Icons.Regular.Size20.Save()"
+                          Type="ButtonType.Submit">
+                @(_editMode ? "Actualizar y Cerrar" : "Crear y Cerrar")
+            </FluentButton>
+            <FluentButton Appearance="Appearance.Neutral"
+                          IconStart="new Icons.Regular.Size20.PresenceBlocked()"
+                          OnClick="@CancelAsync">
+                Cancelar
+            </FluentButton>
+        </FluentDialogFooter>
+        
+    </FluentEditForm>
+</FluentDialogBody>
+
+@code {
+    [Parameter] public ProveedorDto Content { get; set; } = new ProveedorDto();
+    [CascadingParameter] public FluentDialog Dialog { get; set; } = default!;
+    
+    ProveedorDto ProveedorModelo { get; set; } = new ProveedorDto();
+    
+    bool _editMode;
+    
+    protected override void OnInitialized() 
+    {
+        base.OnInitialized();
+        if (Content.CodProveedor is not null)
+        {
+            ProveedorModelo = Content;
+            _editMode = true;
+        }
+    }
+    
+    //Form
+    private async Task HandleCreateAsync()
+    {
+        if (!_editMode)
+        {
+            var response = await ProveedorService.Create(ProveedorModelo, "api/Proveedor");
+            if (response!.Flag)
+            {
+                ToastService.ShowSuccess(response.Message);
+                await Dialog.CloseAsync();
+                return;
+            }
+            ToastService.ShowError(response.Message);
+            await Dialog.CloseAsync();
+            return;
+        }
+        
+        var responseEdit = await ProveedorService.Update(ProveedorModelo, "api/Proveedor");
+        if (responseEdit.Flag)
+        {
+            ToastService.ShowSuccess(responseEdit.Message);
+            await Dialog.CloseAsync();
+            return;
+        }
+        ToastService.ShowError(responseEdit.Message);
+        await Dialog.CloseAsync();
+    }
+    private async Task CancelAsync()
+    {
+        await Dialog.CancelAsync();
+    }
+    
+    private Icon GetIcon()
+    {
+        if (_editMode)
+        {
+            return new Icons.Filled.Size20.Edit();
+        }
+        return new Icons.Regular.Size20.New();
+    }
+}

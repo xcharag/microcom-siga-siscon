@@ -17,7 +17,7 @@
                                     Sortable="true"
                                     Filtered="!string.IsNullOrWhiteSpace(CodFilter)"
                                     Tooltip="true"
-                                    Width="20%"
+                                    Width="10%"
                                     Title="@property.Name">
                         <ColumnOptions>
                             <div class="search-box">
@@ -36,7 +36,7 @@
                                     Sortable="true"
                                     Filtered="!string.IsNullOrWhiteSpace(NameFilter)"
                                     Tooltip="true"
-                                    Width="40%"
+                                    Width="25%"
                                     Title="@property.Name">
                         <ColumnOptions>
                             <div class="search-box">
@@ -53,7 +53,7 @@
                 {
                     <PropertyColumn Property="@(p => property.GetValue(p))"
                                     Sortable="true"
-                                    Width="15%"
+                                    Width="10%"
                                     Title="@property.Name"
                                     Align="Align.Center" />
                 }
