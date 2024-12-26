@@ -1,11 +1,10 @@
 using System.Net.Http.Json;
 using BaseLibrary.DTOs.Parametros.Banco;
-using BaseLibrary.DTOs.PlanCta;
 using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
-using ClientLibrary.Services.Contracts;
+using ClientLibrary.Services.Contracts.Parametros;
 
-namespace ClientLibrary.Services.Implementations;
+namespace ClientLibrary.Services.Implementations.Parametros;
 
 public class BancoService(GetHttpClient getHttpClient) : IBancoService
 {

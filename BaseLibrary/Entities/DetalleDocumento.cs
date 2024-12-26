@@ -17,19 +17,19 @@ public class DetalleDocumento
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Mtobd { get; set; }
+    public float? Mtobd { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Mtodd { get; set; }
+    public float? Mtodd { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Mtobh { get; set; }
+    public float? Mtobh { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Mtodh { get; set; }
+    public float? Mtodh { get; set; }
 
     [Required]
     public string? Glosa { get; set; }

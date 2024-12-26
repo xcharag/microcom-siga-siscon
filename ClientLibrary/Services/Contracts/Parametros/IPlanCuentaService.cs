@@ -1,8 +1,7 @@
 using BaseLibrary.DTOs.PlanCta;
-using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 
-namespace ClientLibrary.Services.Contracts;
+namespace ClientLibrary.Services.Contracts.Parametros;
 
 public interface IPlanCuentaService : IGenericServiceInterface<PlanCuentaDto>
 {

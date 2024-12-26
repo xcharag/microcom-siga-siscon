@@ -29,27 +29,27 @@ public class Anexos
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Importe { get; set; }
+    public float? Importe { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Sujeto { get; set; }
+    public float? Sujeto { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Mtoiva { get; set; }
+    public float? Mtoiva { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Ice { get; set; }
+    public float? Ice { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Excento { get; set; }
+    public float? Excento { get; set; }
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Descuento { get; set; }
+    public float? Descuento { get; set; }
     
     //Many to One
     public DetalleDocumento? DetalleDocumento { get; set; }

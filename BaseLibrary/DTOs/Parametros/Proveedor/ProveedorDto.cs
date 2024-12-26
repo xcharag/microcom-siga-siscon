@@ -25,14 +25,17 @@ public class ProveedorDto
     [Required(ErrorMessage = "El campo Tipo de Documento es obligatorio")]
     public string? TipoDoc { get; set; }
 
+    
     [Required(ErrorMessage = "El Número de Documento es obligatorio")]
+    [RegularExpression(@"^\d+$", ErrorMessage = "El campo NroDoc solo puede contener números")]
     public string? NroDoc { get; set; }
     
     public string? CodigoEx { get; set; }
     public string? Complemento { get; set; }
 
+    //Make sure LimiteCre is a float number
     [Required(ErrorMessage = "El campo Limite de Credito es obligatorio")]
-    public decimal? LimiteCre { get; set; }
+    public float? LimiteCre { get; set; }
     
     [Required(ErrorMessage = "El Plan Cuenta por Pagar asignado es obligatorio")]
     public string? PlanCuentaCodCuenta { get; set; }

@@ -16,13 +16,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/Components/Parametros/Proveedor/AddEditDialogProveedor.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Pages/Parametros/Proveedores.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/SingleTables/TipoDocController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/SingleTables/TipoDocRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/GenericDataGrid.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/WeatherForecast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Anexos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Anexos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/DetalleDocumento.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/DetalleDocumento.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Documento.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Documento.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/Proveedor/AddEditDialogProveedor.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/Proveedor/AddEditDialogProveedor.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Parametros/PlanCuentas.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/PlanCuentas.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IBancoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/Parametros/IBancoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IGrupoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/Parametros/IGrupoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IMenuNavService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/SingleTables/IMenuNavService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IPlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/Parametros/IPlanCuentaService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IUserAccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Contracts/IUserAccountService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/BancoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/Parametros/BancoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/GrupoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/SingleTables/GrupoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/MenuNavService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/SingleTables/MenuNavService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/PlanCuentaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/Parametros/PlanCuentaService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/UserAccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ClientLibrary/Services/Implementations/UserAccountService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/BancoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/Parametros/BancoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/CentroCostoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/Parametros/CentroCostoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/GrupoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/SingleTables/GrupoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/MenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/SingleTables/MenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/NivelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/SingleTables/NivelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/PlanCuentaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/Parametros/PlanCuentaController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/ProveedorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/Parametros/ProveedorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IBanco.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/Parametros/IBanco.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IPlanCuenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/Parametros/IPlanCuenta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/BancoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/Parametros/BancoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/CentroCostoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/Parametros/CentroCostoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/GrupoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/SingleTables/GrupoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/MenuRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/SingleTables/MenuRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/NivelesRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/SingleTables/NivelesRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/PlanCuentaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/Parametros/PlanCuentaRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/ProveedorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/Parametros/ProveedorRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +97,8 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/26746cc701bb8a8dbf7a351a0f3e55cf61bda86b78cc7a73f2dfd64e7f514b/FluentInputBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f87a569454f6294b8c0766e7a7dbaad85f1e6b2dd5e1ae0f46c8e7ab17bee17/FluentNumberField.razor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
@@ -113,7 +147,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -298,7 +332,8 @@
       <workItem from="1734958607291" duration="9425000" />
       <workItem from="1734978698344" duration="14419000" />
       <workItem from="1735044609307" duration="9401000" />
-      <workItem from="1735065024567" duration="718000" />
+      <workItem from="1735065024567" duration="12768000" />
+      <workItem from="1735221491807" duration="5584000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -620,7 +655,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734990754421</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="feat: Finished the CRUD in the front end for Proveedores &#10;I did all the neccesary changes in order to show to the user with an UI the CRUD of proveedores table">
+      <option name="closed" value="true" />
+      <created>1735065812401</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1735065812401</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +684,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: New Page and CustomHttpHandler.cs&#10;- Creation of 404 page&#10;- Creation of HttpHanlder so it regenrates the token if it has reached the time limit" />
     <MESSAGE value="docs: Creation of New Migrations&#10;Created new migrations for the tables created in past commits. This involved:&#10;- Using Entity framework to create the migrations" />
     <MESSAGE value="Feat: Creation Generic Interface&#10;I created the generic interface in order to use for all the tables. This commit includes:&#10;- Creation of the generic Interface&#10;- Starting to create each of the implementations and controllers&#10;- Edit of the view in the front end" />
     <MESSAGE value="Feat: Update of Plan Cuentas Endpoint&#10;I modified how Plan de Cuenta will work, making the assign of the PK manually:&#10;- The rules of this PK will have to be defined in the client side&#10;- ReDo the migrations folder and DB" />
@@ -666,7 +708,8 @@
     <MESSAGE value="feat: Implementation of the CRUD for Centro de Costo (Only BackEnd)&#10;I created the implementation for the BackEnd for Centro de Costo Table" />
     <MESSAGE value="feat: FrontEnd Crud finished for Centro de Costos&#10;I added all the necesary injectioins, components and pages for the Centro de Costos CRUD submenu" />
     <MESSAGE value="feat: Finished the CRUD for Proveedor.csI make all the necesary changes in order to have the crud and endpoints for the table proveedor" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Finished the CRUD for Proveedor.csI make all the necesary changes in order to have the crud and endpoints for the table proveedor" />
+    <MESSAGE value="feat: Finished the CRUD in the front end for Proveedores &#10;I did all the neccesary changes in order to show to the user with an UI the CRUD of proveedores table" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Finished the CRUD in the front end for Proveedores &#10;I did all the neccesary changes in order to show to the user with an UI the CRUD of proveedores table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

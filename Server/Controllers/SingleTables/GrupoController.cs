@@ -2,7 +2,7 @@ using BaseLibrary.Entities;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
 
-namespace Server.Controllers;
+namespace Server.Controllers.SingleTables;
 
 [Route("api/[controller]")]
 [ApiController]

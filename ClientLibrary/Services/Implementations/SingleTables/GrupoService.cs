@@ -2,9 +2,9 @@ using System.Net.Http.Json;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
-using ClientLibrary.Services.Contracts;
+using ClientLibrary.Services.Contracts.Parametros;
 
-namespace ClientLibrary.Services.Implementations;
+namespace ClientLibrary.Services.Implementations.SingleTables;
 
 public class GrupoService(GetHttpClient getHttpClient) : IGrupoService
 {

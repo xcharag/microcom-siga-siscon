@@ -4,9 +4,9 @@ using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Data;
 using ServerLibrary.Helpers;
-using ServerLibrary.Repositories.Contracts;
+using ServerLibrary.Repositories.Contracts.Parametros;
 
-namespace ServerLibrary.Repositories.Implementations;
+namespace ServerLibrary.Repositories.Implementations.Parametros;
 
 public class BancoRepository(AppDbContext appDbContext) : IBanco
 {

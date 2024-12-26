@@ -1,7 +1,7 @@
 using BaseLibrary.DTOs.Parametros.Banco;
 using BaseLibrary.Responses;
 
-namespace ClientLibrary.Services.Contracts;
+namespace ClientLibrary.Services.Contracts.Parametros;
 
 public interface IBancoService : IGenericServiceInterface<BancoDto>
 {

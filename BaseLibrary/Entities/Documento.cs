@@ -30,7 +30,7 @@ public class Documento
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? Importe { get; set; }
+    public float? Importe { get; set; }
 
     [Required]
     public string? CreatedBy { get; set; }

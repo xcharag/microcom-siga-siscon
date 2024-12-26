@@ -38,7 +38,7 @@ public class Proveedor : BaseEntity
 
     [Required]
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal? LimiteCre { get; set; }
+    public float? LimiteCre { get; set; }
     
     //Many-to-One Relationship
     public PlanCuenta? PlanCuenta { get; set; }

@@ -1,9 +1,9 @@
 using BaseLibrary.DTOs.Parametros.Banco;
-using BaseLibrary.Entities;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
+using ServerLibrary.Repositories.Contracts.Parametros;
 
-namespace Server.Controllers;
+namespace Server.Controllers.Parametros;
 
 [Route("api/[controller]")]
 [ApiController]

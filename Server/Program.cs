@@ -8,7 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 using ServerLibrary.Data;
 using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts;
+using ServerLibrary.Repositories.Contracts.Parametros;
 using ServerLibrary.Repositories.Implementations;
+using ServerLibrary.Repositories.Implementations.Parametros;
+using ServerLibrary.Repositories.Implementations.SingleTables;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,8 +55,10 @@ builder.Services.AddScoped<IPlanCuenta, PlanCuentaRepository>();
 builder.Services.AddScoped<IBanco, BancoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Grupo>, GrupoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Nivel>, NivelesRepository>();
-builder.Services.AddScoped<IGenericRepositoryInterfaceString<CentroCostoDto>, CentroCostoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<ProveedorDto>, ProveedorRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<TipoDoc>, TipoDocRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterfaceString<CentroCostoDto>, CentroCostoRepository>();
+
 
 
 builder.Services.AddCors(options =>

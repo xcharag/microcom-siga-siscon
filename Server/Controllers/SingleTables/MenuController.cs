@@ -1,10 +1,9 @@
-using BaseLibrary.DTOs;
 using BaseLibrary.DTOs.Menu;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
 
-namespace Server.Controllers;
+namespace Server.Controllers.SingleTables;
 
 [Route("api/[controller]")]
 [ApiController]

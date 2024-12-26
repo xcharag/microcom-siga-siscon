@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Data;
 using ServerLibrary.Repositories.Contracts;
 
-namespace ServerLibrary.Repositories.Implementations;
+namespace ServerLibrary.Repositories.Implementations.Parametros;
 
 public class ProveedorRepository(AppDbContext appDbContext) : IGenericRepositoryInterface<ProveedorDto>
 {

@@ -8,7 +8,11 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Client;
 using ClientLibrary.Helpers;
 using ClientLibrary.Services.Contracts;
+using ClientLibrary.Services.Contracts.Parametros;
+using ClientLibrary.Services.Contracts.SingleTables;
 using ClientLibrary.Services.Implementations;
+using ClientLibrary.Services.Implementations.Parametros;
+using ClientLibrary.Services.Implementations.SingleTables;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
@@ -37,8 +41,10 @@ builder.Services.AddScoped<IPlanCuentaService, PlanCuentaService>();
 builder.Services.AddScoped<IGrupoService, GrupoService>();
 builder.Services.AddScoped<IBancoService, BancoService>();
 builder.Services.AddScoped<IGenericServiceInterface<Nivel>, GenericServiceImplementation<Nivel>>();
-builder.Services.AddScoped<IGenericServiceInterfaceString<CentroCostoDto>, GenericServiceImplementationString<CentroCostoDto>>();
 builder.Services.AddScoped<IGenericServiceInterface<ProveedorDto>, GenericServiceImplementation<ProveedorDto>>();
+builder.Services.AddScoped<IGenericServiceInterface<TipoDoc>, GenericServiceImplementation<TipoDoc>>();
+builder.Services.AddScoped<IGenericServiceInterfaceString<CentroCostoDto>, GenericServiceImplementationString<CentroCostoDto>>();
+
 
 
 builder.Services.AddScoped<ToastService>();

@@ -1,8 +1,7 @@
 using BaseLibrary.DTOs.PlanCta;
-using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 
-namespace ServerLibrary.Repositories.Contracts;
+namespace ServerLibrary.Repositories.Contracts.Parametros;
 
 public interface IPlanCuenta : IGenericRepositoryInterface<PlanCuentaDto>
 {

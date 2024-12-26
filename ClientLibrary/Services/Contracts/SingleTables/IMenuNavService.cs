@@ -1,8 +1,7 @@
-using BaseLibrary.DTOs;
 using BaseLibrary.DTOs.Menu;
 using BaseLibrary.Responses;
 
-namespace ClientLibrary.Services.Contracts;
+namespace ClientLibrary.Services.Contracts.SingleTables;
 
 public interface IMenuNavService
 {

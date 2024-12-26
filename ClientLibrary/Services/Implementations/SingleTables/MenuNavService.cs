@@ -1,11 +1,10 @@
 using System.Net.Http.Json;
-using BaseLibrary.DTOs;
 using BaseLibrary.DTOs.Menu;
 using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
-using ClientLibrary.Services.Contracts;
+using ClientLibrary.Services.Contracts.SingleTables;
 
-namespace ClientLibrary.Services.Implementations;
+namespace ClientLibrary.Services.Implementations.SingleTables;
 
 public class MenuNavService (GetHttpClient getHttpClient) : IMenuNavService
 {
