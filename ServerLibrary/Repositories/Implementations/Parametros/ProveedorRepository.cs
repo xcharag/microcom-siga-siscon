@@ -26,12 +26,14 @@ public class ProveedorRepository(AppDbContext appDbContext) : IGenericRepository
         var checkPlanCuenta = await appDbContext.PlanCuentas.FindAsync(item.PlanCuentaCodCuenta);
         if (checkPlanCuenta is null) return new GeneralResponse(false, "No se encontró el plan de cuenta");
         if (checkPlanCuenta.TipoCuenta != "Detalle") return new GeneralResponse(false, "El plan de cuenta no es de tipo detalle");
-
+        var checkNroDocumento = await appDbContext.Proveedores.FirstOrDefaultAsync(x => x.NroDoc == item.NroDoc);
+        if (checkNroDocumento is not null) return new GeneralResponse(false, "El número de documento ya existe, debe de ser unico");
+        
         var entitie = DtoToEntitie(item);
         checkPlanCuenta.Proveedores!.Add(entitie);
         appDbContext.Proveedores.Add(entitie);
         await Commit();
-        return new GeneralResponse(true, "Operación exitosa");
+        return new GeneralResponse(true, "Operación exitosa\n Proveedor creado con codigo: " + entitie.CodProveedor);
     }
 
     public async Task<GeneralResponse> Update(ProveedorDto item)

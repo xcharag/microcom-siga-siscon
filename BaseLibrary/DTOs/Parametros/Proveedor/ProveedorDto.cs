@@ -14,6 +14,7 @@ public class ProveedorDto
     public string? DirProv { get; set; }
 
     [Required(ErrorMessage = "El campo Teléfono es obligatorio")]
+    [RegularExpression(@"^\d+$", ErrorMessage = "El campo NroDoc solo puede contener números")]
     public string? TelProv { get; set; }
 
     [Required(ErrorMessage = "El campo Email es obligatorio")]
@@ -30,6 +31,7 @@ public class ProveedorDto
     [RegularExpression(@"^\d+$", ErrorMessage = "El campo NroDoc solo puede contener números")]
     public string? NroDoc { get; set; }
     
+    [RegularExpression(@"^[01]$", ErrorMessage = "El Codigo de Excepcion solo puede ser 0 o 1")]
     public string? CodigoEx { get; set; }
     public string? Complemento { get; set; }
 

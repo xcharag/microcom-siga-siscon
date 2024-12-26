@@ -100,20 +100,21 @@
             if (!response!.Flag)
             {
                 ToastService.ShowError(response.Message);
-                await Dialog.CloseAsync(response.Message);
                 return;
             }
             ToastService.ShowSuccess(response.Message);
             await Dialog.CloseAsync(response.Message);
+            return;
         }
         var responseEdit = await BancoService.Update(BancoModelo!, "api/Banco");
         if (!responseEdit.Flag)
         {
             ToastService.ShowError(responseEdit.Message);
-            await Dialog.CloseAsync(responseEdit.Message);
+            return;
         }
         ToastService.ShowSuccess(responseEdit.Message);
         await Dialog.CloseAsync(responseEdit);
+        return;
     }
     private async Task CancelAsync()
     {

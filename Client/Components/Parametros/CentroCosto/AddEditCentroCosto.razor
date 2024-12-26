@@ -22,7 +22,7 @@
                 </FluentGridItem>
 
                 <FluentGridItem sm="10" Style="padding-right: 12px">
-                    <FluentTextField @bind-Value=CentroCostoModelo!.NomCc Placeholder="Nombre del Centro de Costo..." Label="Nombre de Banco" Style="width: 100%"/>
+                    <FluentTextField @bind-Value=CentroCostoModelo!.NomCc Placeholder="Nombre del Centro de Costo..." Label="Nombre del Centro de Costo" Style="width: 100%"/>
                     <FluentValidationMessage For="@(() => CentroCostoModelo!.NomCc)"/>
                 </FluentGridItem>
 
@@ -75,20 +75,21 @@
             if (!response!.Flag)
             {
                 ToastService.ShowError(response.Message);
-                await Dialog.CloseAsync(response.Message);
                 return;
             }
             ToastService.ShowSuccess(response.Message);
             await Dialog.CloseAsync(response.Message);
+            return;
         }
         var responseEdit = await CentroCostoService.Update(CentroCostoModelo!, "api/CentroCosto");
         if (!responseEdit.Flag)
         {
             ToastService.ShowError(responseEdit.Message);
-            await Dialog.CloseAsync(responseEdit.Message);
+            return;
         }
         ToastService.ShowSuccess(responseEdit.Message);
         await Dialog.CloseAsync(responseEdit);
+        return;
     }
     private async Task CancelAsync()
     {

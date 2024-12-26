@@ -115,16 +115,17 @@
                             <FluentTextField @bind-Value=ProveedorModelo.Complemento 
                                              Placeholder="Complemento..."
                                              Id="complemento"
+                                             Label="."
                                              Maxlength="4"
-                                             Style="width: 100%; align-items: end"/>
+                                             Style="width: 100%; align-items: end;"/>
                             <FluentTooltip Anchor="complemento">Complemento del Documento</FluentTooltip>
                             <FluentValidationMessage For="@(() => ProveedorModelo.Complemento)"/>
                         </FluentGridItem>
 
                         <FluentGridItem sm="6" Style="padding-right: 12px">
                             <FluentTextField @bind-Value=ProveedorModelo.CodigoEx 
-                                             Placeholder="Codigo Externo..." 
-                                             Label="Codigo Externo" 
+                                             Placeholder="Codigo Excepcion..." 
+                                             Label="Codigo Excepcion" 
                                              Style="width: 100%"/>
                             <FluentValidationMessage For="@(() => ProveedorModelo.CodigoEx)"/>
                         </FluentGridItem>
@@ -206,7 +207,6 @@
                 return;
             }
             ToastService.ShowError(response.Message);
-            await Dialog.CloseAsync();
             return;
         }
         
@@ -218,7 +218,6 @@
             return;
         }
         ToastService.ShowError(responseEdit.Message);
-        await Dialog.CloseAsync();
     }
     private async Task CancelAsync()
     {
