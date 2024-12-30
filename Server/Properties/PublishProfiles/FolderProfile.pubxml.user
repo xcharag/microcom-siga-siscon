@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>\\servidor01\SisCon\Api</_PublishTargetUrl>
+    <History>True|2024-12-30T19:22:45.4876123Z||;True|2024-12-27T18:13:24.3519264-04:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=Servidor01\SqlExpress%3b User ID=SisCon%3b Password=Passw0rd%3b Trusted_Connection=False%3b Trust Server Certificate=True</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="ServerLibrary.Data.AppDbContext">
+      <Value>Server=Servidor01\SqlExpress%3b User ID=SisCon%3b Password=Passw0rd%3b Trusted_Connection=False%3b Trust Server Certificate=True</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

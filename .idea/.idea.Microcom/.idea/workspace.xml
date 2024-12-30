@@ -4,6 +4,14 @@
     <projectFile profileName="IIS Express">Client/Client.csproj</projectFile>
     <projectFile profileName="http">Client/Client.csproj</projectFile>
     <projectFile profileName="https">Client/Client.csproj</projectFile>
+    <projectFile pubXmlPath="Client/Properties/PublishProfiles/FolderProfile.pubxml">Client/Client.csproj</projectFile>
+    <projectFile pubXmlPath="Client/Properties/PublishProfiles/FolderProfile1.pubxml">Client/Client.csproj</projectFile>
+    <projectFile pubXmlPath="Client/Properties/PublishProfiles/xchar2-001-site1 - FTP.pubxml">Client/Client.csproj</projectFile>
+    <projectFile pubXmlPath="Client/Properties/PublishProfiles/xchar2-001-site1 - Web Deploy.pubxml">Client/Client.csproj</projectFile>
+    <projectFile pubXmlPath="Server/Properties/PublishProfiles/FolderProfile.pubxml">Server/Server.csproj</projectFile>
+    <projectFile pubXmlPath="Server/Properties/PublishProfiles/We.pubxml">Server/Server.csproj</projectFile>
+    <projectFile pubXmlPath="Server/Properties/PublishProfiles/local.pubxml">Server/Server.csproj</projectFile>
+    <projectFile pubXmlPath="Server/Properties/PublishProfiles/rEMOTE.pubxml">Server/Server.csproj</projectFile>
     <projectFile profileName="IIS Express">Test/Test.csproj</projectFile>
     <projectFile profileName="http">Test/Test.csproj</projectFile>
     <projectFile profileName="https">Test/Test.csproj</projectFile>
@@ -15,13 +23,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="feat: Implementation of changes for deployment&#10;I made some changes for example in the CORS, profiles, etc so the deployment works fine">
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db-shm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db-wal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/FileContentIndex/66b82f29-f926-4252-9c96-8670c44002c7.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v16/.suo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.futdcache.v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.suo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/DocumentLayout.backup.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/DocumentLayout.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.metadata.v9.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.projects.v9.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.strings.v9.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosAnexosDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosCompletosDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosDetalleDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Client.csproj.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile1.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile1.pubxml.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - FTP.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - FTP.pubxml.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - Web Deploy.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - Web Deploy.pubxml.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/.config/dotnet-tools.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/We.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/local.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/rEMOTE.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Server.csproj.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IDocumento.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/DocumentoRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/Banco/AddEditDialogBanco.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/Banco/AddEditDialogBanco.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/Proveedor/AddEditDialogProveedor.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/Proveedor/AddEditDialogProveedor.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/Parametros/ProveedorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/Parametros/ProveedorRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +80,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="MsDeploy.Remote" />
+        <option value="MsDeploy.Local" />
       </list>
     </option>
   </component>
@@ -65,7 +111,7 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/26746cc701bb8a8dbf7a351a0f3e55cf61bda86b78cc7a73f2dfd64e7f514b/FluentInputBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f87a569454f6294b8c0766e7a7dbaad85f1e6b2dd5e1ae0f46c8e7ab17bee17/FluentNumberField.razor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/_Imports.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
@@ -80,41 +126,66 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2p2Za9iGNZLpDcvXrhr4Qh5vKPi" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Client: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.WebApplication1: IIS Express.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.WebApplication1: http.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Client: http.executor": "Run",
+    ".NET Launch Settings Profile.WebApplication1: IIS Express.executor": "Run",
+    ".NET Launch Settings Profile.WebApplication1: http.executor": "Run",
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Publish to IIS.Client: FolderProfile.executor": "Run",
+    "Publish to IIS.Client: FolderProfile1.executor": "Run",
+    "Publish to IIS.Local Microcom SisCon.executor": "Run",
+    "Publish to IIS.Publish Client to IIS.executor": "Run",
+    "Publish to IIS.Publish Server to IIS.executor": "Run",
+    "Publish to IIS.Server: FolderProfile.executor": "Run",
+    "Publish to folder.Publish Client to folder.executor": "Run",
+    "Publish to folder.Publish Papa.executor": "Run",
+    "Publish to folder.Publish Server to folder (1).executor": "Run",
+    "Publish to folder.Publish Server to folder.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlserver.localdb&quot;,
-      &quot;sqlserver&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb",
+      "sqlserver"
     ],
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src&quot;
+    "rider.external.source.directories": [
+      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
+}]]></component>
+  <component name="RunManager" selected="Publish to IIS.Server: FolderProfile">
+    <configuration name="Client: FolderProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
+      <riderPublish configuration="Release" platform="Any CPU" publish_profile="FolderProfile1.pubxml" pubxml_path="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile1.pubxml" uuid_high="3423128884508444706" uuid_low="-6845133272060213425" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Publish Client to IIS" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
+      <riderPublish configuration="Release" platform="Any CPU" publish_profile="&lt;no publish profile&gt;" uuid_high="3423128884508444706" uuid_low="-6845133272060213425" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Server: FolderProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
+      <riderPublish configuration="Release" platform="Any CPU" publish_profile="FolderProfile.pubxml" pubxml_path="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml" uuid_high="-423212554915066574" uuid_low="-4674518374563002503" />
+      <method v="2" />
+    </configuration>
     <configuration name="Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -250,6 +321,20 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.Client: http" />
+      <item itemvalue=".NET Launch Settings Profile.Client: https" />
+      <item itemvalue=".NET Launch Settings Profile.Client: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.Test: http" />
+      <item itemvalue=".NET Launch Settings Profile.Test: https" />
+      <item itemvalue=".NET Launch Settings Profile.Test: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.WebApplication1: http" />
+      <item itemvalue=".NET Launch Settings Profile.WebApplication1: https" />
+      <item itemvalue=".NET Launch Settings Profile.WebApplication1: IIS Express" />
+      <item itemvalue="Publish to IIS.Publish Client to IIS" />
+      <item itemvalue="Publish to IIS.Client: FolderProfile" />
+      <item itemvalue="Publish to IIS.Server: FolderProfile" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -301,7 +386,14 @@
       <workItem from="1735044609307" duration="9401000" />
       <workItem from="1735065024567" duration="12768000" />
       <workItem from="1735221491807" duration="5871000" />
-      <workItem from="1735237877519" duration="5827000" />
+      <workItem from="1735237877519" duration="12746000" />
+      <workItem from="1735307860730" duration="5023000" />
+      <workItem from="1735325848036" duration="6241000" />
+      <workItem from="1735336627943" duration="2466000" />
+      <workItem from="1735563242775" duration="3305000" />
+      <workItem from="1735567755198" duration="4032000" />
+      <workItem from="1735574918240" duration="108000" />
+      <workItem from="1735585412629" duration="1425000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -639,7 +731,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735228713883</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="style: Formatting of the addedits dialogs and how they manage the errors&#10;I made some changes on how they managed the errors because the way it was done was unpractical so it needed to be more easy for the user to change only what is wrong">
+      <option name="closed" value="true" />
+      <created>1735245636586</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1735245636586</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,9 +759,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: Creation Generic Interface&#10;I created the generic interface in order to use for all the tables. This commit includes:&#10;- Creation of the generic Interface&#10;- Starting to create each of the implementations and controllers&#10;- Edit of the view in the front end" />
-    <MESSAGE value="Feat: Update of Plan Cuentas Endpoint&#10;I modified how Plan de Cuenta will work, making the assign of the PK manually:&#10;- The rules of this PK will have to be defined in the client side&#10;- ReDo the migrations folder and DB" />
     <MESSAGE value="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database" />
     <MESSAGE value="fix: The Menu Endpoint now saves and retrieves the URL&#10;I fixed the service implementation in the server for retrieving the Url of each Menuitem" />
     <MESSAGE value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
@@ -685,7 +784,9 @@
     <MESSAGE value="feat: Finished the CRUD for Proveedor.csI make all the necesary changes in order to have the crud and endpoints for the table proveedor" />
     <MESSAGE value="feat: Finished the CRUD in the front end for Proveedores &#10;I did all the neccesary changes in order to show to the user with an UI the CRUD of proveedores table" />
     <MESSAGE value="feat: Finished UI and UX for the proveedores table&#10;I made all the necessary changes for the UI and UX table proveedores" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Finished UI and UX for the proveedores table&#10;I made all the necessary changes for the UI and UX table proveedores" />
+    <MESSAGE value="style: Formatting of the addedits dialogs and how they manage the errors&#10;I made some changes on how they managed the errors because the way it was done was unpractical so it needed to be more easy for the user to change only what is wrong" />
+    <MESSAGE value="feat: Implementation of changes for deployment&#10;I made some changes for example in the CORS, profiles, etc so the deployment works fine" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Implementation of changes for deployment&#10;I made some changes for example in the CORS, profiles, etc so the deployment works fine" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

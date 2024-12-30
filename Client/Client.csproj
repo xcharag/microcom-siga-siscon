@@ -21,4 +21,8 @@
       <ProjectReference Include="..\ClientLibrary\ClientLibrary.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Properties\PublishProfiles\FolderProfile.pubxml" />
+    </ItemGroup>
+
 </Project>
