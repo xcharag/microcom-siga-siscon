@@ -24,10 +24,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddTransient<CustomHttpHandler>();
 builder.Services.AddHttpClient("SystemApiClient", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5232");
+    client.BaseAddress = new Uri("http://servidor01:5232");
 }).AddHttpMessageHandler<CustomHttpHandler>();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5232") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://servidor01:5232") });
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddBlazoredLocalStorage();
