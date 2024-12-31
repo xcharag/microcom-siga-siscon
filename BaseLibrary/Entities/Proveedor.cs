@@ -17,11 +17,9 @@ public class Proveedor : BaseEntity
 
     [Required]
     public string? TelProv { get; set; }
-
-    [Required]
+    
     public string? EmailProv { get; set; }
-
-    [Required]
+    
     public string? Contacto { get; set; }
 
     [Required]
@@ -29,14 +27,11 @@ public class Proveedor : BaseEntity
     
     [Required]
     public string? NroDoc { get; set; }
-
-    [Required]
+    
     public string? CodigoEx { get; set; }
-
-    [Required]
+    
     public string? Complemento { get; set; }
-
-    [Required]
+    
     [Column(TypeName = "decimal(18, 2)")]
     public float? LimiteCre { get; set; }
     

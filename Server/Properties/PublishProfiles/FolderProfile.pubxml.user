@@ -6,7 +6,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>\\servidor01\SisCon\Api</_PublishTargetUrl>
-    <History>True|2024-12-30T19:22:45.4876123Z||;True|2024-12-27T18:13:24.3519264-04:00||;</History>
+    <History>True|2024-12-31T14:28:34.4599177Z||;False|2024-12-31T10:26:17.2337556-04:00||;True|2024-12-31T10:08:21.1470640-04:00||;True|2024-12-31T08:53:19.2692480-04:00||;True|2024-12-31T08:47:40.4768124-04:00||;True|2024-12-30T15:35:46.7670379-04:00||;True|2024-12-30T15:22:45.4876123-04:00||;True|2024-12-27T18:13:24.3519264-04:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>

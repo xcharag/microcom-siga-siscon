@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>\\servidor01\SisCon\Web</_PublishTargetUrl>
-    <History>True|2024-12-30T15:58:36.0974363Z||;</History>
+    <History>True|2024-12-31T13:54:39.4315676Z||;True|2024-12-31T09:50:22.1036005-04:00||;True|2024-12-31T08:47:15.6820732-04:00||;True|2024-12-30T15:36:33.9959012-04:00||;True|2024-12-30T11:58:36.0974363-04:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

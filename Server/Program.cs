@@ -65,7 +65,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowBlazorWasm", 
         policyBuilder => policyBuilder
-            .WithOrigins( "http://localhost:5232", "http://localhost:5230", "http://servidor01:5230", "http://servidor01:5230")
+            .WithOrigins("http://servidor01:5230","http://localhost:5230")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials());
