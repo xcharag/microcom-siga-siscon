@@ -11,8 +11,7 @@ public class TcCosto
 
     [Required]
     public string? NomCc { get; set; }
-
-    [Required]
+    
     public string? NomResp { get; set; }
     
     //Many to One
