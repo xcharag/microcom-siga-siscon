@@ -20,7 +20,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<TipoEgreso> TipoEgresos { get; set; }
     public DbSet<Anexos> Anexos { get; set; }
     public DbSet<Empresa> Empresas { get; set; }
-    public DbSet<Gestion> Gestiones { get; set; }
     public DbSet<Correlativo> Correlativos { get; set; }
     
     //This is for the security
