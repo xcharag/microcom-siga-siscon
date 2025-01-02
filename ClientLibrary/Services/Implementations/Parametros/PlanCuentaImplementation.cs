@@ -6,7 +6,7 @@ using ClientLibrary.Services.Contracts.Parametros;
 
 namespace ClientLibrary.Services.Implementations.Parametros;
 
-public class PlanCuentaService(GetHttpClient getHttpClient) : IPlanCuentaService
+public class PlanCuentaImplementation(GetHttpClient getHttpClient) : IPlanCuentaService
 {
     public async Task<List<PlanCuentaDto>?> GetAll(string baseUrl)
     {

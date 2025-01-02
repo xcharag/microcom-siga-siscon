@@ -6,7 +6,7 @@ using ClientLibrary.Services.Contracts.SingleTables;
 
 namespace ClientLibrary.Services.Implementations.SingleTables;
 
-public class MenuNavService (GetHttpClient getHttpClient) : IMenuNavService
+public class MenuNavImplementation (GetHttpClient getHttpClient) : IMenuNavService
 {
     public const string MenuUrl = "api/Menu";
     

@@ -2,9 +2,9 @@ using BaseLibrary.DTOs.Documentos;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 
-namespace ServerLibrary.Repositories.Contracts.Comprobantes;
+namespace ClientLibrary.Services.Contracts.Comprobantes;
 
-public interface IDocument
+public interface IDocumentoService
 {
     Task<List<DocumentoDto>> GetAllDocumentos();
     Task<List<DocumentoDto>> GetAllDocumentosDateRange(string start, string end);

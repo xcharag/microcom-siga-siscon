@@ -1,0 +1,148 @@
+@page "/compingresos"
+@using BaseLibrary.DTOs.Documentos
+
+<PageTitle>Ingresos</PageTitle>
+
+<h2>Ingresos</h2>
+
+<div style="display: table; table-layout: fixed; width: 100%;">
+    <div style="overflow-x: auto;">
+        <FluentDataGrid Items="@FilteredIngresos"
+                        ResizableColumns="true"
+                        Pagination="@_pagination"
+                        HeaderCellAsButtonWithMenu="true"
+                        ColumnResizeLabels="@_customLabels"
+                        Style="min-width: max-content">
+            <PropertyColumn Property="@(d=>d.NroDoc)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_codFilter)"
+                            Tooltip="true"
+                            Width="20%"
+                            Align="Align.Center"
+                            Title="Numero del Documento">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_codFilter
+                                      @oninput="HandleCodFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Ingrese el numero del documento..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+            
+            <PropertyColumn Property="@(d=>d.Nombre)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_nameFilter)"
+                            Tooltip="true"
+                            Width="20%"
+                            Title="Nombre del Documento">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_nameFilter
+                                      @oninput="HandleNameFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Ingrese el nombre del documento..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+            
+            <PropertyColumn Property="@(d=>d.FechaDoc)"
+                            Sortable="true"
+                            Width="20%"
+                            Title="Fecha del Documento"/>
+            
+            <PropertyColumn Property="@(d=>d.Importe)"
+                            Sortable="true"
+                            Width="20%"
+                            Title="Importe Total"/>
+            
+            <PropertyColumn Property="@(d=>d.Moneda)"
+                            Sortable="true"
+                            Width="20%"
+                            Title="Moneda"/>
+        </FluentDataGrid>
+    </div>
+</div>
+
+
+@code {
+    private IEnumerable<DocumentoDto>? _documentosIngreso;
+    private readonly PaginationState _pagination = new PaginationState();
+    private readonly ColumnResizeLabels _customLabels = new ColumnResizeLabels();
+    private string _codFilter = string.Empty;
+    private string _nameFilter = string.Empty;
+    private bool _isLoading;
+
+    IQueryable<DocumentoDto> FilteredIngresos
+    {
+        get
+        {
+            if (_documentosIngreso is null)
+            {
+                return Enumerable.Empty<DocumentoDto>().AsQueryable();
+            }
+            
+            var query = _documentosIngreso.AsQueryable();
+            if (!string.IsNullOrEmpty(_codFilter))
+            {
+                query = query.Where(di => di.NroDoc!.Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            
+            if (!string.IsNullOrEmpty(_nameFilter))
+            {
+                query = query.Where(di => di.Nombre!.Contains(_nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+
+            return query;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (_documentosIngreso is null)
+        {
+            await ReloadTableAsync();
+        }
+    }
+    
+    private async Task ReloadTableAsync()
+    {
+        _isLoading = true;
+        StateHasChanged();
+        await GetDocumentosIngresoAsync();
+    }
+    private async Task GetDocumentosIngresoAsync()
+    {
+        var result = await DocumentoService.GetAllDocumentos();
+        _documentosIngreso = result;
+        _isLoading = false;
+        StateHasChanged();
+    }
+    private void HandleCodFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _codFilter = value;
+        }
+    }
+    private void HandleNameFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _nameFilter = value;
+        }
+    }
+    private void HandleClear()
+    {
+        _codFilter = string.Empty;
+        _nameFilter = string.Empty;
+    }
+}
