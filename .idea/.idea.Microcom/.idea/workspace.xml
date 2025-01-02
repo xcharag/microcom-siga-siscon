@@ -23,7 +23,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="style: Formatting the data grids and the columns it shows" />
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/Comprobantes/DocumentRepository.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,11 +70,18 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/47576478939fdd59b4400ad135f47938af486ab3/src/Components/Components/src/NavigationManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/26746cc701bb8a8dbf7a351a0f3e55cf61bda86b78cc7a73f2dfd64e7f514b/FluentInputBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f87a569454f6294b8c0766e7a7dbaad85f1e6b2dd5e1ae0f46c8e7ab17bee17/FluentNumberField.razor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/BaseLibrary/Entities/Proveedor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/BaseLibrary/Entities/Proveedor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/Client/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Controllers/AuthenticationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Data/AppDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Helpers/Constants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Oscar/RiderProjects/Solution1/ServerLibrary/Repositories/Implementations/DocumentoRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/UserAccountRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -352,7 +361,7 @@
       <workItem from="1735574918240" duration="108000" />
       <workItem from="1735585412629" duration="1425000" />
       <workItem from="1735661704109" duration="643000" />
-      <workItem from="1735822303513" duration="3183000" />
+      <workItem from="1735822303513" duration="9423000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -706,7 +715,23 @@
       <option name="project" value="LOCAL" />
       <updated>1735825447762</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="refactor: Moving interfaces of singletables to itw own directory">
+      <option name="closed" value="true" />
+      <created>1735828237035</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1735828237035</updated>
+    </task>
+    <task id="LOCAL-00046" summary="refactor: Modified the required characteristic of documento and detalledocumento tables&#10;I delete the required label and made the PK of both tables to not be auto generated">
+      <option name="closed" value="true" />
+      <created>1735831396464</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1735831396464</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -728,8 +753,6 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="fix: The Menu Endpoint now saves and retrieves the URL&#10;I fixed the service implementation in the server for retrieving the Url of each Menuitem" />
-    <MESSAGE value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
     <MESSAGE value="Feat: NavMenu Finished&#10;The Sidebar/NavMenu is finished, the role, gestion and tipo cambio are hardcoded by the moment&#10;- Change the style and make it responsive completly&#10;[Note]&#10;- Do not forget to change the hardcoded items in the sidebar (bottom part)" />
     <MESSAGE value="feat: Creation of the validation of IDs&#10;I created a function when creationg a Plan de Cuentas to validate the ID before uploading it&#10;- Created a private function to validate the ID" />
     <MESSAGE value="Feat: Generator of CodPlanCuenta&#10;I make a generator of the Primary Key of CodPlanCuenta, following the requeriments rule for the primary key" />
@@ -753,7 +776,9 @@
     <MESSAGE value="style: Formatting of the addedits dialogs and how they manage the errors&#10;I made some changes on how they managed the errors because the way it was done was unpractical so it needed to be more easy for the user to change only what is wrong" />
     <MESSAGE value="feat: Implementation of changes for deployment&#10;I made some changes for example in the CORS, profiles, etc so the deployment works fine" />
     <MESSAGE value="style: Formatting the data grids and the columns it shows" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: Formatting the data grids and the columns it shows" />
+    <MESSAGE value="refactor: Moving interfaces of singletables to itw own directory" />
+    <MESSAGE value="refactor: Modified the required characteristic of documento and detalledocumento tables&#10;I delete the required label and made the PK of both tables to not be auto generated" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Modified the required characteristic of documento and detalledocumento tables&#10;I delete the required label and made the PK of both tables to not be auto generated" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

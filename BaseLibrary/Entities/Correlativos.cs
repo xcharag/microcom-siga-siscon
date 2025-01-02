@@ -4,18 +4,23 @@ namespace BaseLibrary.Entities;
 
 public class Correlativo
 {
+    [Required]
     [Key]
     public int Id { get; set; }
     
-    [Required]
     public string? Tipo { get; set; }
     
     [Required]
-    public string? Nombre { get; set; }
+    public string? Detalle { get; set; }
     
-    [Required]
     public string? Modulo { get; set; }
     
     [Required]
     public string? Valor { get; set; }
+    
+    public bool? Actualiza { get; set; }
+    
+    public int Largo { get; set; }
+    
+    public string? Relacion { get; set; }
 }

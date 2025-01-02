@@ -8,9 +8,11 @@ using Microsoft.IdentityModel.Tokens;
 using ServerLibrary.Data;
 using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts;
+using ServerLibrary.Repositories.Contracts.Comprobantes;
 using ServerLibrary.Repositories.Contracts.Parametros;
 using ServerLibrary.Repositories.Contracts.SingleTables;
 using ServerLibrary.Repositories.Implementations;
+using ServerLibrary.Repositories.Implementations.Comprobantes;
 using ServerLibrary.Repositories.Implementations.Parametros;
 using ServerLibrary.Repositories.Implementations.SingleTables;
 
@@ -54,6 +56,8 @@ builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
 builder.Services.AddScoped<IMenu, MenuRepository>();
 builder.Services.AddScoped<IPlanCuenta, PlanCuentaRepository>();
 builder.Services.AddScoped<IBanco, BancoRepository>();
+builder.Services.AddScoped<IDocument, DocumentRepository>();
+
 builder.Services.AddScoped<IGenericRepositoryInterface<Grupo>, GrupoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Nivel>, NivelesRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<ProveedorDto>, ProveedorRepository>();
