@@ -1,45 +1,29 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using BaseLibrary.Entities;
 
-namespace BaseLibrary.Entities;
+namespace BaseLibrary.DTOs.Documentos;
 
-public class DetalleDocumento
+public class DocumentoDetalleDto
 {
     [Required]
-    [Key]
     public string? NroDetalleDoc { get; set; }
-
+    
     [Required]
     public string? Correl { get; set; }
-
+    
     [Required]
     public string? Tipo { get; set; }
     
-    [Column(TypeName = "decimal(18, 2)")]
     public float? Mtobd { get; set; }
-    
-    [Column(TypeName = "decimal(18, 2)")]
     public float? Mtodd { get; set; }
-    
-    [Column(TypeName = "decimal(18, 2)")]
     public float? Mtobh { get; set; }
-    
-    [Column(TypeName = "decimal(18, 2)")]
     public float? Mtodh { get; set; }
-
+    
     [Required]
     public string? Glosa { get; set; }
     
-    //Many to One
-    public TcCosto? TcCosto { get; set; }
+    //FK
     public string? TcCostoCodCc { get; set; }
-    
-    public Documento? Documento { get; set; }
     public string? DocumentoNroDoc { get; set; }
-    
-    public PlanCuenta? PlanCuenta { get; set; }
     public string? PlanCuentaCodCuenta { get; set; }
-    
-    //One to Many
-    public List<Anexos>? Anexos { get; set; }
 }

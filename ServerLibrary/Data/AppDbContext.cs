@@ -45,5 +45,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.Entity<Banco>()
             .Property(p => p.CodBanco)
             .ValueGeneratedNever();
+        modelBuilder.Entity<Documento>()
+            .Property(p => p.NroDoc)
+            .ValueGeneratedNever();
+        modelBuilder.Entity<DetalleDocumento>()
+            .Property(p => p.NroDetalleDoc)
+            .ValueGeneratedNever();
     }
 }

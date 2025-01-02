@@ -1,31 +1,29 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
-namespace BaseLibrary.Entities;
+namespace BaseLibrary.DTOs.Documentos;
 
-public class Documento
+public class DocumentoDto
 {
-    [Required]
-    [Key]
+    [Required(ErrorMessage = "El campo Numero del Documento es requerido")]
     public string? NroDoc { get; set; }
     
     public string? FechaDoc { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Nombre es requerido")]
     public string? Nombre { get; set; }
     
     public string? NroCheque { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo de Glosa es requerido")]
     public string? Glosa1 { get; set; }
     
     public string? Glosa2 { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Moneda es requerido")]
     public string? Moneda { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Importe es requerido")]
     [Column(TypeName = "decimal(18, 2)")]
     public float? Importe { get; set; }
     
@@ -36,14 +34,8 @@ public class Documento
     public string? FechaRegistro { get; set; }
     
     public string? HoraRegistro { get; set; }
-
-    //One-to-Many Relationship
-    [JsonIgnore]
-    public List<DetalleDocumento>? DetalleDocumentos { get; set; }
     
-    //Many-to-One Relationship
-    public Proveedor? Proveedor { get; set; }
+    //FK
     public int? ProveedorCodProveedor { get; set; }
-    public Banco? Banco { get; set; }
     public int? BancoCodBanco { get; set; }
 }
