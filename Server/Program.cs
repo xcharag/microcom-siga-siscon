@@ -9,6 +9,7 @@ using ServerLibrary.Data;
 using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts;
 using ServerLibrary.Repositories.Contracts.Parametros;
+using ServerLibrary.Repositories.Contracts.SingleTables;
 using ServerLibrary.Repositories.Implementations;
 using ServerLibrary.Repositories.Implementations.Parametros;
 using ServerLibrary.Repositories.Implementations.SingleTables;

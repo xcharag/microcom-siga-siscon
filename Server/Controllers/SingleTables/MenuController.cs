@@ -2,6 +2,7 @@ using BaseLibrary.DTOs.Menu;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
+using ServerLibrary.Repositories.Contracts.SingleTables;
 
 namespace Server.Controllers.SingleTables;
 

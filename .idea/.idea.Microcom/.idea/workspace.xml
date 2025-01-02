@@ -23,28 +23,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/FileContentIndex/d0d8beee-5b1c-4737-8744-059b0b344d62.vsidx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Microcom/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Microcom/FileContentIndex/b9298413-3b19-4e0f-b5b1-7ac4feacf971.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Microcom/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.futdcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Microcom/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.metadata.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.projects.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.strings.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/CentroCosto/CentroCostoDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/CentroCosto/CentroCostoDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Parametros/CentroCosto.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/CentroCosto.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Parametros/Proveedores.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/Proveedores.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
-    </list>
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="style: Formatting the data grids and the columns it shows" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -373,6 +352,7 @@
       <workItem from="1735574918240" duration="108000" />
       <workItem from="1735585412629" duration="1425000" />
       <workItem from="1735661704109" duration="643000" />
+      <workItem from="1735822303513" duration="3183000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />
@@ -718,7 +698,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735245636586</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="style: Formatting the data grids and the columns it shows">
+      <option name="closed" value="true" />
+      <created>1735825447762</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1735825447762</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,7 +728,6 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Feat: Menus of the Nav retrieved from DB&#10;I created a service for getting the menus of the navbar from the Database. Using:&#10;- Change the NavMenu style &#10;- Using the fluentnavmenu component wrap in a div with the responsive classes&#10;[Notes]&#10;- The endpoint of the Menu is not saving the Url in the database" />
     <MESSAGE value="fix: The Menu Endpoint now saves and retrieves the URL&#10;I fixed the service implementation in the server for retrieving the Url of each Menuitem" />
     <MESSAGE value="Feat: NavMenu with Icon from the DB&#10;I implemented the extraction of the Icons from the DB and show them correctly" />
     <MESSAGE value="Feat: NavMenu Finished&#10;The Sidebar/NavMenu is finished, the role, gestion and tipo cambio are hardcoded by the moment&#10;- Change the style and make it responsive completly&#10;[Note]&#10;- Do not forget to change the hardcoded items in the sidebar (bottom part)" />
@@ -765,7 +752,8 @@
     <MESSAGE value="feat: Finished UI and UX for the proveedores table&#10;I made all the necessary changes for the UI and UX table proveedores" />
     <MESSAGE value="style: Formatting of the addedits dialogs and how they manage the errors&#10;I made some changes on how they managed the errors because the way it was done was unpractical so it needed to be more easy for the user to change only what is wrong" />
     <MESSAGE value="feat: Implementation of changes for deployment&#10;I made some changes for example in the CORS, profiles, etc so the deployment works fine" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Implementation of changes for deployment&#10;I made some changes for example in the CORS, profiles, etc so the deployment works fine" />
+    <MESSAGE value="style: Formatting the data grids and the columns it shows" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: Formatting the data grids and the columns it shows" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -4,6 +4,7 @@ using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Data;
 using ServerLibrary.Repositories.Contracts;
+using ServerLibrary.Repositories.Contracts.SingleTables;
 
 namespace ServerLibrary.Repositories.Implementations.SingleTables;
 
