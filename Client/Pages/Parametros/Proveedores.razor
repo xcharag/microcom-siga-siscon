@@ -6,13 +6,96 @@
 
 <h2>Proveedores</h2>
 
-<GenericDataGrid TItem="ProveedorDto"
-                 Items="@_proveedores"
-                 ItemsQueryable="_proveedores?.AsQueryable()"
-                 OnEdit="HandleEditar"
-                 OnDelete="HandleBorrar"
-                 TipoItem="ProveedorDto"
-                 Pagination="@_pagination"/>
+<div style="display: table; table-layout: fixed; width: 100%;">
+    <div style="overflow-x: auto;">
+        <FluentDataGrid Items="@FilteredProveedores"
+                        ResizableColumns="true"
+                        Pagination="@_pagination"
+                        HeaderCellAsButtonWithMenu="true"
+                        ColumnResizeLabels="@_customLabels"
+                        Style="min-width: max-content">
+            <PropertyColumn Property="@(p => p.CodProveedor)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_codFilter)"
+                            Tooltip="true"
+                            Width="15%"
+                            Align="Align.Center"
+                            Title="Codigo">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_codFilter
+                                      @oninput="HandleCodProveedorFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Codigo de Proveedor..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+
+            <PropertyColumn Property="@(p => p.NomProv)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_nameFilter)"
+                            Tooltip="true"
+                            Width="18%"
+                            Title="Nombre de Proveedor">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_nameFilter
+                                      @oninput="HandleNomProveedorFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Nombre de Proveedor..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+
+            <PropertyColumn Property="@(p => p.TelProv)"
+                            Sortable="true"
+                            Width="10%"
+                            Title="Telefono"/>
+
+            <PropertyColumn Property="@(p => p.TipoDoc)"
+                            Sortable="true"
+                            Width="15%"
+                            Title="Tipo de Documento"/>
+
+            <PropertyColumn Property="@(p => p.NroDoc)"
+                            Sortable="true"
+                            Width="17%"
+                            Title="Numero de Documento"/>
+
+            <PropertyColumn Property="@(p => p.PlanCuentaCodCuenta)"
+                            Sortable="true"
+                            Width="15%"
+                            Title="Cuenta por Pagar"/>
+
+            <TemplateColumn Align="Align.Center" Width="10%" Title="Opciones">
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Edit())"
+                              @onclick="() => HandleEditar(context)">
+                </FluentButton>
+                <FluentTooltip Anchor="@(context.CodProveedor!.ToString())" Position="TooltipPosition.Bottom">
+                    Editar
+                </FluentTooltip>
+
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())"
+                              @onclick="() => HandleBorrar(context)">
+                </FluentButton>
+                <FluentTooltip Anchor="@(context.CodProveedor!.ToString())" Position="TooltipPosition.Bottom">
+                    Eliminar
+                </FluentTooltip>
+            </TemplateColumn>
+        </FluentDataGrid>
+    </div>
+</div>
+
+
+<FluentPaginator State="@_pagination"></FluentPaginator>
 
 <FluentStack Orientation="Orientation.Horizontal" Style="margin-top: 1rem">
     <FluentButton IconStart="@(new Icons.Regular.Size20.ArrowCounterclockwise())"
@@ -24,74 +107,102 @@
 
     <FluentButton IconStart="@(new Icons.Color.Size20.AddCircle())"
                   Appearance="Appearance.Accent"
-                  @onclick="@OpenCreateDialogAsync">
+                  @onclick="OpenCreateDialogAsync">
         Crear Nuevo
     </FluentButton>
 </FluentStack>
 
 @code {
     private IEnumerable<ProveedorDto>? _proveedores;
+    private string _codFilter = string.Empty;
+    private string _nameFilter = string.Empty;
+    private bool _loading = false;
     private readonly PaginationState _pagination = new PaginationState();
-    bool _loading = false;
-    
-    //Table Buttons
-    private async Task HandleEditar(ProveedorDto proveedor)
+    readonly ColumnResizeLabels _customLabels = ColumnResizeLabels.Default with { DiscreteLabel = "Ancho (+/- 10px)", ResetAriaLabel = "Restaurar" };
+
+    IQueryable<ProveedorDto>? FilteredProveedores
     {
-        DialogParameters parameters = new DialogParameters()
+        get
         {
-            Title = "Editar Proveedor",
-            Width = "600px",
-            TrapFocus = true,
-            Modal = false,
-            PreventScroll = true
-        };
-        
-        var proveedorEdit = new ProveedorDto()
+            if (_proveedores == null)
+            {
+                return Enumerable.Empty<ProveedorDto>().AsQueryable();
+            }
+
+            var result = _proveedores.AsQueryable();
+            if (!string.IsNullOrEmpty(_codFilter))
+            {
+                result = result.Where(p => p.CodProveedor!.ToString()!.Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            if (!string.IsNullOrEmpty(_nameFilter))
+            {
+                result = result.Where(p => p.NomProv!.Contains(_nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            return result;
+        }
+    }
+
+    private async Task ReloadTableAsync()
+    {
+        _loading = true;
+        _proveedores = await ProveedorService.GetAll("api/Proveedor");
+        _loading = false;
+        StateHasChanged();
+    }
+
+    private void HandleCodProveedorFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
         {
-            CodProveedor = proveedor.CodProveedor,
-            NomProv = proveedor.NomProv,
-            DirProv = proveedor.DirProv,
-            TelProv = proveedor.TelProv,
-            EmailProv = proveedor.EmailProv,
-            Contacto = proveedor.Contacto,
-            TipoDoc = proveedor.TipoDoc,
-            NroDoc = proveedor.NroDoc,
-            CodigoEx = proveedor.CodigoEx,
-            Complemento = proveedor.Complemento,
-            LimiteCre = proveedor.LimiteCre,
-            PlanCuentaCodCuenta = proveedor.PlanCuentaCodCuenta
-        };
-        
-        var dialog = await DialogService.ShowDialogAsync<AddEditDialogProveedor>(proveedorEdit, parameters);
-        DialogResult result = await dialog.Result;
-        
+            _codFilter = value;
+        }
+    }
+
+    private void HandleNomProveedorFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _nameFilter = value;
+        }
+    }
+
+    private void HandleClear()
+    {
+        _codFilter = string.Empty;
+        _nameFilter = string.Empty;
+    }
+
+    private async Task OpenCreateDialogAsync()
+    {
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogProveedor>(new ProveedorDto(), new DialogParameters { Title = "Crear Nuevo Proveedor", Width = "600px" });
+        var result = await dialog.Result;
         if (!result.Cancelled)
         {
             await ReloadTableAsync();
-            _loading = false;
-            StateHasChanged();
         }
     }
+
+    private async Task HandleEditar(ProveedorDto proveedor)
+    {
+        var dialog = await DialogService.ShowDialogAsync<AddEditDialogProveedor>(proveedor, new DialogParameters { Title = "Editar Proveedor", Width = "600px" });
+        var result = await dialog.Result;
+        if (!result.Cancelled)
+        {
+            await ReloadTableAsync();
+        }
+    }
+
     private async Task HandleBorrar(ProveedorDto proveedor)
     {
-        DialogParameters parameters = new DialogParameters()
+        List<string> message = new List<string>
         {
-            Title = "Eliminar Proveedor",
-            Width = "400px",
-            TrapFocus = true,
-            Modal = false,
-            PreventScroll = true
+            "¿Está seguro que desea eliminar el proveedor?",
+            $"Nombre: {proveedor.NomProv}",
+            $"Código: {proveedor.CodProveedor}",
+            "Esta acción no se puede deshacer."
         };
-        
-        List<string> message = new List<string>();
-        message.Add("¿Está seguro que desea eliminar el proveedor?");
-        message.Add($"Nombre: {proveedor.NomProv}");
-        message.Add($"Código: {proveedor.CodProveedor}");
-        message.Add("Esta acción no se puede deshacer.");
-        
-        var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, parameters);
-        DialogResult result = await dialog.Result;
-
+        var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, new DialogParameters { Title = "Eliminar Proveedor", Width = "400px" });
+        var result = await dialog.Result;
         if (result.Data is not null && (bool)result.Data)
         {
             var response = await ProveedorService.Delete((int)proveedor.CodProveedor!, "api/Proveedor");
@@ -105,44 +216,8 @@
                 ToastService.ShowError(response.Message);
             }
         }
-        await ReloadTableAsync();
-        _loading = false;
-        StateHasChanged();
-    }
-    private async Task OpenCreateDialogAsync()
-    {
-        DialogParameters parameters = new DialogParameters()
-        {
-            Title = "Crear Proveedor",
-            Width = "600px",
-            TrapFocus = true,
-            Modal = false,
-            PreventScroll = true
-        };
-        
-        var emptyProveedor = new ProveedorDto();
-        
-        var dialog = await DialogService.ShowDialogAsync<AddEditDialogProveedor>(emptyProveedor, parameters);
-        DialogResult result = await dialog.Result;
-        
-        if (!result.Cancelled)
-        {
-            await ReloadTableAsync();
-            _loading = false;
-            StateHasChanged();
-        }
     }
 
-    //Options
-    private async Task ReloadTableAsync()
-    {
-        _loading = true;
-        _proveedores = await ProveedorService.GetAll("api/Proveedor");
-        _loading = false;
-        StateHasChanged();
-    }
-    
-    //Functionalities
     protected override async Task OnInitializedAsync()
     {
         if (_proveedores is null)

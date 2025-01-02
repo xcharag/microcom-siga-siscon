@@ -2,17 +2,84 @@
 @using Client.Components
 @using Client.Components.Parametros.CentroCosto
 
-<PageTitle>Centro de Costos</PageTitle>
+<PageTitle>Centros de Costos</PageTitle>
 
-<h2>CentroCosto</h2>
+<h2>Centros de Costos</h2>
 
-<GenericDataGrid TItem="CentroCostoDto"
-                 Items="@_centrosCostos"
-                 ItemsQueryable="_centrosCostos?.AsQueryable()"
-                 OnEdit="HandleEditar"
-                 OnDelete="HandleBorrar"
-                 TipoItem="CentroCostoDto"
-                 Pagination="@_pagination"/>
+<div style="display: table; table-layout: fixed; width: 100%;">
+    <div style="overflow-x: auto;">
+        <FluentDataGrid Items="@FilteredCentrosCostos"
+                        ResizableColumns="true"
+                        Pagination="@_pagination"
+                        HeaderCellAsButtonWithMenu="true"
+                        ColumnResizeLabels="@_customLabels"
+                        Style="min-width: max-content">
+            <PropertyColumn Property="@(p => p.CodCc)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_codFilter)"
+                            Tooltip="true"
+                            Width="15%"
+                            Align="Align.Center"
+                            Title="Codigo">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_codFilter
+                                      @oninput="HandleCodCcFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Codigo de Centro de Costo..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+
+            <PropertyColumn Property="@(p => p.NomCc)"
+                            Sortable="true"
+                            Filtered="!string.IsNullOrWhiteSpace(_nameFilter)"
+                            Tooltip="true"
+                            Width="20%"
+                            Title="Nombre de Centro de Costo">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch Autofocus="true"
+                                      @bind-Value=_nameFilter
+                                      @oninput="HandleNomCcFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Nombre de Centro de Costo..."
+                                      Style="width: 100%"
+                                      Label="Filtro">
+                        </FluentSearch>
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+
+            <PropertyColumn Property="@(p => p.NomResp)"
+                            Sortable="true"
+                            Width="20%"
+                            Title="Responsable"/>
+
+            <TemplateColumn Align="Align.Center" Width="15%" Title="Opciones">
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Edit())"
+                              @onclick="() => HandleEditar(context)">
+                </FluentButton>
+                <FluentTooltip Anchor="@(context.CodCc!.ToString())" Position="TooltipPosition.Bottom">
+                    Editar
+                </FluentTooltip>
+
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())"
+                              @onclick="() => HandleBorrar(context)">
+                </FluentButton>
+                <FluentTooltip Anchor="@(context.CodCc!.ToString())" Position="TooltipPosition.Bottom">
+                    Eliminar
+                </FluentTooltip>
+            </TemplateColumn>
+        </FluentDataGrid>
+    </div>
+</div>
+
+<FluentPaginator State="@_pagination"></FluentPaginator>
 
 <FluentStack Orientation="Orientation.Horizontal" Style="margin-top: 1rem">
     <FluentButton IconStart="@(new Icons.Regular.Size20.ArrowCounterclockwise())"
@@ -24,65 +91,109 @@
 
     <FluentButton IconStart="@(new Icons.Color.Size20.AddCircle())"
                   Appearance="Appearance.Accent"
-                  @onclick="@OpenCreateDialogAsync">
+                  @onclick="OpenCreateDialogAsync">
         Crear Nuevo
     </FluentButton>
 </FluentStack>
 
 @code {
     private IEnumerable<CentroCostoDto>? _centrosCostos;
+    private string _codFilter = string.Empty;
+    private string _nameFilter = string.Empty;
+    private bool _loading;
     private readonly PaginationState _pagination = new PaginationState();
-    bool _loading;
-    
-    //Table Buttons
-    private async Task HandleEditar(CentroCostoDto centroCosto)
+    readonly ColumnResizeLabels _customLabels = ColumnResizeLabels.Default with { DiscreteLabel = "Ancho (+/- 10px)", ResetAriaLabel = "Restaurar" };
+
+    IQueryable<CentroCostoDto> FilteredCentrosCostos
     {
-        DialogParameters parameters = new DialogParameters()
+        get
         {
-            Title = "Editar Centro de Costo",
-            Width = "600px",
-            TrapFocus = true,
-            Modal = false,
-            PreventScroll = true
-        };
-        
-        var dialog = await DialogService.ShowDialogAsync<AddEditCentroCosto>(centroCosto, parameters);
-        DialogResult result = await dialog.Result;
-        
+            if (_centrosCostos == null)
+            {
+                return Enumerable.Empty<CentroCostoDto>().AsQueryable();
+            }
+
+            var result = _centrosCostos.AsQueryable();
+            if (!string.IsNullOrEmpty(_codFilter))
+            {
+                result = result.Where(p => p.CodCc!.Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            if (!string.IsNullOrEmpty(_nameFilter))
+            {
+                result = result.Where(p => p.NomCc!.Contains(_nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+            return result;
+        }
+    }
+
+    private async Task ReloadTableAsync()
+    {
+        _loading = true;
+        _centrosCostos = await CentroCostoService.GetAll("api/CentroCosto");
+        _loading = false;
+        StateHasChanged();
+    }
+
+    private void HandleCodCcFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _codFilter = value;
+        }
+    }
+
+    private void HandleNomCcFilter(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+        {
+            _nameFilter = value;
+        }
+    }
+
+    private void HandleClear()
+    {
+        _codFilter = string.Empty;
+        _nameFilter = string.Empty;
+    }
+
+    private async Task OpenCreateDialogAsync()
+    {
+        var dialog = await DialogService.ShowDialogAsync<AddEditCentroCosto>(new CentroCostoDto(), new DialogParameters { Title = "Crear Nuevo Centro de Costo", Width = "600px" });
+        var result = await dialog.Result;
         if (!result.Cancelled)
         {
             await ReloadTableAsync();
-            _loading = false;
         }
-        _loading = false;
     }
-    private async Task HandleBorrar(CentroCostoDto centroCostoDto)
+
+    private async Task HandleEditar(CentroCostoDto centroCosto)
     {
-        DialogParameters parameters = new DialogParameters()
+        var dialog = await DialogService.ShowDialogAsync<AddEditCentroCosto>(centroCosto, new DialogParameters { Title = "Editar Centro de Costo", Width = "600px" });
+        var result = await dialog.Result;
+        if (!result.Cancelled)
         {
-            Title = "Eliminar Centro de Costo",
-            Width = "400px",
-            TrapFocus = true,
-            Modal = false,
-            PreventScroll = true
-        };
-        
-        List<string> message = new List<string>();
-        message.Insert(0,"¿Estas seguro que deseas eliminar el Centro de Costo?");
-        message.Insert(1,$"Codigo: {centroCostoDto.CodCc}");
-        message.Insert(2,$"Nombre: {centroCostoDto.NomCc}");
-        message.Insert(3,"Esta acción no se puede deshacer.");
-        
-        var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, parameters);
-        DialogResult result = await dialog.Result;
-        
-        if (result.Data is not null && (bool) result.Data)
+            await ReloadTableAsync();
+        }
+    }
+
+    private async Task HandleBorrar(CentroCostoDto centroCosto)
+    {
+        List<string> message =
+        [
+            "¿Está seguro que desea eliminar el Centro de Costo?",
+            $"Nombre: {centroCosto.NomCc}",
+            $"Código: {centroCosto.CodCc}",
+            "Esta acción no se puede deshacer."
+        ];
+        var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, new DialogParameters { Title = "Eliminar Centro de Costo", Width = "400px" });
+        var result = await dialog.Result;
+        if (result.Data is not null && (bool)result.Data)
         {
-            var response = await CentroCostoService.Delete(centroCostoDto.CodCc!, "api/CentroCosto");
+            var response = await CentroCostoService.Delete(centroCosto.CodCc!, "api/CentroCosto");
             if (response.Flag)
             {
                 ToastService.ShowSuccess(response.Message);
-                await GetCentrosCostos();
+                await ReloadTableAsync();
             }
             else
             {
@@ -90,51 +201,12 @@
             }
         }
     }
-    private async Task OpenCreateDialogAsync()
-    {
-        DialogParameters parameters = new DialogParameters()
-        {
-            Title = "Crear Centro de Costo",
-            Width = "600px",
-            TrapFocus = true,
-            Modal = false,
-            PreventScroll = true
-        };
-        
-        var centroCostoEmpty = new CentroCostoDto();
-        
-        var dialog = await DialogService.ShowDialogAsync<AddEditCentroCosto>(centroCostoEmpty, parameters);
-        DialogResult result = await dialog.Result;
-        
-        if (!result.Cancelled)
-        {
-            await ReloadTableAsync();
-        }
-    }
-    
-    //Options
-    private async Task ReloadTableAsync()
-    {
-        _loading = true;
-        await GetCentrosCostos();
-        _loading = false;
-    }
-    
+
     protected override async Task OnInitializedAsync()
     {
         if (_centrosCostos is null)
         {
-            await GetCentrosCostos();
+            await ReloadTableAsync();
         }
-    }
-    private async Task GetCentrosCostos()
-    {
-        var centroCostos = await CentroCostoService.GetAll("api/CentroCosto");
-        
-        if (centroCostos is not null)
-        {
-            _centrosCostos = centroCostos;
-        }
-        StateHasChanged();
     }
 }

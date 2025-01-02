@@ -34,9 +34,6 @@ public class ProveedorDto
     [RegularExpression(@"^[01]$", ErrorMessage = "El Codigo de Excepcion solo puede ser 0 o 1")]
     public string? CodigoEx { get; set; }
     public string? Complemento { get; set; }
-
-    //Make sure LimiteCre is a float number
-    [Required(ErrorMessage = "El campo Limite de Credito es obligatorio")]
     public float? LimiteCre { get; set; }
     
     [Required(ErrorMessage = "El Plan Cuenta por Pagar asignado es obligatorio")]

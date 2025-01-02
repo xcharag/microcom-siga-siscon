@@ -4,12 +4,12 @@ namespace BaseLibrary.DTOs.Parametros.CentroCosto;
 
 public class CentroCostoDto
 {
-    [Required]
+    [Required(ErrorMessage = "El código del centro de costo es requerido")]
     public string? CodCc { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El nombre del centro de costo es requerido")]
     public string? NomCc { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El nombre del responsable del centro de costo es requerido")]
     public string? NomResp { get; set; }
 }

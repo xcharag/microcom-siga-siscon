@@ -23,49 +23,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="feat: Implementation of changes for deployment&#10;I made some changes for example in the CORS, profiles, etc so the deployment works fine">
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db-shm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db-wal" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/FileContentIndex/66b82f29-f926-4252-9c96-8670c44002c7.vsidx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v16/.suo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.futdcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.suo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/DocumentLayout.backup.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/Microcom/v17/DocumentLayout.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.metadata.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.projects.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.strings.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosAnexosDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosCompletosDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosDetalleDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Documentos/DocumentosDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Client.csproj.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile1.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile1.pubxml.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - FTP.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - FTP.pubxml.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - Web Deploy.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/xchar2-001-site1 - Web Deploy.pubxml.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.config/dotnet-tools.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/We.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/local.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/rEMOTE.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Server.csproj.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Contracts/IDocumento.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServerLibrary/Repositories/Implementations/DocumentoRepository.cs" afterDir="false" />
+    <list default="true" id="a4be0f55-574d-40b6-a390-b9db452d030b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.vs/Microcom/FileContentIndex/d0d8beee-5b1c-4737-8744-059b0b344d62.vsidx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Microcom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/CodeChunks.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Microcom/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Microcom/FileContentIndex/b9298413-3b19-4e0f-b5b1-7ac4feacf971.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Microcom/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Microcom/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Microcom/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.metadata.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.projects.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/microcom.strings.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/CentroCosto/CentroCostoDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/CentroCosto/CentroCostoDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/DTOs/Parametros/Proveedor/ProveedorDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BaseLibrary/Entities/Proveedor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Parametros/CentroCosto/AddEditCentroCosto.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Parametros/CentroCosto.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/CentroCosto.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Parametros/Proveedores.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Parametros/Proveedores.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +66,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Basic-Structure" />
+        <entry key="$PROJECT_DIR$" value="LocalTesting" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,47 +111,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Client: http.executor": "Run",
-    ".NET Launch Settings Profile.WebApplication1: IIS Express.executor": "Run",
-    ".NET Launch Settings Profile.WebApplication1: http.executor": "Run",
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Publish to IIS.Client: FolderProfile.executor": "Run",
-    "Publish to IIS.Client: FolderProfile1.executor": "Run",
-    "Publish to IIS.Local Microcom SisCon.executor": "Run",
-    "Publish to IIS.Publish Client to IIS.executor": "Run",
-    "Publish to IIS.Publish Server to IIS.executor": "Run",
-    "Publish to IIS.Server: FolderProfile.executor": "Run",
-    "Publish to folder.Publish Client to folder.executor": "Run",
-    "Publish to folder.Publish Papa.executor": "Run",
-    "Publish to folder.Publish Server to folder (1).executor": "Run",
-    "Publish to folder.Publish Server to folder.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Client: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.WebApplication1: IIS Express.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.WebApplication1: http.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Publish to IIS.Client: FolderProfile.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to IIS.Client: FolderProfile1.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to IIS.Local Microcom SisCon.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to IIS.Publish Client to IIS.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to IIS.Publish Server to IIS.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to IIS.Server: FolderProfile.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to folder.Publish Client to folder.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to folder.Publish Papa.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to folder.Publish Server to folder (1).executor&quot;: &quot;Run&quot;,
+    &quot;Publish to folder.Publish Server to folder.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver.localdb",
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver.localdb&quot;,
+      &quot;sqlserver&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Oscar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Oscar\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected="Publish to IIS.Server: FolderProfile">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.Client: http">
     <configuration name="Client: FolderProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
       <riderPublish configuration="Release" platform="Any CPU" publish_profile="FolderProfile1.pubxml" pubxml_path="$PROJECT_DIR$/Client/Properties/PublishProfiles/FolderProfile1.pubxml" uuid_high="3423128884508444706" uuid_low="-6845133272060213425" />
       <method v="2" />
@@ -394,6 +372,7 @@
       <workItem from="1735567755198" duration="4032000" />
       <workItem from="1735574918240" duration="108000" />
       <workItem from="1735585412629" duration="1425000" />
+      <workItem from="1735661704109" duration="643000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Adding a neccesary dependencie">
       <option name="closed" value="true" />

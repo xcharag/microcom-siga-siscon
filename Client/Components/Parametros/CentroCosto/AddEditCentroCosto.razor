@@ -75,6 +75,7 @@
             if (!response!.Flag)
             {
                 ToastService.ShowError(response.Message);
+                await Dialog.CloseAsync();
                 return;
             }
             ToastService.ShowSuccess(response.Message);
