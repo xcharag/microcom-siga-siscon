@@ -57,6 +57,7 @@ builder.Services.AddScoped<IMenu, MenuRepository>();
 builder.Services.AddScoped<IPlanCuenta, PlanCuentaRepository>();
 builder.Services.AddScoped<IBanco, BancoRepository>();
 builder.Services.AddScoped<IDocument, DocumentRepository>();
+builder.Services.AddScoped<ICorrelativo, CorrelativoRepository>();
 
 builder.Services.AddScoped<IGenericRepositoryInterface<Grupo>, GrupoRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Nivel>, NivelesRepository>();

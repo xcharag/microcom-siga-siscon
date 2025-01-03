@@ -1,0 +1,75 @@
+@using BaseLibrary.DTOs.Documentos
+@implements IDialogContentComponent<AsientoDto>
+
+@code {
+    [Parameter] public AsientoDto Content { get; set; } = default!;
+    [CascadingParameter] public FluentDialog Dialog { get; set; } = default!;
+    
+    AsientoDto? AsientoModelo { get; set; } 
+    bool _editMode;
+    bool _codDisabled = false;
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (Content.Cabecera.NroDoc is not null)
+        {
+            AsientoModelo = new AsientoDto()
+            {
+                Cabecera = Content.Cabecera,
+                Detalle = Content.Detalle
+            };
+            _editMode = true;
+            _codDisabled = true;
+        }
+        else
+        {
+            AsientoModelo = new AsientoDto()
+            {
+                Cabecera = new DocumentoDto(),
+                Detalle = new List<DocumentoDetalleDto>()
+            };
+            GetNewNroDoc();
+        }
+    }
+
+    private async Task HandleCreateAsync()
+    {
+        if (!_editMode)
+        {
+            var response = await DocumentoService.CreateDocumento(AsientoModelo!);
+            if (!response!.Flag)
+            {
+                ToastService.ShowError(response.Message);
+                return;
+            }
+            ToastService.ShowSuccess(response.Message);
+            await Dialog.CloseAsync(response.Message);
+            return;
+        }
+        var responseEdit = await DocumentoService.UpdateDocumento(AsientoModelo!);
+        if (!responseEdit.Flag)
+        {
+            ToastService.ShowError(responseEdit.Message);
+            return;
+        }
+        ToastService.ShowSuccess(responseEdit.Message);
+        await Dialog.CloseAsync(responseEdit);
+    }
+    private async Task CancelAsync()
+    {
+        await Dialog.CloseAsync();
+    }
+    private async void GetNewNroDoc()
+    {
+        return;
+    }
+    private Icon GetIcon()
+    {
+        if (_editMode)
+        {
+            return new Icons.Filled.Size20.Edit();
+        }
+        return new Icons.Regular.Size20.New();
+    }
+}

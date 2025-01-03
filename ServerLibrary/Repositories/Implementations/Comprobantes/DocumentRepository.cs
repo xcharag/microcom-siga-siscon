@@ -1,13 +1,16 @@
+using BaseLibrary.DTOs.Correlativos;
 using BaseLibrary.DTOs.Documentos;
 using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Data;
+using ServerLibrary.Helpers;
 using ServerLibrary.Repositories.Contracts.Comprobantes;
+using ServerLibrary.Repositories.Contracts.SingleTables;
 
 namespace ServerLibrary.Repositories.Implementations.Comprobantes;
 
-public class DocumentRepository(AppDbContext appDbContext) : IDocument
+public class DocumentRepository(AppDbContext appDbContext,ICorrelativo correlativoRepository) : IDocument
 {
     public async Task<List<DocumentoDto>> GetAllDocumentos()
     {
@@ -49,65 +52,104 @@ public class DocumentRepository(AppDbContext appDbContext) : IDocument
         throw new NotImplementedException();
     }
 
-    public async Task<GeneralResponse> CreateDocumento(AsientoDto item)
+public async Task<GeneralResponse> CreateDocumento(AsientoDto item)
+{
+    if (string.IsNullOrEmpty(item.Cabecera.NroDoc))
+        return new GeneralResponse(false, "El número de documento es requerido");
+
+    if (item.Detalle == null || item.Detalle.Count == 0)
+        return new GeneralResponse(false, "Debe agregar al menos un detalle válido");
+
+    var correlativo = await correlativoRepository.GetOneCorrelativo(item.Tipo!);
+    if (correlativo is null)
+        return new GeneralResponse(false, "No se encontró el correlativo correspondiente");
+
+    var documento = ParseDtoToEntity(item);
+
+    if (CorrelativoHelpers.VerifyCorrelativo(documento.NroDoc!, correlativo) == "Error")
+        return new GeneralResponse(false, "El número de documento no cumple con el formato");
+
+    var dtoUpdateCorrelativo = new CorrelativosDto
     {
-        if (item == null) return new GeneralResponse(false, "El objeto AsientoDto no puede ser vacia");
-        if (item.Cabecera == null)
-            return new GeneralResponse(false, "La cabecera del asiento contable no puede ser vacia");
-        if (string.IsNullOrEmpty(item.Cabecera.NroDoc))
-            return new GeneralResponse(false, "El número de documento es requerido");
+        Tipo = item.Tipo,
+        Detalle = correlativo.Detalle,
+        Edition = true,
+        Flag = true,
+        Valor = documento.NroDoc
+    };
 
-        if (item.Detalle == null || item.Detalle.Count == 0)
-            return new GeneralResponse(false, "Debe agregar al menos un detalle válido");
+    var checkProveedor = await appDbContext.Proveedores.FindAsync(item.Cabecera.ProveedorCodProveedor);
+    if (checkProveedor == null)
+        return new GeneralResponse(false, "No se encontró el proveedor");
 
-        var documento = ParseDtoToEntity(item);
-        if (documento == null) return new GeneralResponse(false, "Error al procesar el Documento");
+    documento.Proveedor = checkProveedor;
 
-        var checkProveedor = await appDbContext.Proveedores.FindAsync(item.Cabecera.ProveedorCodProveedor);
-        if (checkProveedor == null) return new GeneralResponse(false, "No se encontró el proveedor");
-        documento.Proveedor = checkProveedor;
+    var checkBanco = await appDbContext.Bancos.FindAsync(item.Cabecera.BancoCodBanco);
+    if (checkBanco == null)
+        return new GeneralResponse(false, "No se encontró el banco");
 
-        var checkBanco = await appDbContext.Bancos.FindAsync(item.Cabecera.BancoCodBanco);
-        if (checkBanco == null) return new GeneralResponse(false, "No se encontró el banco");
-        documento.Banco = checkBanco;
+    documento.Banco = checkBanco;
 
-        appDbContext.Documentos.Add(documento);
+    // Initialize DetalleDocumentos if null
+    documento.DetalleDocumentos ??= new List<DetalleDocumento>();
 
-        foreach (var detalle in item.Detalle)
-        {
-            if (detalle == null) continue;
+    foreach (var detalle in item.Detalle)
+    {
+        var detalleDocumento = ParseDetalleDtoToEntity(detalle);
 
-            var detalleDocumento = ParseDetalleDtoToEntity(detalle);
-            if (detalleDocumento == null)
-                return new GeneralResponse(false,
-                    "Error al procesar el Detalle del documento y asociarlo a la cabecera");
+        var checkDetalle = await appDbContext.DetalleDocumentos
+            .FindAsync(detalleDocumento.NroDetalleDoc);
 
-            var checkTcCosto = await appDbContext.TcCostos.FindAsync(detalle.TcCostoCodCc);
-            if (checkTcCosto == null) return new GeneralResponse(false, "No se encontró el Centro de Costo");
-            detalleDocumento.TcCosto = checkTcCosto;
+        if (checkDetalle != null)
+            return new GeneralResponse(false, $"El detalle {detalleDocumento.NroDetalleDoc} ya existe");
 
-            if (documento.DetalleDocumentos == null)
-            {
-                documento.DetalleDocumentos = new List<DetalleDocumento>();
-            }
+        var checkTcCosto = await appDbContext.TcCostos.FindAsync(detalle.TcCostoCodCc);
+        if (checkTcCosto == null)
+            return new GeneralResponse(false, $"No se encontró el Centro de Costo en el detalle: {detalle.NroDetalleDoc}");
 
-            documento.DetalleDocumentos.Add(detalleDocumento);
-            appDbContext.DetalleDocumentos.Add(detalleDocumento);
-        }
+        detalleDocumento.TcCosto = checkTcCosto;
 
-        await Commit();
-        return new GeneralResponse(true, "Operación exitosa");
+        var checkPlanCuenta = await appDbContext.PlanCuentas.FindAsync(detalle.PlanCuentaCodCuenta);
+        if (checkPlanCuenta == null || checkPlanCuenta.TipoCuenta != "Detalle")
+            return new GeneralResponse(false, $"Cuenta contable inválida en el detalle: {detalle.NroDetalleDoc}");
+
+        detalleDocumento.PlanCuenta = checkPlanCuenta;
+        detalleDocumento.Documento = documento;
+
+        // Add to Documento entity list
+        documento.DetalleDocumentos.Add(detalleDocumento);
+
+        // Add to DbContext
+        appDbContext.DetalleDocumentos.Add(detalleDocumento);
     }
 
+    appDbContext.Documentos.Add(documento);
 
+    var actualCorrelativo = await correlativoRepository.UpdateOneDocumentoCorrelativo(dtoUpdateCorrelativo);
+    if (!actualCorrelativo.Flag)
+        return actualCorrelativo with { Flag = false };
+
+    await Commit();
+    return new GeneralResponse(true, "Operación exitosa");
+}
+
+    
     public async Task<GeneralResponse> UpdateDocumento(AsientoDto item)
     {
         if (item.Cabecera.NroDoc == null) return new GeneralResponse(false, "El número de documento es requerido");
+        
         var documento = await appDbContext.Documentos.FindAsync(item.Cabecera.NroDoc);
         if (documento == null) return new GeneralResponse(false, "No se encontró el documento con ese Codigo");
 
         var newDocumento = ParseDtoToEntity(item);
-
+        
+        var correlativo = await correlativoRepository.GetOneCorrelativo(item.Tipo!);
+        if (correlativo == null) return new GeneralResponse(false, "No se encontró el correlativo correspondiente");
+        if (CorrelativoHelpers.VerifyCorrelativo(newDocumento.NroDoc!, correlativo) == "false")
+        {
+            return new GeneralResponse(false, "El número de documento no cumple con los parametros");
+        }
+        
         //Check Proveedor and Banco then Add it to the Documento
         var checkProveedor = await appDbContext.Proveedores.FindAsync(item.Cabecera.ProveedorCodProveedor);
         if (checkProveedor == null) return new GeneralResponse(false, "No se encontró el proveedor");
@@ -209,7 +251,6 @@ public class DocumentRepository(AppDbContext appDbContext) : IDocument
         if (newDoc.Glosa1 != oldDoc.Glosa1) oldDoc.Glosa1 = newDoc.Glosa1;
         if (newDoc.Glosa2 != oldDoc.Glosa2) oldDoc.Glosa2 = newDoc.Glosa2;
         if (newDoc.Moneda != oldDoc.Moneda) oldDoc.Moneda = newDoc.Moneda;
-        if (newDoc.Importe != oldDoc.Importe) oldDoc.Importe = newDoc.Importe;
         if (newDoc.CreatedBy != oldDoc.CreatedBy) oldDoc.CreatedBy = newDoc.CreatedBy;
         if (newDoc.Origen != oldDoc.Origen) oldDoc.Origen = newDoc.Origen;
         if (newDoc.FechaRegistro != oldDoc.FechaRegistro) oldDoc.FechaRegistro = newDoc.FechaRegistro;

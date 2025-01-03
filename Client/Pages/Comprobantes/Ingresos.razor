@@ -1,5 +1,6 @@
 @page "/compingresos"
 @using BaseLibrary.DTOs.Documentos
+@using Client.Components
 
 <PageTitle>Ingresos</PageTitle>
 
@@ -13,7 +14,7 @@
                         HeaderCellAsButtonWithMenu="true"
                         ColumnResizeLabels="@_customLabels"
                         Style="min-width: max-content">
-            <PropertyColumn Property="@(d=>d.NroDoc)"
+            <PropertyColumn Property="@(d => d.NroDoc)"
                             Sortable="true"
                             Filtered="!string.IsNullOrWhiteSpace(_codFilter)"
                             Tooltip="true"
@@ -33,8 +34,8 @@
                     </div>
                 </ColumnOptions>
             </PropertyColumn>
-            
-            <PropertyColumn Property="@(d=>d.Nombre)"
+
+            <PropertyColumn Property="@(d => d.Nombre)"
                             Sortable="true"
                             Filtered="!string.IsNullOrWhiteSpace(_nameFilter)"
                             Tooltip="true"
@@ -53,25 +54,52 @@
                     </div>
                 </ColumnOptions>
             </PropertyColumn>
-            
-            <PropertyColumn Property="@(d=>d.FechaDoc)"
+
+            <PropertyColumn Property="@(d => d.FechaDoc)"
                             Sortable="true"
-                            Width="20%"
+                            Width="15%"
                             Title="Fecha del Documento"/>
-            
-            <PropertyColumn Property="@(d=>d.Importe)"
+
+            <PropertyColumn Property="@(d => d.Importe)"
                             Sortable="true"
-                            Width="20%"
+                            Width="15%"
                             Title="Importe Total"/>
-            
-            <PropertyColumn Property="@(d=>d.Moneda)"
+
+            <PropertyColumn Property="@(d => d.Moneda)"
                             Sortable="true"
-                            Width="20%"
+                            Width="15%"
                             Title="Moneda"/>
+
+            <TemplateColumn Align="Align.Center" Width="15%" Title="Opciones">
+                <FluentButton Id="@(context.NroDoc!.Insert(0, "E"))" IconStart="@(new Icons.Regular.Size20.Edit())" @onclick="@(() => HandleEditar(context))"></FluentButton>
+                <FluentTooltip Anchor="@(context.NroDoc!.Insert(0, "E"))" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                    Editar
+                </FluentTooltip>
+
+                <FluentButton Id="@(context.NroDoc!.Insert(0, "B"))" IconStart="@(new Icons.Regular.Size20.Delete())" @onclick="@(() => HandleBorrar(context))"></FluentButton>
+                <FluentTooltip Anchor="@(context.NroDoc!.Insert(0, "B"))" HideTooltipOnCursorLeave="true" Position="TooltipPosition.Bottom" Delay=200>
+                    Borrar
+                </FluentTooltip>
+            </TemplateColumn>
         </FluentDataGrid>
     </div>
 </div>
 
+<FluentPaginator State="@_pagination"/>
+
+<FluentStack Orientation="Orientation.Horizontal" Style="margin-top: 1rem">
+    <FluentButton IconStart="@(new Icons.Regular.Size20.ArrowCounterclockwise())"
+                  @onclick="ReloadTableAsync"
+                  Loading="@_isLoading"
+                  Style="margin-right: 1rem">
+        Recargar Tabla
+    </FluentButton>
+    <FluentButton IconStart="@(new Icons.Color.Size20.AddCircle())"
+                  @onclick="@OpenCreateDialogAsync"
+                  Disabled="@_isLoading">
+        Registrar Nuevo Ingreso
+    </FluentButton>
+</FluentStack>
 
 @code {
     private IEnumerable<DocumentoDto>? _documentosIngreso;
@@ -89,13 +117,13 @@
             {
                 return Enumerable.Empty<DocumentoDto>().AsQueryable();
             }
-            
+
             var query = _documentosIngreso.AsQueryable();
             if (!string.IsNullOrEmpty(_codFilter))
             {
                 query = query.Where(di => di.NroDoc!.Contains(_codFilter, StringComparison.CurrentCultureIgnoreCase));
             }
-            
+
             if (!string.IsNullOrEmpty(_nameFilter))
             {
                 query = query.Where(di => di.Nombre!.Contains(_nameFilter, StringComparison.CurrentCultureIgnoreCase));
@@ -112,13 +140,15 @@
             await ReloadTableAsync();
         }
     }
-    
+
+    //Table Methods
     private async Task ReloadTableAsync()
     {
         _isLoading = true;
         StateHasChanged();
         await GetDocumentosIngresoAsync();
     }
+
     private async Task GetDocumentosIngresoAsync()
     {
         var result = await DocumentoService.GetAllDocumentos();
@@ -126,6 +156,7 @@
         _isLoading = false;
         StateHasChanged();
     }
+
     private void HandleCodFilter(ChangeEventArgs e)
     {
         if (e.Value is string value)
@@ -133,6 +164,7 @@
             _codFilter = value;
         }
     }
+
     private void HandleNameFilter(ChangeEventArgs e)
     {
         if (e.Value is string value)
@@ -140,9 +172,60 @@
             _nameFilter = value;
         }
     }
+
     private void HandleClear()
     {
         _codFilter = string.Empty;
         _nameFilter = string.Empty;
+    }
+
+    //Button Methods
+    private async Task OpenCreateDialogAsync()
+    {
+
+    }
+    
+    private async Task HandleEditar(DocumentoDto documento)
+    {
+        var parameters = new DialogParameters
+        {
+            { "Documento", documento }
+        };
+
+    }
+    
+    private async Task HandleBorrar(DocumentoDto item)
+    {
+        var parameters = new DialogParameters()
+        {
+            Title = "Eliminar Ingreso",
+            Width = "400px",
+            TrapFocus = true,
+            Modal = false,
+            PreventScroll = true
+        };
+
+        List<string> message = new List<string>();
+        message.Insert(0,"¿Estas seguro que deseas eliminar el Plan de Cuenta?");
+        message.Insert(1,$"Codigo: {item.NroDoc}");
+        message.Insert(2,$"Nombre: {item.Nombre}");
+        message.Insert(3,"Esta acción no se puede deshacer.");
+        
+        var dialog = await DialogService.ShowDialogAsync<GenericDialogBool>(message, parameters);
+        DialogResult result = await dialog.Result;
+        
+        if (result.Data is not null && (bool) result.Data)
+        {
+            var response = await DocumentoService.DeleteDocumento(item.NroDoc!);
+            if (response.Flag)
+            {
+                ToastService.ShowSuccess(response.Message);
+                await GetDocumentosIngresoAsync();
+            }
+            else
+            {
+                ToastService.ShowError(response.Message);
+            }
+        }
     }
 }
